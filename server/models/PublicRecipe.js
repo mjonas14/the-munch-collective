@@ -13,14 +13,14 @@ const publicRecipeSchema = new Schema({
   comment: {
     type: String,
   },
-  ingredients: {
+  ingredients: [{
     type: String,
     required: true,
-  },
-  method: {
+  }],
+  method: [{
     type: String,
     required: true,
-  },
+  }],
   img: {
     type: String,
   },
@@ -30,6 +30,10 @@ const publicRecipeSchema = new Schema({
   tips: {
     type: String,
   },
+  mealType: {
+    type: String,
+    required: true,
+  }
 });
 
 const PublicRecipe = model('PublicRecipe', publicRecipeSchema);
