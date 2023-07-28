@@ -4,6 +4,7 @@ const publicRecipeSchema = new Schema({
   pubRecId: {
     type: String,
     required: true,
+    unique: true,
   },
   name: {
     type: String,
