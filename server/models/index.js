@@ -1,4 +1,4 @@
-const PublicRecipe = require('./publicRecipe');
-const User = require('./user');
+const PublicRecipe = require('./PublicRecipe');
+const User = require('./User');
 
 module.exports = { PublicRecipe, User };

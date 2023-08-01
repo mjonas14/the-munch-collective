@@ -10,10 +10,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { setContext } from "@apollo/client/link/context";
 
 // Import pages
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Recipe from "./pages/Recipe";
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: "http://localhost:5174/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
@@ -39,11 +41,12 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
+          <Navbar />
           <Routes>
-            <Route
-            path='/'
-            element={<Home />}
-            />
+            <Route path="/" element={<Home />} />
+            <Route path="/breakfast" element={<h1>Breakfast</h1>} />
+            <Route path="/bread" element={<h1>Bread</h1>} />
+            <Route path="/recipe/:recipeId" element={<Recipe />} />
           </Routes>
         </>
       </Router>
