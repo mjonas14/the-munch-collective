@@ -100,21 +100,23 @@ const Recipe = () => {
                   {index + 1 + ". " + step}
                 </Typography>
               ))}
+              {recipe.tips ? (
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: "bold", marginTop: "40px" }}
+                >
+                  Tips:
+                </Typography>
+              ) : null}
               <Typography
                 variant="body1"
-                sx={{ fontWeight: "bold", marginTop: "40px" }}
+                sx={{
+                  fontWeight: "light",
+                  marginTop: "5px",
+                }}
               >
-                Tips:
+                {recipe.tips}
               </Typography>
-              <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: "light",
-                    marginTop: "5px",
-                  }}
-                >
-                  {recipe.tips}
-                </Typography>
             </CardContent>
           </Card>
         </Grid>
