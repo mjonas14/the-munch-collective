@@ -48,7 +48,7 @@ const Recipe = () => {
         <Grid item xs={3}>
           <Card
             sx={{
-              width: 900,
+              minWidth: 900,
               minWidth: 275,
             }}
           >
@@ -68,7 +68,7 @@ const Recipe = () => {
               </Typography>
               <Typography
                 variant="body1"
-                sx={{ fontWeight: "bold", marginTop: "50px" }}
+                sx={{ fontWeight: "bold", marginTop: "40px" }}
               >
                 Ingredients:
               </Typography>

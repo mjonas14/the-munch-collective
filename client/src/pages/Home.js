@@ -13,49 +13,54 @@ import { QUERY_GETALLPUBLICRECIPES } from "../utils/queries";
 import image from "../utils/assets/images/Home_Image.png";
 
 const Home = () => {
-
-    const { loading, data } = useQuery(QUERY_GETALLPUBLICRECIPES);
-    const recipes = data?.getAllPublicRecipes || [];
-    console.log(loading, "loading");
-    console.log(recipes, "data");
+  const { loading, data } = useQuery(QUERY_GETALLPUBLICRECIPES);
+  const recipes = data?.getAllPublicRecipes || [];
+  console.log(loading, "loading");
+  console.log(recipes, "data");
 
   return (
     <div>
-      <h1>Dinners for the week ahead:</h1>
-
+      <h6></h6>
       <Grid
         container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        color="black"
       >
         {recipes.map((recipe, index) => (
-          <Grid item xs={2} sm={4} md={4} key={index}>
-            <Card sx={{ maxWidth: 345, height: 320 }}>
-              <CardActionArea component={Link} to={`/recipe/${recipe._id}`}>
+            <Card sx={{ width: 300, height: 320, margin: "10px" }}>
+               <CardActionArea
+                component={Link}
+                to={`/recipe/${recipe._id}`}
+                sx={{ height: 270 }}
+              >
                 <CardMedia
                   component="img"
                   height="140"
                   image={image}
-                  alt="green iguana"
-                  
+                  alt={recipe.name}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {recipe.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {recipe.comment}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button size="small" color="primary" style={{ display: "flex", justfiyContent: "center" }}>
+                   </Typography>
+                   <Typography variant="body2" color="text.secondary">
+                     {recipe.comment}
+                   </Typography>
+                 </CardContent>
+               </CardActionArea>
+               <CardActions>
+                 <Button
+                  size="small"
+                  color="primary"
+                  style={{ display: "flex", justfiyContent: "center" }}
+                >
                   Share
                 </Button>
               </CardActions>
             </Card>
-          </Grid>
-        ))}
+            ))}
       </Grid>
     </div>
   );
