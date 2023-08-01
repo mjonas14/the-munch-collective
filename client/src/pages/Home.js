@@ -31,7 +31,7 @@ const Home = () => {
         {recipes.map((recipe, index) => (
           <Grid item xs={2} sm={4} md={4} key={index}>
             <Card sx={{ maxWidth: 345, height: 320 }}>
-              <CardActionArea>
+              <CardActionArea component={Link} to={`/recipe/${recipe._id}`}>
                 <CardMedia
                   component="img"
                   height="140"
