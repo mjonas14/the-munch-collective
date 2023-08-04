@@ -21,10 +21,10 @@ const bull = (
 );
 
 const Recipe = () => {
-  const { recipeId } = useParams();
+  const { recId } = useParams();
 
   const { loading, data } = useQuery(QUERY_GETPUBLICRECIPEBYID, {
-    variables: { pubRecId: recipeId },
+    variables: { recipeId: recId },
   });
 
   const recipe = data?.getPublicRecipeById || [];
@@ -48,11 +48,10 @@ const Recipe = () => {
         <Grid item xs={3}>
           <Card
             sx={{
-              minWidth: 900,
-              minWidth: 275,
+              width: 900,
             }}
           >
-            <CardContent sx={{ marginLeft: "150px" }}>
+            <CardContent sx={{ marginLeft: "150px", marginRight: "80px" }}>
               <Typography
                 variant="h3"
                 component="div"
@@ -101,22 +100,43 @@ const Recipe = () => {
                 </Typography>
               ))}
               {recipe.tips ? (
-                <Typography
-                  variant="body1"
-                  sx={{ fontWeight: "bold", marginTop: "40px" }}
-                >
-                  Tips:
-                </Typography>
-              ) : null}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: "light",
-                  marginTop: "5px",
-                }}
-              >
-                {recipe.tips}
-              </Typography>
+                <div>
+                  <Typography
+                    variant="body1"
+                    sx={{ fontWeight: "bold", marginTop: "40px" }}
+                  >
+                    Tips:
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontWeight: "light",
+                      marginTop: "5px",
+                      marginLeft: "20px"
+                    }}
+                  >
+                    {recipe.tips}
+                  </Typography>
+                </div>
+              ) : (
+                <div style={{ marginBottom: "40px" }}></div>
+              )}
+              {recipe.source ? (
+                <div>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontWeight: "light",
+                      marginTop: "20px",
+                      marginBottom: "40px"
+                    }}
+                  >
+                    <strong>Source:</strong> {recipe.source}
+                  </Typography>
+                </div>
+              ) : (
+                <div style={{ marginBottom: "40px" }}></div>
+              )}
             </CardContent>
           </Card>
         </Grid>

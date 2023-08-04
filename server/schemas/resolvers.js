@@ -17,8 +17,11 @@ const resolvers = {
       const recipeData = await PublicRecipe.find();
       return recipeData;
     },
-    getPublicRecipeById: async (parent, { pubRecId }) => {
-      return PublicRecipe.findOne({ _id: pubRecId });
+    getPublicRecipeById: async (parent, { recipeId }) => {
+      return PublicRecipe.findOne({ _id: recipeId });
+    },
+    getPublicRecipeByMealType: async (parent, { mealType }) => {
+      return PublicRecipe.find({ mealType: mealType });
     },
   },
   Mutation: {
@@ -27,9 +30,9 @@ const resolvers = {
 
       return newRecipe;
     },
-    // removePublicRecipe: async (parent, { pubRecId }, context) => {
+    // removePublicRecipe: async (parent, { recipeId }, context) => {
     //   const recipe = await PublicRecipe.findOneAndDelete({
-    //     pubRecId: pubRecId,
+    //     _id: recipeId,
     //   });
     //   return recipe;
     // },

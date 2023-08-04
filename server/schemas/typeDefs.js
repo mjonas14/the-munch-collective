@@ -9,7 +9,7 @@ const typeDefs = gql`
     }
 
     type PublicRecipe {
-        _id: ID!
+        _id: ID
         name: String!
         comment: String
         ingredients: [String!]
@@ -39,12 +39,13 @@ const typeDefs = gql`
     type Query {
         getMe: User
         getAllPublicRecipes: [PublicRecipe]
-        getPublicRecipeById(pubRecId: ID!): PublicRecipe
+        getPublicRecipeById(recipeId: ID!): PublicRecipe
+        getPublicRecipeByMealType(mealType: String!): [PublicRecipe]
     }
 
     type Mutation {
         addPublicRecipe(input: recipeInput!): PublicRecipe
-        removePublicRecipe(pubRecId: String!): PublicRecipe
+        removePublicRecipe(recipeId: String!): PublicRecipe
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
     }

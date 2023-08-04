@@ -1,11 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const publicRecipeSchema = new Schema({
-  pubRecId: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   name: {
     type: String,
     required: true,
