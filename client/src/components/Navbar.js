@@ -2,10 +2,6 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 
-import { styled } from "@mui/material/styles";
-import SearchIcon from "@mui/icons-material/Search";
-import MoreIcon from "@mui/icons-material/MoreVert";
-
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,11 +10,8 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
@@ -118,7 +111,7 @@ export default function Navbar() {
                   key={page}
                   onClick={handleCloseNavMenu}
                   component={Link}
-                  to="/breakfast"
+                  to={`/${page.toLowerCase()}`}
                 >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -129,7 +122,7 @@ export default function Navbar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
