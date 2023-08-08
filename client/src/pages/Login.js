@@ -10,14 +10,30 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 
+import Auth from "../utils/auth";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+
 export default function Login() {
-  const handleSubmit = (event) => {
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("username"),
-      password: data.get("password"),
-    });
+    const formData = new FormData(event.currentTarget);
+
+    try {
+        // const response = await loginUser(userFormData);
+        const {data} = await login({
+          variables: { username: formData.get("username"), password: formData.get("password") }
+        })
+        if (!data) {
+          throw new Error('something went wrong!');
+        }
+        Auth.login(data.login.token);
+      } catch (err) {
+        console.error(err);
+        alert("Incorrect username or password. Please try again!");
+      }
   };
 
   return (
@@ -123,4 +139,4 @@ export default function Login() {
       </Box>
     </Container>
   );
-};
+}

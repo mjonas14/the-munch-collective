@@ -14,14 +14,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const theme = createTheme();
-
-// theme.typography.h3 = {
-//     fontSize: '3rem',
-//     fontFamily: 'Georgia'
-// };
-
-const pages = [
+const basicPages = [
   "Home",
   "Breakfast",
   "Bread",
@@ -29,6 +22,16 @@ const pages = [
   "Sides",
   "Sweets",
   "Login/Signup",
+];
+
+const loggedinPages = [
+  "Home",
+  "Breakfast",
+  "Bread",
+  "Mains",
+  "Sides",
+  "Sweets",
+  "Profile",
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -106,16 +109,27 @@ export default function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  component={Link}
-                  to={`/${page.toLowerCase()}`}
-                >
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              {Auth.loggedIn()
+                ? loggedinPages.map((page) => (
+                    <MenuItem
+                      key={page}
+                      onClick={handleCloseNavMenu}
+                      component={Link}
+                      to={`/${page.toLowerCase()}`}
+                    >
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  ))
+                : basicPages.map((page) => (
+                    <MenuItem
+                      key={page}
+                      onClick={handleCloseNavMenu}
+                      component={Link}
+                      to={`/${page.toLowerCase()}`}
+                    >
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  ))}
             </Menu>
           </Box>
           <Typography
@@ -137,6 +151,64 @@ export default function Navbar() {
           >
             The<span style={{ fontStyle: "italic" }}>Munch</span>Collective
           </Typography>
+          {Auth.loggedIn() ? (
+          <Box
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+            justifyContent: "flex-end",
+          }}
+        >
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "white", display: "block" }}
+            component={Link}
+            to="/breakfast"
+          >
+            Breakfast
+          </Button>
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "white", display: "block" }}
+            component={Link}
+            to="/bread"
+          >
+            Bread
+          </Button>
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "white", display: "block" }}
+            component={Link}
+            to="/mains"
+          >
+            Mains
+          </Button>
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "white", display: "block" }}
+            component={Link}
+            to="/sides"
+          >
+            Sides
+          </Button>
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "white", display: "block" }}
+            component={Link}
+            to="/sweets"
+          >
+            Sweets
+          </Button>
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "white", display: "block" }}
+            component={Link}
+            to="/profile"
+          >
+            Profile
+          </Button>
+        </Box>
+          ) : (
           <Box
             sx={{
               flexGrow: 1,
@@ -193,6 +265,7 @@ export default function Navbar() {
               Login/Signup
             </Button>
           </Box>
+          )}
 
           <Box sx={{ flexGrow: 0 }}>
             <Menu
@@ -212,9 +285,7 @@ export default function Navbar() {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">
-                  Home
-                </Typography>
+                <Typography textAlign="center">Home</Typography>
               </MenuItem>
             </Menu>
           </Box>
