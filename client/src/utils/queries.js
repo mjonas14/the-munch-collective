@@ -52,7 +52,6 @@ export const QUERY_GETME = gql`
   query getMe {
     getMe {
       username
-      password
       email
       _id
     }
