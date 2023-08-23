@@ -20,6 +20,7 @@ import Sides from './pages/genre/Sides';
 import Sweets from './pages/genre/Sweets';
 import Login from './pages/Login';
 import MyProfile from './pages/MyProfile';
+import Logout from './pages/Logout';
 
 const httpLink = createHttpLink({
   uri: "http://localhost:5174/graphql",
@@ -58,7 +59,8 @@ function App() {
             <Route path="/sweets" element={<Sweets />} />
             <Route path="/login" element={<Login />} />
             <Route path="/recipe/:recId" element={<Recipe />} />
-            <Route path="/myprofile" element={<MyProfile />} />
+            <Route path="/myprofile" element={ <MyProfile />} />
+            <Route path="/logout" element={<Logout />} />
           </Routes>
         </>
       </Router>
