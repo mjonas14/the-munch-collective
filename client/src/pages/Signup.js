@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -12,30 +13,33 @@ import { Container } from "@mui/material";
 
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutations";
+import { ADD_USER } from "../utils/mutations";
 
-export default function Login() {
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+export default function Signup() {
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit1 = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log(formData, "form data");
 
     try {
-        // const response = await loginUser(userFormData);
-        const {data} = await login({
-          variables: { username: formData.get("username"), password: formData.get("password") }
-        })
-        if (!data) {
-          throw new Error('something went wrong!');
-        }
-        Auth.login(data.login.token);
-        window.location.replace("/myprofile")
-      } catch (err) {
-        console.error(err);
-        alert("Incorrect username or password. Please try again!");
+      // const response = await loginUser(userFormData);
+      const { data } = await addUser({
+        variables: {
+          username: formData.get("username"),
+          email: formData.get("email"),
+          password: formData.get("password"),
+        },
+      });
+      if (!data) {
+        throw new Error("something went wrong!");
       }
+      Auth.login(data.login.token);
+      window.location.replace("/myprofile");
+    } catch (err) {
+      console.error(err);
+      alert("Incorrect username or password. Please try again!");
+    }
   };
 
   return (
@@ -82,12 +86,12 @@ export default function Login() {
               }}
             >
               <Typography component="h1" variant="h5">
-                Log in
+                Sign Up
               </Typography>
               <Box
                 component="form"
                 noValidate
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit1}
                 sx={{ mt: 1 }}
               >
                 <TextField
@@ -98,6 +102,16 @@ export default function Login() {
                   label="Username"
                   name="username"
                   autoComplete="username"
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email"
+                  name="email"
+                  autoComplete="email"
                   autoFocus
                 />
                 <TextField
@@ -120,17 +134,12 @@ export default function Login() {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Sign In
+                  Sign Up
                 </Button>
                 <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid>
                   <Grid item>
-                    <Link href="/signup" variant="body2">
-                      {"Don't have an account? Sign Up"}
+                    <Link href="/login" variant="body2">
+                      {"Already have an account? Sign In"}
                     </Link>
                   </Grid>
                 </Grid>
