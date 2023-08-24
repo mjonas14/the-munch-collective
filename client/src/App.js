@@ -19,7 +19,7 @@ import Mains from './pages/genre/Mains';
 import Sides from './pages/genre/Sides';
 import Sweets from './pages/genre/Sweets';
 import Login from './pages/Login';
-import MyProfile from './pages/MyProfile';
+import MyProfile from './pages/profile/MyProfile';
 import Logout from './pages/Logout';
 
 const httpLink = createHttpLink({
