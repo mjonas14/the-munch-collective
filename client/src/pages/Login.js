@@ -20,7 +20,7 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    console.log(formData, "form data");
+    console.log(formData, "form data1");
 
     try {
         // const response = await loginUser(userFormData);

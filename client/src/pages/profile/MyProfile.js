@@ -11,6 +11,8 @@ import Avatar from "@mui/material/Avatar";
 
 import { QUERY_GETME } from "../../utils/queries";
 
+import SideBar from "./SideBar";
+
 export default function MyProfile() {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
@@ -25,52 +27,7 @@ export default function MyProfile() {
         <div>
           {Auth.loggedIn() ? (
             <Grid container spacing={2}>
-              <Grid item xs={4}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    // alignItems: "center",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 400,
-                      height: 1000,
-                      borderRadius: "16px",
-                      backgroundColor: "#EBECF0",
-                      margin: "20px",
-                    }}
-                  >
-                    <Container
-                      sx={{
-                        height: 200,
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Avatar
-                        alt={userData.username}
-                        src="/static/images/avatar/1.jpg"
-                        sx={{ width: 140, height: 140 }}
-                      >
-                        <Typography sx={{ fontSize: "50px" }}>
-                          {userData.username.charAt(0)}
-                        </Typography>
-                      </Avatar>
-                    </Container>
-                    <Container>
-                      <Typography sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                      }}>
-                        <h1>{userData.username}</h1>
-                      </Typography>
-                    </Container>
-                  </Box>
-                </Box>
-              </Grid>
+              <SideBar />
               <Grid item xs={8}>
                 <Item>xs=8</Item>
               </Grid>

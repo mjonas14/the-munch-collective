@@ -13,10 +13,11 @@ import { Container } from "@mui/material";
 
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../utils/mutations";
+import { ADD_USER, LOGIN_USER } from "../utils/mutations";
 
 export default function Signup() {
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [addUser, { error1, data1 }] = useMutation(ADD_USER);
+//   const [login, { error2, data2 }] = useMutation(LOGIN_USER);
 
   const handleSubmit1 = async (event) => {
     event.preventDefault();
@@ -32,9 +33,9 @@ export default function Signup() {
         },
       });
       if (!data) {
-        throw new Error("something went wrong!");
+        throw new Error("Something went wrong!");
       }
-      Auth.login(data.login.token);
+      // Auth.login(data.login.token);
       window.location.replace("/myprofile");
     } catch (err) {
       console.error(err);
