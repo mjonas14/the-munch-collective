@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const dateFormat = require('../utils/dateFormat');
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
@@ -18,9 +19,28 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    descirption: {
+    bio: {
       type: String,
     },
+    cityBorn: {
+      type: String,
+    },
+    cityLive: {
+      type: String,
+    },
+    favCuisine: {
+      type: String,
+    }, 
+    signatureDish: {
+      type: String,
+    }, 
+    yob: {
+      type: Number,
+    }, 
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    }
   },
   // set this to use virtual below
   {

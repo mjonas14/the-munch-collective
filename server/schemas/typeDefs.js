@@ -6,7 +6,13 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        description: String
+        bio: String
+        cityBorn: String
+        cityLive: String
+        favCuisine: String
+        signatureDish: String
+        yob: Int
+        createdAt: String
     }
 
     type PublicRecipe {
@@ -19,6 +25,7 @@ const typeDefs = gql`
         source: String
         tips: String
         mealType: String!
+        createdAt: String
     }
 
     input recipeInput {
@@ -49,6 +56,7 @@ const typeDefs = gql`
         removePublicRecipe(recipeId: String!): PublicRecipe
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
+        addUserDetails(bio: String, cityBorn: String, cityLive: String, favCuisine: String, signatureDish: String, yob: Int): User
     }
 `;
 

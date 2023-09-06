@@ -8,10 +8,12 @@ import Item from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
 
 import { QUERY_GETME } from "../../utils/queries";
 
-import SideBar from "./SideBar";
+import UsernameSec from "./UsernameSec";
+import InfoSec from "./InfoSec";
 
 export default function MyProfile() {
   const { loading, data } = useQuery(QUERY_GETME);
@@ -27,7 +29,16 @@ export default function MyProfile() {
         <div>
           {Auth.loggedIn() ? (
             <Grid container spacing={2}>
-              <SideBar />
+              <Grid item xs={4}>
+                <Box
+                  sx={{
+                    height: 1000,
+                  }}
+                >
+                  <UsernameSec />
+                  <InfoSec />
+                </Box>
+              </Grid>
               <Grid item xs={8}>
                 <Item>xs=8</Item>
               </Grid>

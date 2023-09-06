@@ -59,6 +59,30 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    addUserDetails: async (
+      parent,
+      { bio, cityBorn, cityLive, favCuisine, signatureDish, yob },
+      context
+    ) => {
+      if (context.user) {
+        console.log(context.user._id);
+        console.log(cityBorn);
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            bio: bio,
+            cityBorn: cityBorn,
+            cityLive: cityLive,
+            favCuisine: favCuisine,
+            signatureDish: signatureDish,
+            yob: yob,
+          }
+        );
+
+        return User;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 
