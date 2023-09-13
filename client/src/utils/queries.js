@@ -49,11 +49,19 @@ export const QUERY_GETPUBLICRECIPEBYMEALTYPE = gql`
 `;
 
 export const QUERY_GETME = gql`
-  query getMe {
-    getMe {
-      username
-      email
-      _id
-    }
+query getMe {
+  getMe {
+    username
+    email
+    _id
+    password
+    bio
+    cityBorn
+    cityLive
+    createdAt
+    favCuisine
+    signatureDish
+    yob
   }
+}
 `;

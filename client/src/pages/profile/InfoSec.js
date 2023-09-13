@@ -18,11 +18,11 @@ import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../utils/queries";
 import { Link } from "react-router-dom";
 import EditProileInfo from "./EditInfoModal";
-import handleOpen from "./EditInfoModal";
 
 export default function InfoSec() {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
+  console.log(userData);
 
   const [showModal, setShowModal] = React.useState(false);
 
@@ -73,7 +73,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <PublicIcon sx={{ marginRight: "10px" }} /> Lives in
+        <PublicIcon sx={{ marginRight: "10px" }} /> Lives in {userData.cityLive}
       </Container>
       <Container
         sx={{
@@ -82,7 +82,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <HouseIcon sx={{ marginRight: "10px" }} /> Born in
+        <HouseIcon sx={{ marginRight: "10px" }} /> Born in {userData.cityBorn}
       </Container>
       <Container
         sx={{
@@ -91,7 +91,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <Person2Icon sx={{ marginRight: "10px" }} /> years of age
+        <Person2Icon sx={{ marginRight: "10px" }} /> {userData.yob} years of age
       </Container>
       <Container>
         <Typography
@@ -111,7 +111,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <LocalDiningIcon sx={{ marginRight: "10px" }} /> Loves to cook
+        <LocalDiningIcon sx={{ marginRight: "10px" }} /> Loves to cook {userData.favCuisine}
       </Container>
       <Container
         sx={{
@@ -120,7 +120,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <KitchenIcon sx={{ marginRight: "10px" }} /> Loves to eat
+        <KitchenIcon sx={{ marginRight: "10px" }} /> Loves to eat {userData.signatureDish}
       </Container>
       <Container
         sx={{
@@ -129,7 +129,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <StarRateIcon sx={{ marginRight: "10px" }} /> Signature dish:
+        <StarRateIcon sx={{ marginRight: "10px" }} /> Signature dish: {userData.signatureDish}
       </Container>
       <EditProileInfo show={showModal} set={setShowModal}/>
     </Box>

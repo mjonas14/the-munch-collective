@@ -9,17 +9,25 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { IconButton } from "@mui/material";
 
 import { QUERY_GETME } from "../../utils/queries";
 
 import UsernameSec from "./UsernameSec";
 import InfoSec from "./InfoSec";
+import AddPrivateRecipe from "./AddPrivateRecipe";
 
 export default function MyProfile() {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
   console.log(loading, "loading");
   console.log(data, "data");
+
+  const handleEdit = (event) => {
+    event.preventDefault();
+    console.log("Hi");
+  }
 
   return (
     <div>
@@ -40,7 +48,20 @@ export default function MyProfile() {
                 </Box>
               </Grid>
               <Grid item xs={8}>
-                <Item>xs=8</Item>
+                <Container sx={{
+                  display: "flex",
+                  justifyContent: "space-between"
+                }}>
+                <Item></Item>
+                <IconButton
+                  aria-label="edit"
+                  onClick={handleEdit}
+                  sx={{ margin: "15px" }}
+                >
+                  <AddCircleIcon fontSize="large" />
+                </IconButton>
+                </Container>
+                <AddPrivateRecipe />
               </Grid>
             </Grid>
           ) : (

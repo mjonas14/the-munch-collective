@@ -7,6 +7,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
+import { useMutation } from "@apollo/client";
+import { ADD_USER_DETAILS } from "../../utils/mutations";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -20,7 +23,35 @@ const style = {
 };
 
 export default function EditProileInfo(props) {
+  const [addUserDetails, { loading, data }] = useMutation(ADD_USER_DETAILS);
+
   const handleClose = () => props.set(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    console.log(formData);
+
+    try {
+      const { data } = await addUserDetails({
+        variables: {
+          bio: formData.get("bio"),
+          cityBorn: formData.get("cityBorn"),
+          cityLive: formData.get("cityLive"),
+          favCuisine: formData.get("favCuisine"),
+          signatureDish: formData.get("signatureDish"),
+          yob: formData.get("yob"),
+        },
+      });
+      if (!data) {
+        throw new Error("Something went wrong!");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("An error has been found!");
+    }
+  };
 
   return (
     <Modal
@@ -42,37 +73,61 @@ export default function EditProileInfo(props) {
             Edit Infomation
           </Typography>
           <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            Tell people a bit about yourself!
           </Typography>
           <Box
             component="form"
             noValidate
-            // onSubmit={}
+            onSubmit={handleSubmit}
             sx={{ mt: 1 }}
           >
             <TextField
               margin="normal"
               fullWidth
-              id="cityLiving"
-              label="Where do you live?"
-              name="cityLiving"
+              id="cityLive"
+              label="cityLive"
+              name="cityLive"
               autoFocus
             />
             <TextField
               margin="normal"
               fullWidth
               id="cityBorn"
-              label="Where were you born?"
+              label="cityBorn"
               name="cityBorn"
               autoFocus
             />
             <TextField
               margin="normal"
               fullWidth
-              name="yearOfBirth"
-              label="What year were you born?"
-              type="yearOfBirth"
-              id="yearOfBirth"
+              name="yob"
+              label="yob"
+              type="yob"
+              id="yob"
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              name="favCuisine"
+              label="favCuisine"
+              type="favCuisine"
+              id="favCuisine"
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              name="signatureDish"
+              label="signatureDish"
+              type="signatureDish"
+              id="signatureDish"
+            />
+            <TextField
+              margin="normal"
+              fullWidth
+              name="bio"
+              label="bio"
+              type="bio"
+              id="bio"
             />
             <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
               Save to Profile
