@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Box, Container, Avatar, Typography } from "@mui/material";
 import { useQuery } from "@apollo/client";
-import { QUERY_GETME } from "../../utils/queries";
+import { QUERY_GETME } from "../../../utils/queries";
 
 export default function UsernameSec() {
   const { loading, data } = useQuery(QUERY_GETME);
@@ -13,7 +13,7 @@ export default function UsernameSec() {
         height: 290,
         backgroundColor: "#EBECF0",
         borderRadius: "16px",
-        margin: "20px",
+        margin: "20px 10px 20px 20px",
         display: "flex",
         flexDirection: "column",
       }}

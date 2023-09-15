@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, PublicRecipe } = require("../models");
+const { User, PublicRecipe, PrivateRecipe } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -7,15 +7,22 @@ const resolvers = {
     getMe: async (parent, args, context) => {
       if (context.user) {
         console.log(context.user);
-        const user = await User.findOne({ _id: context.user._id });
+        const user = await User.findOne({ _id: context.user._id }).populate('privateRecipes');
         return user;
       }
       throw new AuthenticationError("Not logged in");
     },
     getAllPublicRecipes: async () => {
-      console.log("Hit!");
+      console.log("Hit Public!");
       const recipeData = await PublicRecipe.find();
       return recipeData;
+    },
+    getAllPrivateRecipes: async (parent, { userId }, context) => {
+      console.log("Hit Private!");
+      if (context.user) {
+      const recipeData = await PrivateRecipe.find({_id: context.user._id});
+      return recipeData;
+      }
     },
     getPublicRecipeById: async (parent, { recipeId }) => {
       return PublicRecipe.findOne({ _id: recipeId });
@@ -29,6 +36,20 @@ const resolvers = {
       const newRecipe = await PublicRecipe.create(input);
 
       return newRecipe;
+    },
+    addPrivateRecipe: async (parent, { userId, input }, context) => {
+      if (context.user) {
+      input.userId = context.user._id;
+      const newRecipe1 = await PrivateRecipe.create(input);
+
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { privateRecipes: newRecipe1._id } }
+      );
+
+      return newRecipe1;
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
     // removePublicRecipe: async (parent, { recipeId }, context) => {
     //   const recipe = await PublicRecipe.findOneAndDelete({
@@ -78,7 +99,6 @@ const resolvers = {
             yob: yob,
           }
         );
-
         return User;
       }
       throw new AuthenticationError("You need to be logged in!");

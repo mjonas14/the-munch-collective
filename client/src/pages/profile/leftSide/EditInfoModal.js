@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
 import { useMutation } from "@apollo/client";
-import { ADD_USER_DETAILS } from "../../utils/mutations";
+import { ADD_USER_DETAILS } from "../../../utils/mutations";
 
 const style = {
   position: "absolute",
@@ -23,7 +23,7 @@ const style = {
 };
 
 export default function EditProileInfo(props) {
-  const [addUserDetails, { loading, data }] = useMutation(ADD_USER_DETAILS);
+  const [addUserDetails, { loading1, data1 }] = useMutation(ADD_USER_DETAILS);
 
   const handleClose = () => props.set(false);
 

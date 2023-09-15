@@ -51,6 +51,12 @@ const Recipe = () => {
           >
             <CardContent sx={{ marginLeft: "150px", marginRight: "80px" }}>
               <Typography
+                component="div"
+                sx={{ marginTop: "10px", color: "gray" }}
+              >
+                {recipe.createdAt.substring(0,recipe.createdAt.length-12)}
+              </Typography>
+              <Typography
                 variant="h3"
                 component="div"
                 sx={{ marginTop: "20px" }}
@@ -110,7 +116,7 @@ const Recipe = () => {
                     sx={{
                       fontWeight: "light",
                       marginTop: "5px",
-                      marginLeft: "20px"
+                      marginLeft: "20px",
                     }}
                   >
                     {recipe.tips}
@@ -126,7 +132,7 @@ const Recipe = () => {
                     sx={{
                       fontWeight: "light",
                       marginTop: "20px",
-                      marginBottom: "40px"
+                      marginBottom: "40px",
                     }}
                   >
                     <strong>Source:</strong> {recipe.source}

@@ -12,6 +12,24 @@ export const QUERY_GETALLPUBLICRECIPES = gql`
       _id
       tips
       source
+      createdAt
+    }
+  }
+`;
+
+export const QUERY_GETALLPRIVATERECIPES = gql`
+  query getAllPrivateRecipes {
+    getAllPrivateRecipes {
+      name
+      comment
+      img
+      ingredients
+      mealType
+      method
+      _id
+      tips
+      source
+      createdAt
     }
   }
 `;
@@ -20,12 +38,13 @@ export const QUERY_GETPUBLICRECIPEBYID = gql`
   query getPublicRecipeById($recipeId: ID!) {
     getPublicRecipeById(recipeId: $recipeId) {
       _id
-      name
       comment
+      createdAt
       img
       ingredients
       mealType
       method
+      name
       source
       tips
     }
@@ -49,19 +68,31 @@ export const QUERY_GETPUBLICRECIPEBYMEALTYPE = gql`
 `;
 
 export const QUERY_GETME = gql`
-query getMe {
-  getMe {
-    username
-    email
-    _id
-    password
-    bio
-    cityBorn
-    cityLive
-    createdAt
-    favCuisine
-    signatureDish
-    yob
+  query getMe {
+    getMe {
+      username
+      email
+      _id
+      password
+      bio
+      cityBorn
+      cityLive
+      createdAt
+      favCuisine
+      signatureDish
+      yob
+      privateRecipes {
+        name
+        comment
+        img
+        ingredients
+        mealType
+        method
+        _id
+        tips
+        source
+        createdAt
+      }
+    }
   }
-}
 `;

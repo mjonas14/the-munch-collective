@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const dateFormat = require('../utils/dateFormat');
+const dateFormat = require("../utils/dateFormat");
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
@@ -30,17 +30,23 @@ const userSchema = new Schema(
     },
     favCuisine: {
       type: String,
-    }, 
+    },
     signatureDish: {
       type: String,
-    }, 
+    },
     yob: {
       type: Number,
-    }, 
+    },
     createdAt: {
       type: Date,
       default: Date.now,
-    }
+    },
+    privateRecipes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "PrivateRecipe",
+      },
+    ],
   },
   // set this to use virtual below
   {

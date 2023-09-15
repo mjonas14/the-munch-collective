@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Box,
@@ -15,7 +15,7 @@ import KitchenIcon from "@mui/icons-material/Kitchen";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQuery } from "@apollo/client";
-import { QUERY_GETME } from "../../utils/queries";
+import { QUERY_GETME } from "../../../utils/queries";
 import { Link } from "react-router-dom";
 import EditProileInfo from "./EditInfoModal";
 
@@ -24,7 +24,7 @@ export default function InfoSec() {
   const userData = data?.getMe || [];
   console.log(userData);
 
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleEdit = (event) => {
     event.preventDefault();
@@ -38,7 +38,7 @@ export default function InfoSec() {
         height: 420,
         backgroundColor: "#EBECF0",
         borderRadius: "16px",
-        margin: "20px",
+        margin: "20px 10px 20px 20px",
         display: "flex",
         flexDirection: "column",
       }}

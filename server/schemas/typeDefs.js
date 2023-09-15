@@ -13,6 +13,7 @@ const typeDefs = gql`
         signatureDish: String
         yob: Int
         createdAt: String
+        privateRecipes: [PrivateRecipe]
     }
 
     type PublicRecipe {
@@ -28,7 +29,21 @@ const typeDefs = gql`
         createdAt: String
     }
 
-    input recipeInput {
+    type PrivateRecipe {
+        _id: ID
+        userId: String!
+        name: String!
+        comment: String
+        ingredients: [String!]
+        method: [String!]
+        img: String
+        source: String
+        tips: String
+        mealType: String!
+        createdAt: String
+    }
+
+    input publicRecipeInput {
         name: String!
         comment: String
         ingredients: [String!]
@@ -47,12 +62,14 @@ const typeDefs = gql`
     type Query {
         getMe: User
         getAllPublicRecipes: [PublicRecipe]
+        getAllPrivateRecipes: [PrivateRecipe]
         getPublicRecipeById(recipeId: ID!): PublicRecipe
         getPublicRecipeByMealType(mealType: String!): [PublicRecipe]
     }
 
     type Mutation {
-        addPublicRecipe(input: recipeInput!): PublicRecipe
+        addPublicRecipe(input: publicRecipeInput!): PublicRecipe
+        addPrivateRecipe(userId: String!, input: publicRecipeInput!): PrivateRecipe
         removePublicRecipe(recipeId: String!): PublicRecipe
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth

@@ -9,25 +9,19 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { IconButton } from "@mui/material";
 
 import { QUERY_GETME } from "../../utils/queries";
 
-import UsernameSec from "./UsernameSec";
-import InfoSec from "./InfoSec";
-import AddPrivateRecipe from "./AddPrivateRecipe";
+import UsernameSec from "./leftSide/UsernameSec";
+import InfoSec from "./leftSide/InfoSec";
+import AddPrivateRecipe from "./rightSide/AddPrivateRecipe";
+import RightSideSection from "./RightSideSection";
 
 export default function MyProfile() {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
   console.log(loading, "loading");
-  console.log(data, "data");
-
-  const handleEdit = (event) => {
-    event.preventDefault();
-    console.log("Hi");
-  }
+  console.log(data, "datasdfasdf");
 
   return (
     <div>
@@ -36,7 +30,7 @@ export default function MyProfile() {
       ) : (
         <div>
           {Auth.loggedIn() ? (
-            <Grid container spacing={2}>
+            <Grid container>
               <Grid item xs={4}>
                 <Box
                   sx={{
@@ -48,20 +42,7 @@ export default function MyProfile() {
                 </Box>
               </Grid>
               <Grid item xs={8}>
-                <Container sx={{
-                  display: "flex",
-                  justifyContent: "space-between"
-                }}>
-                <Item></Item>
-                <IconButton
-                  aria-label="edit"
-                  onClick={handleEdit}
-                  sx={{ margin: "15px" }}
-                >
-                  <AddCircleIcon fontSize="large" />
-                </IconButton>
-                </Container>
-                <AddPrivateRecipe />
+                <RightSideSection data={userData.privateRecipes} />
               </Grid>
             </Grid>
           ) : (

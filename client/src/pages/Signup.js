@@ -17,14 +17,18 @@ import { ADD_USER, LOGIN_USER } from "../utils/mutations";
 
 export default function Signup() {
   const [addUser, { error1, data1 }] = useMutation(ADD_USER);
-//   const [login, { error2, data2 }] = useMutation(LOGIN_USER);
+  const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleSubmit1 = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
+    if (formData.get('password') !== formData.get('confirmPassword')) {
+      alert("The passwords have to match");
+      return;
+    }
+
     try {
-      // const response = await loginUser(userFormData);
       const { data } = await addUser({
         variables: {
           username: formData.get("username"),
@@ -35,7 +39,13 @@ export default function Signup() {
       if (!data) {
         throw new Error("Something went wrong!");
       }
-      // Auth.login(data.login.token);
+      const {data2} = await login({
+        variables: { username: formData.get("username"), password: formData.get("password") }
+      })
+      if (!data2) {
+        throw new Error('something went wrong!');
+      }
+      Auth.login(data2.login.token);
       window.location.replace("/myprofile");
     } catch (err) {
       console.error(err);
@@ -102,7 +112,6 @@ export default function Signup() {
                   id="username"
                   label="Username"
                   name="username"
-                  autoComplete="username"
                   autoFocus
                 />
                 <TextField
@@ -112,8 +121,6 @@ export default function Signup() {
                   id="email"
                   label="Email"
                   name="email"
-                  autoComplete="email"
-                  autoFocus
                 />
                 <TextField
                   margin="normal"
@@ -123,7 +130,15 @@ export default function Signup() {
                   label="Password"
                   type="password"
                   id="password"
-                  autoComplete="current-password"
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  id="confirmPassword"
                 />
                 {/* <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
