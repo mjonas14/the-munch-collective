@@ -9,7 +9,7 @@ import image from "../utils/assets/images/Home_Image.png";
 
 import ShareModal from "./ShareModal";
 
-const RecipeCard = ({ name, comment, id }) => {
+const RecipeCard = ({ name, comment, id, img }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = (event) => {
@@ -25,7 +25,7 @@ const RecipeCard = ({ name, comment, id }) => {
           to={`/recipe/${id}`}
           sx={{ height: 270 }}
         >
-          <CardMedia component="img" height="140" image={image} alt={name} />
+          <CardMedia component="img" height="140" image={img || image} alt={name} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {name}

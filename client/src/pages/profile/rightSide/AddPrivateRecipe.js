@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { IconButton, TextField, FormLabel, Container } from "@mui/material";
@@ -22,11 +22,31 @@ import CancelIcon from "@mui/icons-material/Cancel";
 export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
   const [addPrivateRecipe, { error, data }] = useMutation(ADD_PRIVATE_RECIPE);
 
+  function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      // if (file) {
+        fileReader.readAsDataURL(file);
+      // }
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
+
   const handleAdd = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
     console.log(formData.get("ing1"), "formdata ing1");
+
+    const file = formData.get("img");
+    console.log(file, "file");
+    const base64 = await convertToBase64(file);
+    console.log(base64);
 
     const methodItem = [
       formData.get("step1"),
@@ -40,11 +60,6 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
       formData.get("ing3"),
     ];
 
-    console.log(methodItem);
-    console.log(ingredientsItem);
-    console.log(formData.get("name"));
-    console.log(formData.get("mealType"));
-
     try {
       // const response = await loginUser(userFormData);
       const { data } = await addPrivateRecipe({
@@ -55,7 +70,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
             method: methodItem,
             mealType: formData.get("mealType"),
             comment: formData.get("comment") || "",
-            img: formData.get("img"),
+            img: base64,
             source: formData.get("source"),
             tips: formData.get("tips"),
           },
@@ -75,7 +90,12 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
 
   return (
     <div>
-      <Box component="form" noValidate onSubmit={handleAdd} sx={{ margin: "10px 20px 20px 20px" }}>
+      <Box
+        component="form"
+        noValidate
+        onSubmit={handleAdd}
+        sx={{ margin: "10px 20px 20px 20px" }}
+      >
         <Typography
           variant="h4"
           style={{
@@ -116,7 +136,6 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
           id="ing2"
           placeholder="1 cup cacao powder"
           name="ing2"
-          F
         />
         <TextField
           margin="normal"
@@ -154,6 +173,17 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
           placeholder="Server over ice cream with fresh berries"
           name="comment"
         />
+        <FormLabel>Image:</FormLabel>
+        <div>
+          <label>Upload Image</label>
+          <input
+            type="file"
+            label="Image"
+            id="upload-image"
+            name="img"
+            accept=".jpeg"
+          />
+        </div>
         <FormLabel>Comment:</FormLabel>
         <Container
           sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}

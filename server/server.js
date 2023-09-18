@@ -4,6 +4,8 @@ const path = require("path");
 const { authMiddleware } = require("./utils/auth");
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
+const cors = require("cors");
+const myParser = require("body-parser");
 
 const app = express();
 const PORT = process.env.PORT || 5174;
@@ -14,8 +16,11 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+app.use(myParser.json({limit: '200mb'}));
+app.use(myParser.urlencoded({limit: '200mb', extended: false}));
+app.use(cors());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));

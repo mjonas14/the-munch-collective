@@ -34,9 +34,7 @@ function ProfileRecipeList({ recipeData, currentPage, handlePageChange }) {
               alignItems: "center",
             }}
           >
-            <Typography variant="h4">
-              Your Recipes
-            </Typography>
+            <Typography variant="h4">Your Recipes</Typography>
             <IconButton
               aria-label="edit"
               onClick={() => handlePageChange("AddRecipe")}
@@ -45,12 +43,18 @@ function ProfileRecipeList({ recipeData, currentPage, handlePageChange }) {
               <AddCircleIcon fontSize="large" />
             </IconButton>
           </Container>
-          <Grid container direction="row" color="black" sx={{marginLeft: "15px"}}>
+          <Grid
+            container
+            direction="row"
+            color="black"
+            sx={{ marginLeft: "15px" }}
+          >
             {recipeArray.map((recipe, index) => (
               <RecipeCard
+                key={index}
                 name={recipe.name}
                 comment={recipe.comment}
-                image={recipe.img}
+                img={recipe.img}
                 id={recipe._id}
               />
             ))}
@@ -61,12 +65,10 @@ function ProfileRecipeList({ recipeData, currentPage, handlePageChange }) {
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
-          <Typography variant="h4">
-            Add your first recipe
-          </Typography>
+          <Typography variant="h4">Add your first recipe</Typography>
           <ArrowRightAltIcon
             sx={{ margin: "25px", color: "gray" }}
             fontSize="large"
