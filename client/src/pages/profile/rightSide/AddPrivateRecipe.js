@@ -25,9 +25,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
   function convertToBase64(file) {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
-      // if (file) {
-        fileReader.readAsDataURL(file);
-      // }
+      fileReader.readAsDataURL(file);
       fileReader.onload = () => {
         resolve(fileReader.result);
       };
@@ -41,12 +39,9 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    console.log(formData.get("ing1"), "formdata ing1");
 
     const file = formData.get("img");
-    console.log(file, "file");
-    const base64 = await convertToBase64(file);
-    console.log(base64);
+    var base64 = await convertToBase64(file);
 
     const methodItem = [
       formData.get("step1"),
@@ -61,7 +56,11 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
     ];
 
     try {
-      // const response = await loginUser(userFormData);
+      // Using arbitrary number that is within confidence interval for a non-image upload
+      if (base64.length < 100) {
+        base64 = null;
+      }
+
       const { data } = await addPrivateRecipe({
         variables: {
           input: {
@@ -81,6 +80,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
         throw new Error("Something went wrong!");
       }
       handlePageChange("PersonalRecipes");
+      window.location.reload();
       // Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
@@ -106,7 +106,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
         >
           Add your recipe!
         </Typography>
-        <FormLabel>Recipe Name</FormLabel>
+        <FormLabel>Recipe Name:</FormLabel>
         <TextField
           margin="normal"
           fullWidth
@@ -114,7 +114,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
           placeholder="Chocolate Sauce"
           name="name"
         />
-        <FormLabel>Meal Type</FormLabel>
+        <FormLabel>Meal Type:</FormLabel>
         <TextField
           margin="normal"
           fullWidth
@@ -166,6 +166,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
           placeholder="Slowly bring to a simmer, stirring continuously"
           name="step3"
         />
+        <FormLabel>Comment:</FormLabel>
         <TextField
           margin="normal"
           fullWidth
@@ -175,24 +176,14 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
         />
         <FormLabel>Image:</FormLabel>
         <div>
-          <label>Upload Image</label>
           <input
             type="file"
             label="Image"
             id="upload-image"
             name="img"
-            accept=".jpeg"
+            accept=".jpeg, .png"
           />
         </div>
-        <FormLabel>Comment:</FormLabel>
-        <Container
-          sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}
-        >
-          <IconButton>
-            <AddCircleIcon />
-          </IconButton>
-          <Typography>Add Comment</Typography>
-        </Container>
         <FormLabel>Tips:</FormLabel>
         <Container
           sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}

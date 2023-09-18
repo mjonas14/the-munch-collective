@@ -1,11 +1,28 @@
-import React from "react";
-import { Grid, Box, Container, Avatar, Typography } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Grid,
+  Box,
+  Container,
+  Avatar,
+  Typography,
+  IconButton,
+} from "@mui/material";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../../utils/queries";
+import EditIcon from "@mui/icons-material/Edit";
+import EditUserInfo from "./EditUserModal";
 
 export default function UsernameSec() {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
+
+    const [showModal, setShowModal] = useState(false);
+
+  const handleEdit = (event) => {
+    event.preventDefault();
+    console.log("Edit info");
+    setShowModal(true);
+  };
 
   return (
     <Box
@@ -20,16 +37,31 @@ export default function UsernameSec() {
     >
       <Container
         sx={{
-          height: 200,
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <h3></h3>
+        <IconButton
+          aria-label="edit"
+          onClick={handleEdit}
+          sx={{ marginTop: "15px", marginRight: "15px" }}
+        >
+          <EditIcon />
+        </IconButton>
+      </Container>
+      <Container
+        sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          position: "relative",
         }}
       >
         <Avatar
-          alt={userData.username}
-          src="/static/images/avatar/1.jpg"
-          sx={{ width: 140, height: 140 }}
+          alt="Profile picture"
+          src={userData.profilePic}
+          sx={{ width: 150, height: 150 }}
         >
           <Typography sx={{ fontSize: "50px" }}>
             {userData.username.charAt(0)}
@@ -46,11 +78,13 @@ export default function UsernameSec() {
           sx={{
             fontSize: "30px",
             fontWeight: "bold",
+            marginTop: "15px"
           }}
         >
           {userData.username}
         </Typography>
       </Container>
+      <EditUserInfo show={showModal} set={setShowModal}/>
     </Box>
   );
 }

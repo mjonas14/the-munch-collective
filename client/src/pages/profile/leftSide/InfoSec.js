@@ -73,7 +73,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <PublicIcon sx={{ marginRight: "10px" }} /> Lives in {userData.cityLive}
+        <PublicIcon sx={{ marginRight: "10px" }} /> Lives in {userData.cityLive ? userData.cityLive : "..."}
       </Container>
       <Container
         sx={{
@@ -82,7 +82,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <HouseIcon sx={{ marginRight: "10px" }} /> Born in {userData.cityBorn}
+        <HouseIcon sx={{ marginRight: "10px" }} /> Born in {userData.cityBorn ? userData.cityBorn : "..."}
       </Container>
       <Container
         sx={{
@@ -91,7 +91,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <Person2Icon sx={{ marginRight: "10px" }} /> {userData.yob} years of age
+        <Person2Icon sx={{ marginRight: "10px" }} /> Entered this earth in {userData.yob ? userData.yob : "..."}
       </Container>
       <Container>
         <Typography
@@ -111,7 +111,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <LocalDiningIcon sx={{ marginRight: "10px" }} /> Loves to cook {userData.favCuisine}
+        <LocalDiningIcon sx={{ marginRight: "10px" }} /> Loves to cook {userData.favCuisine ? userData.favCuisine : "..."}
       </Container>
       <Container
         sx={{
@@ -120,7 +120,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <KitchenIcon sx={{ marginRight: "10px" }} /> Loves to eat {userData.signatureDish}
+        <KitchenIcon sx={{ marginRight: "10px" }} /> Loves to eat {userData.signatureDish ? userData.signatureDish : "..."}
       </Container>
       <Container
         sx={{
@@ -129,7 +129,7 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <StarRateIcon sx={{ marginRight: "10px" }} /> Signature dish: {userData.signatureDish}
+        <StarRateIcon sx={{ marginRight: "10px" }} /> Signature dish: {userData.signatureDish ? userData.signatureDish : "..."}
       </Container>
       <EditProileInfo show={showModal} set={setShowModal}/>
     </Box>

@@ -81,6 +81,7 @@ export const QUERY_GETME = gql`
       favCuisine
       signatureDish
       yob
+      profilePic
       privateRecipes {
         name
         comment

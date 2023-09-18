@@ -82,7 +82,7 @@ const resolvers = {
     },
     addUserDetails: async (
       parent,
-      { bio, cityBorn, cityLive, favCuisine, signatureDish, yob },
+      { bio, cityBorn, cityLive, favCuisine, signatureDish, yob, profilePic },
       context
     ) => {
       if (context.user) {
@@ -97,6 +97,7 @@ const resolvers = {
             favCuisine: favCuisine,
             signatureDish: signatureDish,
             yob: yob,
+            profilePic: profilePic,
           }
         );
         return User;

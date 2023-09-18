@@ -54,8 +54,8 @@ function ProfileRecipeList({ recipeData, currentPage, handlePageChange }) {
                 key={index}
                 name={recipe.name}
                 comment={recipe.comment}
-                img={recipe.img}
                 id={recipe._id}
+                img={recipe.img}
               />
             ))}
           </Grid>

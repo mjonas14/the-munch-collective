@@ -37,6 +37,9 @@ const userSchema = new Schema(
     yob: {
       type: Number,
     },
+    profilePic: {
+      type: String,
+    },
     createdAt: {
       type: Date,
       default: Date.now,

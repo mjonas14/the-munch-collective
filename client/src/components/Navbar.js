@@ -49,7 +49,7 @@ export default function Navbar() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    console.log('Hit');
+    console.log("Hit");
     setAnchorEl(null);
   };
 
@@ -285,13 +285,9 @@ export default function Navbar() {
                   </ListItemIcon>
                   Settings
                 </MenuItem>
-                <MenuItem 
-                component={Link}
-                to="/logout"
-                onClick={handleClose}
-                >
+                <MenuItem component={Link} to="/logout" onClick={handleClose}>
                   <ListItemIcon>
-                    <Logout fontSize="small"/>
+                    <Logout fontSize="small" />
                   </ListItemIcon>
                   Logout
                 </MenuItem>

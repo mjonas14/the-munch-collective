@@ -11,7 +11,8 @@ const typeDefs = gql`
         cityLive: String
         favCuisine: String
         signatureDish: String
-        yob: Int
+        yob: Float
+        profilePic: String
         createdAt: String
         privateRecipes: [PrivateRecipe]
     }
@@ -73,7 +74,7 @@ const typeDefs = gql`
         removePublicRecipe(recipeId: String!): PublicRecipe
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
-        addUserDetails(bio: String, cityBorn: String, cityLive: String, favCuisine: String, signatureDish: String, yob: Int): User
+        addUserDetails(bio: String, cityBorn: String, cityLive: String, favCuisine: String, signatureDish: String, yob: Float, profilePic: String): User
     }
 `;
 

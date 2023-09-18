@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_USER_DETAILS = gql`
-mutation addUserDetails($bio: String, $cityBorn: String, $cityLive: String, $favCuisine: String, $signatureDish: String, $yob: Int) {
-  addUserDetails(bio: $bio, cityBorn: $cityBorn, cityLive: $cityLive, favCuisine: $favCuisine, signatureDish: $signatureDish, yob: $yob) {
+mutation addUserDetails($bio: String, $cityBorn: String, $cityLive: String, $favCuisine: String, $signatureDish: String, $yob: Float, $profilePic: String) {
+  addUserDetails(bio: $bio, cityBorn: $cityBorn, cityLive: $cityLive, favCuisine: $favCuisine, signatureDish: $signatureDish, yob: $yob, profilePic: $profilePic) {
     username
     yob
     signatureDish
@@ -37,6 +37,7 @@ mutation addUserDetails($bio: String, $cityBorn: String, $cityLive: String, $fav
     cityBorn
     bio
     _id
+    profilePic
   }
 }
 `;
