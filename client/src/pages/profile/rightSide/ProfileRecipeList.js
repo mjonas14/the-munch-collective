@@ -1,9 +1,7 @@
 import React from "react";
-import { Container, IconButton } from "@mui/material";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { Grid, Box } from "@mui/material";
-import Typography from "@mui/material/Typography";
+import { Grid, Box, Typography, Container, IconButton } from "@mui/material";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_GETALLPRIVATERECIPES } from "../../../utils/queries";
@@ -68,15 +66,7 @@ function ProfileRecipeList({ recipeData, currentPage, handlePageChange }) {
             alignItems: "center",
           }}
         >
-          <Typography variant="h4">Add your first recipe</Typography>
-          <ArrowRightAltIcon
-            sx={{ margin: "25px", color: "gray" }}
-            fontSize="large"
-          />
-          <ArrowRightAltIcon
-            sx={{ margin: "25px", color: "gray" }}
-            fontSize="large"
-          />
+          <Typography variant="h4">Your Recipe Book is empty</Typography>
           <ArrowRightAltIcon
             sx={{ margin: "25px", color: "gray" }}
             fontSize="large"

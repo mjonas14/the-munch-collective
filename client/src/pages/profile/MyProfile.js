@@ -1,27 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import Auth from "../../utils/auth";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import Item from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
+import {
+  Typography,
+  Grid,
+  Item,
+  Box,
+  Container,
+  Avatar
+} from "@mui/material";
 
+import Auth from "../../utils/auth";
+import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../utils/queries";
 
 import UsernameSec from "./leftSide/UsernameSec";
 import InfoSec from "./leftSide/InfoSec";
-import AddPrivateRecipe from "./rightSide/AddPrivateRecipe";
-import RightSideSection from "./RightSideSection";
+import RightSideSection from "./rightSide/RightSideSection";
 
 export default function MyProfile() {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
-  console.log(loading, "loading");
-  console.log(data, "datasdfasdf");
 
   return (
     <div>

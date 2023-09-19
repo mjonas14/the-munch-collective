@@ -1,9 +1,5 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import { Box, Card, CardContent, Typography, Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
@@ -54,7 +50,7 @@ const Recipe = () => {
                 component="div"
                 sx={{ marginTop: "10px", color: "gray" }}
               >
-                {recipe.createdAt.substring(0,recipe.createdAt.length-12)}
+                {recipe.createdAt.substring(0, recipe.createdAt.length - 12)}
               </Typography>
               <Typography
                 variant="h3"

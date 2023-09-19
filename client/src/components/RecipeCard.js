@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+  CardActionArea,
+  CardActions,
+} from "@mui/material";
 import { Link } from "react-router-dom";
-import image from "../utils/assets/images/Home_Image.png";
 
+import image from "../utils/assets/images/Home_Image.png";
 import ShareModal from "./ShareModal";
 
 const RecipeCard = ({ name, comment, id, img }) => {
@@ -25,7 +29,12 @@ const RecipeCard = ({ name, comment, id, img }) => {
           to={`/recipe/${id}`}
           sx={{ height: 270 }}
         >
-          <CardMedia component="img" height="140" image={img || image} alt={name} />
+          <CardMedia
+            component="img"
+            height="140"
+            image={img || image}
+            alt={name}
+          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {name}

@@ -7,9 +7,10 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../../utils/queries";
-import EditIcon from "@mui/icons-material/Edit";
+
 import EditUserInfo from "./EditUserModal";
 
 export default function UsernameSec() {

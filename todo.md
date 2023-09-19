@@ -5,11 +5,11 @@
 ## First and Foremost
 x Populate profile page with private recipes
 - Add edit functionality to private recipes
-- Add functionality to be able to add picture to recipes
+x Add functionality to be able to add picture to recipes
 
 ## Profile
-- Fix edit user details
-- Add profile picture
+x Fix edit user details
+x Add profile picture
 - Add cancel button to edit user details modal
 - Fix link from private recipe to recipe card
 

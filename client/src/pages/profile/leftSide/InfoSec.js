@@ -14,9 +14,10 @@ import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import KitchenIcon from "@mui/icons-material/Kitchen";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import EditIcon from "@mui/icons-material/Edit";
+
 import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../../utils/queries";
-import { Link } from "react-router-dom";
+
 import EditProileInfo from "./EditInfoModal";
 
 export default function InfoSec() {
@@ -73,7 +74,8 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <PublicIcon sx={{ marginRight: "10px" }} /> Lives in {userData.cityLive ? userData.cityLive : "..."}
+        <PublicIcon sx={{ marginRight: "10px" }} /> Lives in{" "}
+        {userData.cityLive ? userData.cityLive : "..."}
       </Container>
       <Container
         sx={{
@@ -82,7 +84,8 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <HouseIcon sx={{ marginRight: "10px" }} /> Born in {userData.cityBorn ? userData.cityBorn : "..."}
+        <HouseIcon sx={{ marginRight: "10px" }} /> Born in{" "}
+        {userData.cityBorn ? userData.cityBorn : "..."}
       </Container>
       <Container
         sx={{
@@ -91,7 +94,8 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <Person2Icon sx={{ marginRight: "10px" }} /> Entered this earth in {userData.yob ? userData.yob : "..."}
+        <Person2Icon sx={{ marginRight: "10px" }} /> Entered this earth in{" "}
+        {userData.yob ? userData.yob : "..."}
       </Container>
       <Container>
         <Typography
@@ -111,7 +115,8 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <LocalDiningIcon sx={{ marginRight: "10px" }} /> Loves to cook {userData.favCuisine ? userData.favCuisine : "..."}
+        <LocalDiningIcon sx={{ marginRight: "10px" }} /> Loves to cook{" "}
+        {userData.favCuisine ? userData.favCuisine : "..."}
       </Container>
       <Container
         sx={{
@@ -120,7 +125,8 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <KitchenIcon sx={{ marginRight: "10px" }} /> Loves to eat {userData.signatureDish ? userData.signatureDish : "..."}
+        <KitchenIcon sx={{ marginRight: "10px" }} /> Loves to eat{" "}
+        {userData.signatureDish ? userData.signatureDish : "..."}
       </Container>
       <Container
         sx={{
@@ -129,9 +135,10 @@ export default function InfoSec() {
           alignItems: "center",
         }}
       >
-        <StarRateIcon sx={{ marginRight: "10px" }} /> Signature dish: {userData.signatureDish ? userData.signatureDish : "..."}
+        <StarRateIcon sx={{ marginRight: "10px" }} /> Signature dish:{" "}
+        {userData.signatureDish ? userData.signatureDish : "..."}
       </Container>
-      <EditProileInfo show={showModal} set={setShowModal}/>
+      <EditProileInfo show={showModal} set={setShowModal} />
     </Box>
   );
 }

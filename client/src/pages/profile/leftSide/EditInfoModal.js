@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
+import {
+  Backdrop,
+  Box,
+  Modal,
+  Fade,
+  Button,
+  Typography,
+  TextField,
+} from "@mui/material";
 
 import { useMutation } from "@apollo/client";
 import { ADD_USER_DETAILS } from "../../../utils/mutations";
@@ -88,7 +90,7 @@ export default function EditProileInfo(props) {
               margin="normal"
               fullWidth
               id="cityLive"
-              label="cityLive"
+              label="Where do you live?"
               name="cityLive"
               autoFocus
             />
@@ -96,7 +98,7 @@ export default function EditProileInfo(props) {
               margin="normal"
               fullWidth
               id="cityBorn"
-              label="cityBorn"
+              label="Where were you born?"
               name="cityBorn"
               autoFocus
             />
@@ -104,7 +106,7 @@ export default function EditProileInfo(props) {
               margin="normal"
               fullWidth
               name="yob"
-              label="yob"
+              label="What year were you born?"
               type="yob"
               id="yob"
             />
@@ -112,7 +114,7 @@ export default function EditProileInfo(props) {
               margin="normal"
               fullWidth
               name="favCuisine"
-              label="favCuisine"
+              label="Favourite cuisine"
               type="favCuisine"
               id="favCuisine"
             />
@@ -120,7 +122,7 @@ export default function EditProileInfo(props) {
               margin="normal"
               fullWidth
               name="signatureDish"
-              label="signatureDish"
+              label="Signature dish"
               type="signatureDish"
               id="signatureDish"
             />
@@ -128,7 +130,7 @@ export default function EditProileInfo(props) {
               margin="normal"
               fullWidth
               name="bio"
-              label="bio"
+              label="Tell us about you!"
               type="bio"
               id="bio"
             />

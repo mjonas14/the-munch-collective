@@ -1,29 +1,31 @@
 import React from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import { Container } from "@mui/material";
+import {
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Paper,
+  Box,
+  Grid,
+  Typography,
+  Container
+} from "@mui/material";
 
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { ADD_USER, LOGIN_USER } from "../utils/mutations";
 
 export default function Signup() {
-  const [addUser, { error1, data1 }] = useMutation(ADD_USER);
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [addUser, { error2, data2 }] = useMutation(ADD_USER);
+  const [login, { error3, data3 }] = useMutation(LOGIN_USER);
 
   const handleSubmit1 = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    if (formData.get('password') !== formData.get('confirmPassword')) {
+    if (formData.get("password") !== formData.get("confirmPassword")) {
       alert("The passwords have to match");
       return;
     }
@@ -36,17 +38,26 @@ export default function Signup() {
           password: formData.get("password"),
         },
       });
+
+      try {
+        const { data } = await login({
+          variables: {
+            username: formData.get("username"),
+            password: formData.get("password"),
+          },
+        });
+        if (!data) {
+          throw new Error("Something went wrong with login!");
+        }
+        Auth.login(data.login.token);
+        window.location.replace("/myprofile");
+      } catch (err) {
+        console.log(err);
+      }
+
       if (!data) {
-        throw new Error("Something went wrong!");
+        throw new Error("Something went wrong with signup!");
       }
-      const {data2} = await login({
-        variables: { username: formData.get("username"), password: formData.get("password") }
-      })
-      if (!data2) {
-        throw new Error('something went wrong!');
-      }
-      Auth.login(data2.login.token);
-      window.location.replace("/myprofile");
     } catch (err) {
       console.error(err);
       alert("Incorrect username or password. Please try again!");
