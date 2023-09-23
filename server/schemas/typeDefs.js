@@ -66,6 +66,7 @@ const typeDefs = gql`
         getAllPrivateRecipes: [PrivateRecipe]
         getPublicRecipeById(recipeId: ID!): PublicRecipe
         getPublicRecipeByMealType(mealType: String!): [PublicRecipe]
+        getAllUsers: [User]
     }
 
     type Mutation {

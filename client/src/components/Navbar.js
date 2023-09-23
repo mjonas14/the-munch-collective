@@ -36,12 +36,7 @@ const basicPages = [
 ];
 
 const loggedinPages = [
-  "Home",
-  "Breakfast",
-  "Bread",
-  "Mains",
-  "Sides",
-  "Sweets",
+  "My Potlucks"
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -183,42 +178,42 @@ export default function Navbar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
                 component={Link}
-                to="/breakfast"
+                to="/search"
               >
-                Breakfast
-              </Button>
+                Search
+              </Button>  
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
                 component={Link}
-                to="/bread"
+                to="/discover"
               >
-                Bread
-              </Button>
+                Discover
+              </Button>  
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
                 component={Link}
-                to="/mains"
+                to="/mypotlucks"
               >
-                Mains
-              </Button>
+                My Potlucks
+              </Button>    
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
                 component={Link}
-                to="/sides"
+                to="/recipebook"
               >
-                Sides
-              </Button>
-              <Button
+                Recipe Book
+              </Button>         
+              {/* <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
                 component={Link}
                 to="/sweets"
               >
                 Sweets
-              </Button>
+              </Button> */}
               <Box
                 sx={{
                   display: "flex",

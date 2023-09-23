@@ -30,6 +30,9 @@ const resolvers = {
     getPublicRecipeByMealType: async (parent, { mealType }) => {
       return PublicRecipe.find({ mealType: mealType });
     },
+    getAllUsers: async () => {
+      return User.find();
+    },
   },
   Mutation: {
     addPublicRecipe: async (parent, { input }, context) => {
