@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, PublicRecipe, PrivateRecipe } = require("../models");
+const { User, PublicRecipe, PrivateRecipe, Potluck } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -7,10 +7,23 @@ const resolvers = {
     getMe: async (parent, args, context) => {
       if (context.user) {
         console.log(context.user);
-        const user = await User.findOne({ _id: context.user._id }).populate('privateRecipes');
+        const user = await User.findOne({ _id: context.user._id })
+          .populate("privateRecipes")
+          .populate("potlucks");
         return user;
       }
       throw new AuthenticationError("Not logged in");
+    },
+    getMyPotlucks: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findOne({ _id: context.user._id }).populate({
+          path: "potlucks",
+          populate: {
+            path: "members",
+          },
+        });
+        return user;
+      }
     },
     getAllPublicRecipes: async () => {
       console.log("Hit Public!");
@@ -20,8 +33,8 @@ const resolvers = {
     getAllPrivateRecipes: async (parent, { userId }, context) => {
       console.log("Hit Private!");
       if (context.user) {
-      const recipeData = await PrivateRecipe.find({_id: context.user._id});
-      return recipeData;
+        const recipeData = await PrivateRecipe.find({ _id: context.user._id });
+        return recipeData;
       }
     },
     getPublicRecipeById: async (parent, { recipeId }) => {
@@ -42,15 +55,15 @@ const resolvers = {
     },
     addPrivateRecipe: async (parent, { userId, input }, context) => {
       if (context.user) {
-      input.userId = context.user._id;
-      const newRecipe1 = await PrivateRecipe.create(input);
+        input.userId = context.user._id;
+        const newRecipe1 = await PrivateRecipe.create(input);
 
-      await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $addToSet: { privateRecipes: newRecipe1._id } }
-      );
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { privateRecipes: newRecipe1._id } }
+        );
 
-      return newRecipe1;
+        return newRecipe1;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -106,6 +119,26 @@ const resolvers = {
         return User;
       }
       throw new AuthenticationError("You need to be logged in!");
+    },
+    createPotluck: async (parent, { title }, context) => {
+      if (context.user) {
+        const createdBy = context.user;
+        const potluck = await Potluck.create({ title, createdBy });
+
+        // Add the potluck to the user's list of potlucks
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { potlucks: potluck } }
+        );
+
+        // Add the user to the potluck's list of members
+        await Potluck.findOneAndUpdate(
+          { _id: potluck._id },
+          { $addToSet: { members: context.user } }
+        );
+
+        return potluck;
+      }
     },
   },
 };

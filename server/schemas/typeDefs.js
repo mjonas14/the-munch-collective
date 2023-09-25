@@ -15,6 +15,7 @@ const typeDefs = gql`
         profilePic: String
         createdAt: String
         privateRecipes: [PrivateRecipe]
+        potlucks: [Potluck]
     }
 
     type PublicRecipe {
@@ -44,6 +45,16 @@ const typeDefs = gql`
         createdAt: String
     }
 
+    type Potluck {
+        _id: ID
+        title: String!
+        createdBy: User!
+        createdAt: String
+        members: [User]
+        recipes: [PrivateRecipe]
+        img: String
+    }
+
     input publicRecipeInput {
         name: String!
         comment: String
@@ -62,6 +73,7 @@ const typeDefs = gql`
 
     type Query {
         getMe: User
+        getMyPotlucks: User
         getAllPublicRecipes: [PublicRecipe]
         getAllPrivateRecipes: [PrivateRecipe]
         getPublicRecipeById(recipeId: ID!): PublicRecipe
@@ -76,6 +88,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
         addUserDetails(bio: String, cityBorn: String, cityLive: String, favCuisine: String, signatureDish: String, yob: Float, profilePic: String): User
+        createPotluck(title: String!): Potluck
     }
 `;
 

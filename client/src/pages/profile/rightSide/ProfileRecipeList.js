@@ -13,6 +13,7 @@ function ProfileRecipeList({ recipeData, currentPage, handlePageChange }) {
   const recipes = data?.getAllPrivateRecipes || [];
   console.log(recipeData, "yooo");
   const recipeArray = recipeData.data;
+  console.log(recipeArray, "recipe array");
 
   return (
     <Box

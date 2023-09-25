@@ -25,21 +25,37 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_USER_DETAILS = gql`
-mutation addUserDetails($bio: String, $cityBorn: String, $cityLive: String, $favCuisine: String, $signatureDish: String, $yob: Float, $profilePic: String) {
-  addUserDetails(bio: $bio, cityBorn: $cityBorn, cityLive: $cityLive, favCuisine: $favCuisine, signatureDish: $signatureDish, yob: $yob, profilePic: $profilePic) {
-    username
-    yob
-    signatureDish
-    favCuisine
-    email
-    cityLive
-    createdAt
-    cityBorn
-    bio
-    _id
-    profilePic
+  mutation addUserDetails(
+    $bio: String
+    $cityBorn: String
+    $cityLive: String
+    $favCuisine: String
+    $signatureDish: String
+    $yob: Float
+    $profilePic: String
+  ) {
+    addUserDetails(
+      bio: $bio
+      cityBorn: $cityBorn
+      cityLive: $cityLive
+      favCuisine: $favCuisine
+      signatureDish: $signatureDish
+      yob: $yob
+      profilePic: $profilePic
+    ) {
+      username
+      yob
+      signatureDish
+      favCuisine
+      email
+      cityLive
+      createdAt
+      cityBorn
+      bio
+      _id
+      profilePic
+    }
   }
-}
 `;
 
 export const ADD_PUBLIC_RECIPE = gql`
@@ -71,6 +87,19 @@ export const ADD_PRIVATE_RECIPE = gql`
       method
       source
       tips
+    }
+  }
+`;
+
+export const CREATE_POTLUCK = gql`
+  mutation createPotluck($title: String!) {
+    createPotluck(title: $title) {
+      _id
+      createdAt
+      title
+      createdBy {
+        _id
+      }
     }
   }
 `;

@@ -99,20 +99,38 @@ export const QUERY_GETME = gql`
 `;
 
 export const QUERY_GETALLUSERS = gql`
-query getAllUsers {
-  getAllUsers {
-    _id
-    username
-    bio
-    cityBorn
-    cityLive
-    createdAt
-    email
-    favCuisine
-    password
-    profilePic
-    signatureDish
-    yob
+  query getAllUsers {
+    getAllUsers {
+      _id
+      username
+      bio
+      cityBorn
+      cityLive
+      createdAt
+      email
+      favCuisine
+      password
+      profilePic
+      signatureDish
+      yob
+    }
   }
-}
+`;
+
+export const QUERY_GETMYPOTLUCKS = gql`
+  query getMyPotlucks {
+    getMyPotlucks {
+      potlucks {
+        title
+        _id
+        createdAt
+        img
+        members {
+          _id
+          username
+          profilePic
+        }
+      }
+    }
+  }
 `;

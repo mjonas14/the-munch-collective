@@ -50,6 +50,12 @@ const userSchema = new Schema(
         ref: "PrivateRecipe",
       },
     ],
+    potlucks: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Potluck",
+      },
+    ],
   },
   // set this to use virtual below
   {
