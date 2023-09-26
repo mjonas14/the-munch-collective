@@ -24,6 +24,7 @@ import Logout from './pages/Logout';
 import Signup from './pages/Signup';
 import FriendSearch from './pages/friendSearch/FriendSearch'
 import Potlucks from './pages/potlucks/Potlucks';
+import SinglePotluck from './pages/potlucks/SinglePotluck';
 
 const httpLink = createHttpLink({
   uri: "http://localhost:5174/graphql",
@@ -67,6 +68,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path='/search' element={<FriendSearch />} />
             <Route path='/mypotlucks' element={<Potlucks />} />
+            <Route path='/mypotlucks/:recId' element={<SinglePotluck />} />
           </Routes>
         </>
       </Router>

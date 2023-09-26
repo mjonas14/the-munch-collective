@@ -25,6 +25,11 @@ const resolvers = {
         return user;
       }
     },
+    getPotluckById: async (parent, { potluckId }) => {
+      const potluck = await Potluck.findOne({ _id: potluckId })
+      .populate("members");
+      return potluck;
+    },
     getAllPublicRecipes: async () => {
       console.log("Hit Public!");
       const recipeData = await PublicRecipe.find();

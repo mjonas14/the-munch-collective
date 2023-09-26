@@ -74,6 +74,7 @@ const typeDefs = gql`
     type Query {
         getMe: User
         getMyPotlucks: User
+        getPotluckById(potluckId: ID!): Potluck
         getAllPublicRecipes: [PublicRecipe]
         getAllPrivateRecipes: [PrivateRecipe]
         getPublicRecipeById(recipeId: ID!): PublicRecipe

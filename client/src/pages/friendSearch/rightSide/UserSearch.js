@@ -13,7 +13,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETALLUSERS } from "../../../utils/queries";
 
-import UserDisplay from "../components/UserDisplay";
+import UserDisplay from "../../../components/UserDisplay";
 import SearchBar from "../components/SearchBar";
 
 export default function UserSearch() {

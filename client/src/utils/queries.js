@@ -134,3 +134,36 @@ export const QUERY_GETMYPOTLUCKS = gql`
     }
   }
 `;
+
+export const QUERY_GETPOTLUCKBYID = gql`
+  query getPotluckById($potluckId: ID!) {
+    getPotluckById(potluckId: $potluckId) {
+      _id
+      title
+      createdAt
+      createdBy {
+        username
+        profilePic
+      }
+      img
+      members {
+        username
+        profilePic
+        _id
+      }
+      recipes {
+        _id
+        comment
+        createdAt
+        img
+        ingredients
+        mealType
+        method
+        name
+        source
+        tips
+        userId
+      }
+    }
+  }
+`;

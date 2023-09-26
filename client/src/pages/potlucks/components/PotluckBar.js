@@ -9,23 +9,38 @@ import {
   CardContent,
   CardActions,
   Button,
+  Avatar,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function PotluckBar(props) {
+
+  console.log(props, "them ones yeah");
+
   return (
     <div>
       <Card
         sx={{
           width: 900,
-          height: 80,
-          margin: "20px 0px 0px 10px",
+          height: 65,
+          margin: "20px 0px 0px 20px",
           backgroundColor: "#EBECF0",
           borderRadius: "16px",
+          display: "flex",
+          justifyContent: "space-between",
         }}
       >
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+        <CardContent sx={{display: "flex", alignItems: "center"}}>
+          <Avatar
+            alt="Potluck picture"
+            src={props.img}
+            sx={{ width: 45, height: 45 }}
+          >
+            <Typography sx={{ fontSize: "20px" }}>
+              {props.title.charAt(0)}
+            </Typography>
+          </Avatar>
+          <Typography gutterBottom variant="h5" sx={{marginLeft: "30px"}}>
             {props.title}
           </Typography>
         </CardContent>
@@ -33,10 +48,11 @@ export default function PotluckBar(props) {
           <Button
             size="small"
             color="primary"
-            onClick={console.log("Clicked!")}
-            style={{ display: "flex", justfiyContent: "center" }}
+            component={Link}
+            to={`/mypotlucks/${props.id}`}
+            // style={{ display: "flex", justfiyContent: "center" }}
           >
-            Button
+            View
           </Button>
         </CardActions>
       </Card>
