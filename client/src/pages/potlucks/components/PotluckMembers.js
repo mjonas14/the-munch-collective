@@ -7,13 +7,12 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import { useQuery } from "@apollo/client";
-import { QUERY_GETALLUSERS } from "../../../utils/queries";
 
-export default function CurrentFriends() {
-  const { loading, data } = useQuery(QUERY_GETALLUSERS);
-  const userData = data?.getAllUsers || [];
+import UserDisplay from "../../../components/UserDisplay";
+
+export default function PotluckMembers(props) {
+
+    console.log(props.members, "members");
 
   return (
     <Box
@@ -33,8 +32,9 @@ export default function CurrentFriends() {
           margin: "15px 0px 15px 20px",
         }}
       >
-        Friends
+        Members
       </Typography>
+      <UserDisplay user={props.members[0]} />
     </Box>
   );
-};
+}
