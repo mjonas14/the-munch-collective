@@ -35,10 +35,7 @@ const basicPages = [
   "Login/Signup",
 ];
 
-const loggedinPages = [
-  "My Potlucks"
-];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const loggedinPages = ["My Potlucks"];
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -181,7 +178,7 @@ export default function Navbar() {
                 to="/search"
               >
                 Search
-              </Button>  
+              </Button>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -189,7 +186,7 @@ export default function Navbar() {
                 to="/discover"
               >
                 Discover
-              </Button>  
+              </Button>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -197,7 +194,7 @@ export default function Navbar() {
                 to="/mypotlucks"
               >
                 My Potlucks
-              </Button>    
+              </Button>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -205,7 +202,7 @@ export default function Navbar() {
                 to="/recipebook"
               >
                 Recipe Book
-              </Button>         
+              </Button>
               {/* <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -299,46 +296,14 @@ export default function Navbar() {
                 justifyContent: "flex-end",
               }}
             >
-              <Button
+              {/* <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
                 component={Link}
                 to="/breakfast"
               >
                 Breakfast
-              </Button>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-                component={Link}
-                to="/bread"
-              >
-                Bread
-              </Button>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-                component={Link}
-                to="/mains"
-              >
-                Mains
-              </Button>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-                component={Link}
-                to="/sides"
-              >
-                Sides
-              </Button>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-                component={Link}
-                to="/sweets"
-              >
-                Sweets
-              </Button>
+              </Button> */}
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}

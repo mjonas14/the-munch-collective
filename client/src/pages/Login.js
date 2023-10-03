@@ -9,7 +9,7 @@ import {
   Typography,
   Container,
   Checkbox,
-  FormControlLabel
+  FormControlLabel,
 } from "@mui/material";
 
 import Auth from "../utils/auth";
@@ -43,106 +43,124 @@ export default function Login() {
   };
 
   return (
-    <Container component="main" maxWidth="lg">
-      <Box
+    <>
+      <Typography
+        variant="h5"
         sx={{
-          marginTop: 8,
+          marginTop: 4,
+          display: "flex",
+          justifyContent: "center",
+          fontFamily: "Georgia",
+          fontWeight: 400,
+          fontSize: 50,
+          letterSpacing: ".3rem",
+          color: "inherit",
+          textDecoration: "none",
         }}
       >
-        <Grid container>
-          <CssBaseline />
-          <Grid
-            item
-            xs={false}
-            sm={4}
-            md={7}
-            sx={{
-              backgroundImage: "url(https://source.unsplash.com/random)",
-              backgroundRepeat: "no-repeat",
-              backgroundColor: (t) =>
-                t.palette.mode === "light"
-                  ? t.palette.grey[50]
-                  : t.palette.grey[900],
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
-          <Grid
-            item
-            xs={12}
-            sm={8}
-            md={5}
-            component={Paper}
-            elevation={6}
-            square
-          >
-            <Box
+        The<span style={{ fontStyle: "italic" }}>Munch</span>Collective
+      </Typography>
+      <Container component="main" maxWidth="lg">
+        <Box
+          sx={{
+            marginTop: 8,
+          }}
+        >
+          <Grid container>
+            <CssBaseline />
+            <Grid
+              item
+              xs={false}
+              sm={4}
+              md={7}
               sx={{
-                my: 8,
-                mx: 4,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                backgroundImage: "url(https://source.unsplash.com/random)",
+                backgroundRepeat: "no-repeat",
+                backgroundColor: (t) =>
+                  t.palette.mode === "light"
+                    ? t.palette.grey[50]
+                    : t.palette.grey[900],
+                backgroundSize: "cover",
+                backgroundPosition: "center",
               }}
+            />
+            <Grid
+              item
+              xs={12}
+              sm={8}
+              md={5}
+              component={Paper}
+              elevation={6}
+              square
             >
-              <Typography component="h1" variant="h5">
-                Log in
-              </Typography>
               <Box
-                component="form"
-                noValidate
-                onSubmit={handleSubmit}
-                sx={{ mt: 1 }}
+                sx={{
+                  my: 8,
+                  mx: 4,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
               >
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="username"
-                  label="Username"
-                  name="username"
-                  autoComplete="username"
-                  autoFocus
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                />
-                {/* <FormControlLabel
+                <Typography component="h1" variant="h5">
+                  Log in
+                </Typography>
+                <Box
+                  component="form"
+                  noValidate
+                  onSubmit={handleSubmit}
+                  sx={{ mt: 1 }}
+                >
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="username"
+                    label="Username"
+                    name="username"
+                    autoComplete="username"
+                    autoFocus
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                  />
+                  {/* <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
                   label="Remember me"
                 /> */}
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Sign In
-                </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Sign In
+                  </Button>
+                  <Grid container>
+                    <Grid item xs>
+                      <Link href="#" variant="body2">
+                        Forgot password?
+                      </Link>
+                    </Grid>
+                    <Grid item>
+                      <Link href="/signup" variant="body2">
+                        {"Don't have an account? Sign Up"}
+                      </Link>
+                    </Grid>
                   </Grid>
-                  <Grid item>
-                    <Link href="/signup" variant="body2">
-                      {"Don't have an account? Sign Up"}
-                    </Link>
-                  </Grid>
-                </Grid>
+                </Box>
               </Box>
-            </Box>
+            </Grid>
           </Grid>
-        </Grid>
-      </Box>
-    </Container>
+        </Box>
+      </Container>
+    </>
   );
 }

@@ -8,6 +8,7 @@ import {
 } from "@apollo/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { setContext } from "@apollo/client/link/context";
+import Auth from "./utils/auth";
 
 // Import pages
 import Navbar from "./components/Navbar";
@@ -53,7 +54,9 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          <Navbar />
+        {Auth.loggedIn() 
+        ? (<>
+        <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/breakfast" element={<Breakfast />} />
@@ -65,11 +68,18 @@ function App() {
             <Route path="/recipe/:recId" element={<Recipe />} />
             <Route path="/myprofile" element={ <MyProfile />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="/signup" element={<Signup />} />
             <Route path='/search' element={<FriendSearch />} />
             <Route path='/mypotlucks' element={<Potlucks />} />
             <Route path='/mypotlucks/:recId' element={<SinglePotluck />} />
           </Routes>
+          </>
+        ) : (
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            </Routes>
+        )
+        }
         </>
       </Router>
     </ApolloProvider>
