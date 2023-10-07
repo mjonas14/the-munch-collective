@@ -113,3 +113,12 @@ export const ADD_USER_TO_POTLUCK = gql`
     }
   }
 `;
+
+export const ADD_FRIEND = gql`
+  mutation addFriend($userId: String!) {
+    addFriend(userId: $userId) {
+      _id
+      username
+    }
+  }
+`;

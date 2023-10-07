@@ -13,13 +13,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETALLUSERS } from "../../../utils/queries";
 
-import UserDisplay from "../../../components/UserDisplay";
+import SearchUserDisplay from "../../../components/SearchUserDisplay";
 import SearchBar from "../components/SearchBar";
 
 export default function UserSearch() {
   const { loading, data } = useQuery(QUERY_GETALLUSERS);
   const userData = data?.getAllUsers || [];
-  console.log(userData, "data for all the users");
 
   const filterData = (query, userData) => {
     if (!query) {
@@ -47,7 +46,7 @@ export default function UserSearch() {
       </Typography>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         {dataFiltered.map((user) => (
-          <UserDisplay userId={user._id} />
+          <SearchUserDisplay userId={user._id} />
         ))}
     </div>
   );

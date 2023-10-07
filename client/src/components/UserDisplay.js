@@ -13,12 +13,17 @@ import { QUERY_GET_USER_BY_ID } from '../utils/queries';
 
 export default function UserDisplay(props) {
 
+  console.log(props, "props");
+
   const { loading, data } = useQuery(QUERY_GET_USER_BY_ID, {
     variables: { userId: props.userId }
   });
   const userData = data?.getUserById || [];
   console.log(userData, "data for all a single user");
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
       <Container
         sx={{
