@@ -8,7 +8,17 @@ import {
   IconButton,
 } from "@mui/material";
 
+import { useQuery } from "@apollo/client";
+import { QUERY_GET_USER_BY_ID } from '../utils/queries';
+
 export default function UserDisplay(props) {
+
+  const { loading, data } = useQuery(QUERY_GET_USER_BY_ID, {
+    variables: { userId: props.userId }
+  });
+  const userData = data?.getUserById || [];
+  console.log(userData, "data for all a single user");
+
   return (
       <Container
         sx={{
@@ -19,15 +29,15 @@ export default function UserDisplay(props) {
 
         <Avatar
           alt="Profile picture"
-          src={props.user.profilePic}
+          src={userData.profilePic}
           sx={{ width: 45, height: 45, margin: "10px 0px 10px 0px" }}
         >
           <Typography sx={{ fontSize: "20px" }}>
-            {props.user.username.charAt(0)}
+            {userData.username.charAt(0)}
           </Typography>
         </Avatar>
         <Typography sx={{ fontSize: "15px", marginLeft: "20px" }}>
-            {props.user.username}
+            {userData.username}
           </Typography>
       </Container>
   );

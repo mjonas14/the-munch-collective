@@ -81,18 +81,24 @@ export const QUERY_GETME = gql`
       favCuisine
       signatureDish
       yob
+      potlucks {
+        _id
+        title
+      }
+      friends
       profilePic
       privateRecipes {
-        name
+        _id
         comment
+        createdAt
         img
         ingredients
         mealType
         method
-        _id
-        tips
+        name
         source
-        createdAt
+        tips
+        userId
       }
     }
   }
@@ -164,6 +170,26 @@ export const QUERY_GETPOTLUCKBYID = gql`
         tips
         userId
       }
+    }
+  }
+`;
+
+export const QUERY_GET_USER_BY_ID = gql`
+  query getUserById($userId: String!) {
+    getUserById(userId: $userId) {
+      _id
+      username
+      bio
+      cityBorn
+      cityLive
+      createdAt
+      email
+      favCuisine
+      friends
+      password
+      profilePic
+      signatureDish
+      yob
     }
   }
 `;

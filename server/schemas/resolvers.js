@@ -26,8 +26,9 @@ const resolvers = {
       }
     },
     getPotluckById: async (parent, { potluckId }) => {
-      const potluck = await Potluck.findOne({ _id: potluckId })
-      .populate("members");
+      const potluck = await Potluck.findOne({ _id: potluckId }).populate(
+        "members"
+      );
       return potluck;
     },
     getAllPublicRecipes: async () => {
@@ -51,6 +52,9 @@ const resolvers = {
     getAllUsers: async () => {
       return User.find();
     },
+    getUserById: async (parent, { userId }, context) => {
+      return User.findOne({ _id: userId });
+    }
   },
   Mutation: {
     addPublicRecipe: async (parent, { input }, context) => {
@@ -139,12 +143,26 @@ const resolvers = {
         // Add the user to the potluck's list of members
         await Potluck.findOneAndUpdate(
           { _id: potluck._id },
-          { $addToSet: { members: context.user } }
+          { $addToSet: { members: context.user._id } }
         );
 
         return potluck;
       }
     },
+    addUserToPotluck: async (parent, { potluckId, userId }, context) => {
+      const potluck = await Potluck.findOneAndUpdate(
+        { _id: potluckId },
+        { $addToSet: { members: userId } }
+      );
+      return potluck;
+    },
+    addFriend: async (parents, { userId }, context) => {
+      const user = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { friends: userId } }
+      );
+      return user;
+    }
   },
 };
 

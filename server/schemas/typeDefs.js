@@ -15,6 +15,7 @@ const typeDefs = gql`
         profilePic: String
         createdAt: String
         privateRecipes: [PrivateRecipe]
+        friends: [String]
         potlucks: [Potluck]
     }
 
@@ -50,7 +51,7 @@ const typeDefs = gql`
         title: String!
         createdBy: User!
         createdAt: String
-        members: [User]
+        members: [String]
         recipes: [PrivateRecipe]
         img: String
     }
@@ -80,6 +81,7 @@ const typeDefs = gql`
         getPublicRecipeById(recipeId: ID!): PublicRecipe
         getPublicRecipeByMealType(mealType: String!): [PublicRecipe]
         getAllUsers: [User]
+        getUserById(userId: String!): User
     }
 
     type Mutation {
@@ -90,6 +92,8 @@ const typeDefs = gql`
         login(username: String!, password: String!): Auth
         addUserDetails(bio: String, cityBorn: String, cityLive: String, favCuisine: String, signatureDish: String, yob: Float, profilePic: String): User
         createPotluck(title: String!): Potluck
+        addUserToPotluck(userId: String!, potluckId: String!): Potluck
+        addFriend(userId: String!): User
     }
 `;
 

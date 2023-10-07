@@ -50,6 +50,12 @@ const userSchema = new Schema(
         ref: "PrivateRecipe",
       },
     ],
+    friends: [
+      {
+        type: String,
+        ref: "User"
+      },
+    ],
     potlucks: [
       {
         type: Schema.Types.ObjectId,

@@ -12,6 +12,7 @@ import {
   Typography,
   Container
 } from "@mui/material";
+import LandingPageHeader from "../components/LandingPageHeader";
 
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
@@ -65,6 +66,8 @@ export default function Signup() {
   };
 
   return (
+    <>
+    <LandingPageHeader />
     <Container component="main" maxWidth="lg">
       <Box
         sx={{
@@ -165,7 +168,7 @@ export default function Signup() {
                 </Button>
                 <Grid container>
                   <Grid item>
-                    <Link href="/login" variant="body2">
+                    <Link href="/" variant="body2">
                       {"Already have an account? Sign In"}
                     </Link>
                   </Grid>
@@ -176,5 +179,6 @@ export default function Signup() {
         </Grid>
       </Box>
     </Container>
+    </>
   );
 }

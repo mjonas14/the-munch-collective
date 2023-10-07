@@ -47,7 +47,7 @@ export default function UserSearch() {
       </Typography>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         {dataFiltered.map((user) => (
-          <UserDisplay user={user} />
+          <UserDisplay userId={user._id} />
         ))}
     </div>
   );

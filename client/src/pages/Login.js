@@ -15,6 +15,7 @@ import {
 import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
+import LandingPageHeader from "../components/LandingPageHeader";
 
 export default function Login() {
   const [login, { error, data }] = useMutation(LOGIN_USER);
@@ -44,22 +45,7 @@ export default function Login() {
 
   return (
     <>
-      <Typography
-        variant="h5"
-        sx={{
-          marginTop: 4,
-          display: "flex",
-          justifyContent: "center",
-          fontFamily: "Georgia",
-          fontWeight: 400,
-          fontSize: 50,
-          letterSpacing: ".3rem",
-          color: "inherit",
-          textDecoration: "none",
-        }}
-      >
-        The<span style={{ fontStyle: "italic" }}>Munch</span>Collective
-      </Typography>
+    <LandingPageHeader />
       <Container component="main" maxWidth="lg">
         <Box
           sx={{

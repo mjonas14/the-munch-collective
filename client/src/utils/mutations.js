@@ -103,3 +103,13 @@ export const CREATE_POTLUCK = gql`
     }
   }
 `;
+
+export const ADD_USER_TO_POTLUCK = gql`
+  mutation addUserToPotluck($userId: String!, $potluckId: String!) {
+    addUserToPotluck(userId: $userId, potluckId: $potluckId) {
+      _id
+      members
+      title
+    }
+  }
+`;

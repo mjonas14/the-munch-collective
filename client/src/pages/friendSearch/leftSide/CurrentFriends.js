@@ -9,11 +9,16 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQuery } from "@apollo/client";
-import { QUERY_GETALLUSERS } from "../../../utils/queries";
+import { QUERY_GETME } from "../../../utils/queries";
+
+import UserDisplay from '../../../components/UserDisplay';
 
 export default function CurrentFriends() {
-  const { loading, data } = useQuery(QUERY_GETALLUSERS);
-  const userData = data?.getAllUsers || [];
+  const { loading, data } = useQuery(QUERY_GETME);
+  const userData = data?.getMe || [];
+
+  console.log(userData, "test2");
+
 
   return (
     <Box
@@ -35,6 +40,9 @@ export default function CurrentFriends() {
       >
         Friends
       </Typography>
+      {userData.friends.map((friend) => (
+        <UserDisplay userId={friend} />
+      ))}
     </Box>
   );
 };
