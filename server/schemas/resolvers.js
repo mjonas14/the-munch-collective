@@ -16,12 +16,7 @@ const resolvers = {
     },
     getMyPotlucks: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findOne({ _id: context.user._id }).populate({
-          path: "potlucks",
-          populate: {
-            path: "members",
-          },
-        });
+        const user = await User.findOne({ _id: context.user._id }).populate("potlucks");
         return user;
       }
     },

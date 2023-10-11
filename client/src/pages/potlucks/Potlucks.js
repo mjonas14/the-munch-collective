@@ -18,19 +18,34 @@ export default function Potlucks() {
 
   return (
     <div>
-      <Typography
-        variant="h4"
-        sx={{
-          margin: "20px 0px 0px 20px",
-        }}
-      >
-        Your Potlucks
-      </Typography>
-      <Grid>
-        {potlucks.map((item) => (
-          <PotluckBar title={item.title} img={item.img} id={item._id} />
-        ))}
-      </Grid>
+      {potlucks.length == 0 ? (
+        <Typography
+          variant="h3"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: 20,
+          }}
+        >
+          You have no active Potlucks!
+        </Typography>
+      ) : (
+        <>
+          <Typography
+            variant="h4"
+            sx={{
+              margin: "20px 0px 0px 20px",
+            }}
+          >
+            Your Potlucks
+          </Typography>
+          <Grid>
+            {potlucks.map((item) => (
+            <PotluckBar title={item.title} img={item.img} id={item._id} />
+            ))}
+          </Grid>
+        </>
+      )}
     </div>
   );
 }

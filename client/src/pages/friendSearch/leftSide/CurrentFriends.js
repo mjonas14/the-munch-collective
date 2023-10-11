@@ -18,9 +18,21 @@ export default function CurrentFriends() {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
 
-  console.log(userData, "user data");
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <Container
+        sx={{
+          backgroundColor: "#EBECF0",
+          borderRadius: "16px",
+          margin: "20px 10px 20px 20px",
+          display: "flex",
+          justifyContent: "space-between",
+          width: "75%",
+          padding: "0px",
+        }}
+      >
+      </Container>
+    );
   }
   return (
     <Box
@@ -43,7 +55,13 @@ export default function CurrentFriends() {
       </Typography>
       <TableContainer sx={{ maxHeight: 395 }}>
         {userData.friends.map((friend) => (
+          <Container sx={{
+            display: "flex",
+            justifyContent: "space-between"
+          }}>
           <UserDisplay userId={friend} />
+          <h4>Hi</h4>
+          </Container>
         ))}
       </TableContainer>
     </Box>

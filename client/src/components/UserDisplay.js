@@ -13,16 +13,38 @@ import { QUERY_GET_USER_BY_ID } from '../utils/queries';
 
 export default function UserDisplay(props) {
 
-  console.log(props, "props");
-
   const { loading, data } = useQuery(QUERY_GET_USER_BY_ID, {
     variables: { userId: props.userId }
   });
   const userData = data?.getUserById || [];
-  console.log(userData, "data for all a single user");
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <Container
+      sx={{
+        backgroundColor: "#EBECF0",
+        borderRadius: "16px",
+        margin: "10px 0px 10px 0px",
+        display: "flex",
+        justifyContent: "space-between",
+        width: "75%",
+        padding: "0px",
+      }}
+    >
+      <Container
+        sx={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Avatar
+          alt="Profile picture"
+          sx={{ width: 45, height: 45, margin: "10px 0px 10px 0px" }}
+        >
+        </Avatar>
+      </Container>
+    </Container>
+    );
   }
   return (
       <Container
@@ -31,7 +53,6 @@ export default function UserDisplay(props) {
           alignItems: "center",
         }}
       >
-
         <Avatar
           alt="Profile picture"
           src={userData.profilePic}

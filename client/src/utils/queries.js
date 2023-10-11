@@ -126,16 +126,11 @@ export const QUERY_GETALLUSERS = gql`
 export const QUERY_GETMYPOTLUCKS = gql`
   query getMyPotlucks {
     getMyPotlucks {
+      _id
+      username
       potlucks {
-        title
         _id
-        createdAt
-        img
-        members {
-          _id
-          username
-          profilePic
-        }
+        title
       }
     }
   }

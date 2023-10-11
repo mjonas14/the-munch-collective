@@ -25,9 +25,9 @@ export default function SearchBar({ setSearchQuery }) {
         placeholder="Search..."
         size="small"
       />
-      <IconButton type="submit" aria-label="search">
+      {/* <IconButton type="submit" aria-label="search">
         <SearchIcon style={{ fill: "blue" }} />
-      </IconButton>
+      </IconButton> */}
     </form>
     </Container>
   );
