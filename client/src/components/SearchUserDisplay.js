@@ -19,7 +19,6 @@ import UserDisplay from '../components/UserDisplay';
 
 export default function SearchUserDisplay(props) {
 
-  
   const [addFriend, { loading1, data1 }] = useMutation(ADD_FRIEND);
   
   const handleClick = async (event) => {
@@ -39,9 +38,6 @@ export default function SearchUserDisplay(props) {
     variables: { userId: props.userId },
   });
   const userData = data?.getUserById || [];
-  console.log(props.userId, "userId");
-  console.log(props.me, "me");
-  console.log(userData, "userData");
   
   if (loading) {
     return (

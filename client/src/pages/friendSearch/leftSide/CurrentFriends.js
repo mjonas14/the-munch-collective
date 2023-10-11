@@ -13,6 +13,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../../utils/queries";
 
 import UserDisplay from "../../../components/UserDisplay";
+import LongMenu from "../../../components/ThreeDotsFriend";
 
 export default function CurrentFriends() {
   const { loading, data } = useQuery(QUERY_GETME);
@@ -60,7 +61,7 @@ export default function CurrentFriends() {
             justifyContent: "space-between"
           }}>
           <UserDisplay userId={friend} />
-          <h4>Hi</h4>
+          <LongMenu />
           </Container>
         ))}
       </TableContainer>
