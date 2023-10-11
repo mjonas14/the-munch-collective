@@ -94,6 +94,7 @@ const typeDefs = gql`
         createPotluck(title: String!): Potluck
         addUserToPotluck(userId: String!, potluckId: String!): Potluck
         addFriend(userId: String!): User
+        removeFriend(userId: String!): User
     }
 `;
 

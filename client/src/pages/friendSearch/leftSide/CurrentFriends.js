@@ -60,8 +60,8 @@ export default function CurrentFriends() {
             display: "flex",
             justifyContent: "space-between"
           }}>
-          <UserDisplay userId={friend} />
-          <LongMenu />
+          <UserDisplay key={friend} userId={friend} />
+          <LongMenu key={friend} friendId={friend}/>
           </Container>
         ))}
       </TableContainer>

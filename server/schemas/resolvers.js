@@ -157,6 +157,13 @@ const resolvers = {
         { $addToSet: { friends: userId } }
       );
       return user;
+    },
+    removeFriend: async (parents, { userId }, context) => {
+      const user = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { friends: userId } }
+      );
+      return user;
     }
   },
 };

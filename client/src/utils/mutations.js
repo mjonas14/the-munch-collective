@@ -122,3 +122,13 @@ export const ADD_FRIEND = gql`
     }
   }
 `;
+
+export const REMOVE_FRIEND = gql`
+  mutation removeFriend($userId: String!) {
+    removeFriend(userId: $userId) {
+      _id
+      username
+      friends
+    }
+  }
+`;
