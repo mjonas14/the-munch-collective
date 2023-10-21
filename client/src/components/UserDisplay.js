@@ -6,7 +6,10 @@ import {
   Avatar,
   Typography,
   IconButton,
+  Card,
+  CardActionArea,
 } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 import { useQuery } from "@apollo/client";
 import { QUERY_GET_USER_BY_ID } from '../utils/queries';
@@ -47,6 +50,7 @@ export default function UserDisplay(props) {
     );
   }
   return (
+    <CardActionArea component={Link} to={`/user/${props.userId}`}>
       <Container
         sx={{
           display: "flex",
@@ -66,5 +70,6 @@ export default function UserDisplay(props) {
             {userData.username}
           </Typography>
       </Container>
+      </CardActionArea>
   );
 }

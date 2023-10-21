@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQuery } from "@apollo/client";
-import { QUERY_GETME } from "../../../utils/queries";
+import { QUERY_GETME } from "../../../../utils/queries";
 
 import EditUserInfo from "./EditUserModal";
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Box,
@@ -16,6 +16,8 @@ import UserDisplay from "../../../components/UserDisplay";
 import LongMenu from "../../../components/ThreeDotsFriend";
 
 export default function CurrentFriends() {
+  const [renderState, setRenderState] = useState("");
+
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
 
@@ -31,8 +33,7 @@ export default function CurrentFriends() {
           width: "75%",
           padding: "0px",
         }}
-      >
-      </Container>
+      ></Container>
     );
   }
   return (
@@ -56,12 +57,15 @@ export default function CurrentFriends() {
       </Typography>
       <TableContainer sx={{ maxHeight: 395 }}>
         {userData.friends.map((friend) => (
-          <Container sx={{
-            display: "flex",
-            justifyContent: "space-between"
-          }}>
-          <UserDisplay key={friend} userId={friend} />
-          <LongMenu key={friend} friendId={friend}/>
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center"
+            }}
+          >
+            <UserDisplay key={friend} userId={friend} />
+            <LongMenu key={friend} friendId={friend} />
           </Container>
         ))}
       </TableContainer>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -10,6 +11,7 @@ import { REMOVE_FRIEND } from "../utils/mutations";
 const ITEM_HEIGHT = 48;
 
 export default function LongMenu(props) {
+  const [renderState, setRenderState] = useState("");
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -20,6 +22,8 @@ export default function LongMenu(props) {
 
   const handleRemove = () => {
     setAnchorEl(null);
+    setRenderState("a");
+    console.log(renderState, "renderState");
     try {
       const { data } = removeFriend({
         variables: { userId: props.friendId },

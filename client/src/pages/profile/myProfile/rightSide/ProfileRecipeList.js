@@ -4,9 +4,9 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 import { useQuery } from "@apollo/client";
-import { QUERY_GETALLPRIVATERECIPES } from "../../../utils/queries";
+import { QUERY_GETALLPRIVATERECIPES } from "../../../../utils/queries";
 
-import RecipeCard from "../../../components/RecipeCard";
+import RecipeCard from "../../../../components/RecipeCard";
 
 function ProfileRecipeList({ recipeData, currentPage, handlePageChange }) {
   const { loading, data } = useQuery(QUERY_GETALLPRIVATERECIPES);

@@ -16,7 +16,7 @@ import StarRateIcon from "@mui/icons-material/StarRate";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { useQuery } from "@apollo/client";
-import { QUERY_GETME } from "../../../utils/queries";
+import { QUERY_GETME } from "../../../../utils/queries";
 
 import EditProileInfo from "./EditInfoModal";
 

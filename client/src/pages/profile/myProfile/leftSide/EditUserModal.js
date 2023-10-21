@@ -6,11 +6,11 @@ import {
   Fade,
   Button,
   Typography,
-  TextField,
+  Textfield,
 } from "@mui/material";
 
 import { useMutation } from "@apollo/client";
-import { ADD_USER_DETAILS } from "../../../utils/mutations";
+import { ADD_USER_DETAILS } from "../../../../utils/mutations";
 
 const style = {
   position: "absolute",
@@ -24,7 +24,7 @@ const style = {
   p: 4,
 };
 
-export default function EditProileInfo(props) {
+export default function EditUserInfo(props) {
   const [addUserDetails, { loading1, data1 }] = useMutation(ADD_USER_DETAILS);
 
   const handleClose = () => {
@@ -32,20 +32,39 @@ export default function EditProileInfo(props) {
     window.location.reload();
   };
 
+  function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      // if (file) {
+      fileReader.readAsDataURL(file);
+      // }
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
 
+    const file = formData.get("img");
+    var base64 = await convertToBase64(file);
+    console.log(base64);
+
+    // Using arbitrary number that is within confidence interval for a non-image upload
+    if (base64.length < 100) {
+      base64 = null;
+    }
+
     try {
       const { data } = await addUserDetails({
         variables: {
-          bio: formData.get("bio"),
-          cityBorn: formData.get("cityBorn"),
-          cityLive: formData.get("cityLive"),
-          favCuisine: formData.get("favCuisine"),
-          signatureDish: formData.get("signatureDish"),
-          yob: parseFloat(formData.get("yob")),
+          profilePic: base64,
         },
       });
       if (!data) {
@@ -75,10 +94,10 @@ export default function EditProileInfo(props) {
       <Fade in={props.show}>
         <Box sx={style}>
           <Typography id="transition-modal-title" variant="h6" component="h2">
-            Edit Infomation
+            Add / change your profile picture
           </Typography>
           <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-            Tell people a bit about yourself!
+            Pic any photo from your files
           </Typography>
           <Box
             component="form"
@@ -86,54 +105,15 @@ export default function EditProileInfo(props) {
             onSubmit={handleSubmit}
             sx={{ mt: 1 }}
           >
-            <TextField
-              margin="normal"
-              fullWidth
-              id="cityLive"
-              label="Where do you live?"
-              name="cityLive"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              id="cityBorn"
-              label="Where were you born?"
-              name="cityBorn"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              name="yob"
-              label="What year were you born?"
-              type="yob"
-              id="yob"
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              name="favCuisine"
-              label="Favourite cuisine"
-              type="favCuisine"
-              id="favCuisine"
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              name="signatureDish"
-              label="Signature dish"
-              type="signatureDish"
-              id="signatureDish"
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              name="bio"
-              label="Tell us about you!"
-              type="bio"
-              id="bio"
-            />
+            <div>
+              <input
+                type="file"
+                label="Image"
+                id="upload-image"
+                name="img"
+                accept=".jpeg, .png"
+              />
+            </div>
             <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
               Save to Profile
             </Button>

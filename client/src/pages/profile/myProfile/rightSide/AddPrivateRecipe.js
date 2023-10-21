@@ -12,14 +12,14 @@ import {
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-import Auth from "../../../utils/auth";
+import Auth from "../../../../utils/auth";
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_GETALLPRIVATERECIPES } from "../../../utils/queries";
+import { QUERY_GETALLPRIVATERECIPES } from "../../../../utils/queries";
 
 import {
   ADD_PUBLIC_RECIPE,
   ADD_PRIVATE_RECIPE,
-} from "../../../utils/mutations";
+} from "../../../../utils/mutations";
 import CancelIcon from "@mui/icons-material/Cancel";
 
 export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
