@@ -185,6 +185,9 @@ export const QUERY_GET_USER_BY_ID = gql`
       profilePic
       signatureDish
       yob
+      privateRecipes {
+        _id
+      }
     }
   }
 `;
