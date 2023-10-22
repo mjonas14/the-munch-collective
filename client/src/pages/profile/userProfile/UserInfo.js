@@ -14,6 +14,8 @@ import { useQuery } from "@apollo/client";
 import { QUERY_GET_USER_BY_ID } from "../../../utils/queries";
 
 import UserStatus from './UserInfoSection/UserStatus'
+import Munch from './UserInfoSection/Munch';
+import Info from './UserInfoSection/Info'
 
 export default function UserInfo() {
   const { userId } = useParams();
@@ -28,32 +30,12 @@ export default function UserInfo() {
         height: 240,
         backgroundColor: "#EBECF0",
         borderRadius: "16px",
-        margin: "20px 10px 20px 10px",
+        margin: "20px 20px 20px 10px",
         display: "flex",
       }}
     >
-      <Container>
-        <Typography
-          sx={{
-            fontSize: "30px",
-            fontWeight: "bold",
-            marginTop: "15px",
-          }}
-        >
-          Info
-        </Typography>
-      </Container>
-      <Container>
-        <Typography
-          sx={{
-            fontSize: "30px",
-            fontWeight: "bold",
-            marginTop: "15px",
-          }}
-        >
-          Info
-        </Typography>
-      </Container>
+      <Info user={user} />
+      <Munch user={user} />
       <UserStatus user={user} />
     </Box>
   );

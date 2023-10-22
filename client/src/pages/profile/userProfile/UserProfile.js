@@ -17,6 +17,7 @@ import { QUERY_GET_USER_BY_ID } from "../../../utils/queries";
 
 import UserImage from "./UserImage";
 import UserInfo from "./UserInfo";
+import UserRecipes from './UserRecipes';
 
 export default function UserProfile() {
   const { userId } = useParams();
@@ -40,6 +41,9 @@ export default function UserProfile() {
       </Grid>
       <Grid item xs={8}>
         <UserInfo />
+      </Grid>
+      <Grid item xs={12}>
+        <UserRecipes />
       </Grid>
     </Grid>
   );
