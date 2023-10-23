@@ -40,7 +40,7 @@ const RecipeCard = ({ name, comment, id, img }) => {
               {name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {comment.length > 120
+              {comment && comment.length > 120
                 ? comment.substring(0, 120) + "..."
                 : comment}
             </Typography>

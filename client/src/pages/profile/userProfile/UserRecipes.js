@@ -8,9 +8,22 @@ import {
   IconButton,
 } from "@mui/material";
 
-export default function UserRecipes() {
-    return (
-        <Box
+import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { QUERY_GET_USER_BY_ID } from "../../../utils/queries";
+
+import RecipeCard from "../../../components/RecipeCard";
+
+export default function UserRecipes(props) {
+  const { userId } = useParams();
+  const { loading, data } = useQuery(QUERY_GET_USER_BY_ID, {
+    variables: { userId: userId },
+  });
+  const user = data?.getUserById || [];
+  console.log(user.privateRecipes);
+
+  return (
+    <Box
       sx={{
         height: 240,
         backgroundColor: "#EBECF0",
@@ -18,6 +31,24 @@ export default function UserRecipes() {
         margin: "0px 20px 20px 20px",
         display: "flex",
       }}
-    ></Box>
-    )
+    >
+      {user.privateRecipes.length ? (
+       user.privateRecipes.map((recipe, index) => (
+        <RecipeCard
+          key={index}
+          name={recipe.name}
+          comment={recipe.comment}
+          id={recipe._id}
+          img={recipe.img}
+        />
+      ))) : (
+        <Typography sx={{
+            margin: "20px",
+            fontSize: "25px"
+        }}>
+            No Recipes Added
+        </Typography>
+      )}
+    </Box>
+  );
 }

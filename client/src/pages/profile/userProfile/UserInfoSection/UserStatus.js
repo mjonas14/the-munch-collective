@@ -11,11 +11,11 @@ import EditIcon from "@mui/icons-material/Edit";
 
 export default function UserStatus(props) {
   var status;
-  if (props.user.privateRecipes.length === 0) {
+  if (props.user.privateRecipes && props.user.privateRecipes.length === 0) {
     status = "Potato Pealer";
-  } else if (props.user.privateRecipes.length <= 5) {
+  } else if (props.user.privateRecipes && props.user.privateRecipes.length <= 5) {
     status = "Sauce Maker";
-  } else if (props.user.privateRecipes.length <= 10) {
+  } else if (props.user.privateRecipes && props.user.privateRecipes.length <= 10) {
     status = "Sue Chef";
   } else {
     status = "Head Chef";
