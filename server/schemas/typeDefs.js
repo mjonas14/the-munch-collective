@@ -79,6 +79,7 @@ const typeDefs = gql`
         getAllPublicRecipes: [PublicRecipe]
         getAllPrivateRecipes: [PrivateRecipe]
         getPublicRecipeById(recipeId: ID!): PublicRecipe
+        getPrivateRecipeById(recipeId: ID!): PrivateRecipe
         getPublicRecipeByMealType(mealType: String!): [PublicRecipe]
         getAllUsers: [User]
         getUserById(userId: String!): User

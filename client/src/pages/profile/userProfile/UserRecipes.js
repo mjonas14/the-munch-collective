@@ -25,7 +25,6 @@ export default function UserRecipes(props) {
   return (
     <Box
       sx={{
-        height: 240,
         backgroundColor: "#EBECF0",
         borderRadius: "16px",
         margin: "0px 20px 20px 20px",
@@ -33,7 +32,15 @@ export default function UserRecipes(props) {
       }}
     >
       {user.privateRecipes.length ? (
-       user.privateRecipes.map((recipe, index) => (
+        <div>
+          <Typography variant="h4" sx={{
+            margin: "20px",
+            fontSize: "30px",
+            fontWeight: "bold",
+          }}>
+            Recipes
+          </Typography>
+       {user.privateRecipes.map((recipe, index) => (
         <RecipeCard
           key={index}
           name={recipe.name}
@@ -41,7 +48,9 @@ export default function UserRecipes(props) {
           id={recipe._id}
           img={recipe.img}
         />
-      ))) : (
+      ))}
+      </div>
+      ) : (
         <Typography sx={{
             margin: "20px",
             fontSize: "25px"

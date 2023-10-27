@@ -51,6 +51,23 @@ export const QUERY_GETPUBLICRECIPEBYID = gql`
   }
 `;
 
+export const QUERY_GETPRIVATERECIPEBYID = gql`
+  query getPrivateRecipeById($recipeId: ID!) {
+    getPrivateRecipeById(recipeId: $recipeId) {
+      _id
+      name
+      comment
+      createdAt
+      img
+      ingredients
+      mealType
+      method
+      source
+      tips
+    }
+  }
+`;
+
 export const QUERY_GETPUBLICRECIPEBYMEALTYPE = gql`
   query getPublicRecipeByMealType($mealType: String!) {
     getPublicRecipeByMealType(mealType: $mealType) {

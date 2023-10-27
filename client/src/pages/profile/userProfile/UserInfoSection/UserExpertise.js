@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
-export default function UserStatus(props) {
+export default function UserExpertise(props) {
   var status;
   if (props.user.privateRecipes && props.user.privateRecipes.length === 0) {
     status = "Potato Pealer";
@@ -36,7 +36,7 @@ export default function UserStatus(props) {
           fontWeight: "bold",
         }}
       >
-        Status:
+        Expertise:
       </Typography>
       <Typography
         sx={{

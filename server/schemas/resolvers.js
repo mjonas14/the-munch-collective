@@ -41,6 +41,9 @@ const resolvers = {
     getPublicRecipeById: async (parent, { recipeId }) => {
       return PublicRecipe.findOne({ _id: recipeId });
     },
+    getPrivateRecipeById: async (parent, { recipeId }) => {
+      return PrivateRecipe.findOne({ _id: recipeId });
+    },
     getPublicRecipeByMealType: async (parent, { mealType }) => {
       return PublicRecipe.find({ mealType: mealType });
     },

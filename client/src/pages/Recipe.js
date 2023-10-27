@@ -3,7 +3,7 @@ import { Box, Card, CardContent, Typography, Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
-import { QUERY_GETPUBLICRECIPEBYID } from "../utils/queries";
+import { QUERY_GETPUBLICRECIPEBYID, QUERY_GETPRIVATERECIPEBYID } from "../utils/queries";
 
 const bull = (
   <Box
@@ -17,7 +17,7 @@ const bull = (
 const Recipe = () => {
   const { recId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_GETPUBLICRECIPEBYID, {
+  const { loading, data } = useQuery(QUERY_GETPRIVATERECIPEBYID, {
     variables: { recipeId: recId },
   });
 
@@ -50,7 +50,7 @@ const Recipe = () => {
                 component="div"
                 sx={{ marginTop: "10px", color: "gray" }}
               >
-                {recipe.createdAt.substring(0, recipe.createdAt.length - 12)}
+                {/* {recipe.createdAt.substring(0, recipe.createdAt.length - 12)} */}
               </Typography>
               <Typography
                 variant="h3"
@@ -71,7 +71,7 @@ const Recipe = () => {
               >
                 Ingredients:
               </Typography>
-              {recipe.ingredients.map((ingredient, index) => (
+              {recipe.ingredients ? recipe.ingredients.map((ingredient, index) => (
                 <Typography
                   key={index}
                   variant="body1"
@@ -79,14 +79,14 @@ const Recipe = () => {
                 >
                   {ingredient}
                 </Typography>
-              ))}
+              )) : <h1>Nope</h1>}
               <Typography
                 variant="body1"
                 sx={{ fontWeight: "bold", marginTop: "40px" }}
               >
                 Instructions:
               </Typography>
-              {recipe.method.map((step, index) => (
+              {recipe.method ? recipe.method.map((step, index) => (
                 <Typography
                   key={index}
                   variant="body1"
@@ -98,7 +98,7 @@ const Recipe = () => {
                 >
                   {index + 1 + ". " + step}
                 </Typography>
-              ))}
+              )) : <h1>Nope</h1>}
               {recipe.tips ? (
                 <div>
                   <Typography

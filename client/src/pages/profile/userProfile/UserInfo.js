@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_GET_USER_BY_ID } from "../../../utils/queries";
 
-import UserStatus from './UserInfoSection/UserStatus'
+import UserExpertise from './UserInfoSection/UserExpertise'
 import Munch from './UserInfoSection/Munch';
 import Info from './UserInfoSection/Info'
 
@@ -36,7 +36,7 @@ export default function UserInfo() {
     >
       <Info user={user} />
       <Munch user={user} />
-      <UserStatus user={user} />
+      <UserExpertise user={user} />
     </Box>
   );
 }
