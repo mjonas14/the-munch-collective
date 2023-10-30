@@ -20,13 +20,13 @@ import Mains from './pages/genre/Mains';
 import Sides from './pages/genre/Sides';
 import Sweets from './pages/genre/Sweets';
 import Login from './pages/Login';
-import MyProfile from './pages/profile/myProfile/MyProfile';
+import MyProfile from './pages/MyProfile';
 import Logout from './pages/Logout';
 import Signup from './pages/Signup';
-import FriendSearch from './pages/friendSearch/FriendSearch'
+import Search from './pages/Search'
 import Potlucks from './pages/potlucks/Potlucks';
 import SinglePotluck from './pages/potlucks/SinglePotluck';
-import UserProfile from './pages/profile/userProfile/UserProfile';
+import UserProfile from './pages/UserProfile';
 
 const httpLink = createHttpLink({
   uri: "http://localhost:5174/graphql",
@@ -69,7 +69,7 @@ function App() {
             <Route path="/recipe/:recId" element={<Recipe />} />
             <Route path="/myprofile" element={ <MyProfile />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path='/search' element={<FriendSearch />} />
+            <Route path='/search' element={<Search />} />
             <Route path='/mypotlucks' element={<Potlucks />} />
             <Route path='/mypotlucks/:recId' element={<SinglePotluck />} />
             <Route path='/user/:userId' element={<UserProfile />} />
