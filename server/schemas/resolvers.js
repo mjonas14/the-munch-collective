@@ -51,7 +51,7 @@ const resolvers = {
       return User.find();
     },
     getUserById: async (parent, { userId }, context) => {
-      return User.findOne({ _id: userId });
+      return User.findOne({ _id: userId }).populate("privateRecipes");
     }
   },
   Mutation: {

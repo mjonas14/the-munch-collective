@@ -44,6 +44,12 @@ export default function UserRecipes(props) {
           }}>
             Recipes
           </Typography>
+          <Grid
+            container
+            direction="row"
+            color="black"
+            sx={{ marginLeft: "15px" }}
+          >
        {user.privateRecipes.map((recipe, index) => (
         <RecipeCard
           key={index}
@@ -53,6 +59,7 @@ export default function UserRecipes(props) {
           img={recipe.img}
         />
       ))}
+      </Grid>
       </div>
       ) : (
         <Typography sx={{

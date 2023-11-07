@@ -21,10 +21,7 @@ const Recipe = () => {
     variables: { recipeId: recId },
   });
 
-  const recipe = data?.getPublicRecipeById || [];
-
-  console.log(recipe, "recipe");
-  console.log(data, "data");
+  const recipe = data?.getPrivateRecipeById || [];
 
   if (loading) {
     return <div>Loading...</div>;

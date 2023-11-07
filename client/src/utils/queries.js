@@ -204,6 +204,16 @@ export const QUERY_GET_USER_BY_ID = gql`
       yob
       privateRecipes {
         _id
+        name
+        comment
+        createdAt
+        img
+        ingredients
+        mealType
+        method
+        source
+        tips
+        userId
       }
     }
   }

@@ -13,7 +13,7 @@ import ErrorPage from "../../components/Error";
 export default function MyProfile() {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
-  
+
   return (
     <div>
       {loading ? (
