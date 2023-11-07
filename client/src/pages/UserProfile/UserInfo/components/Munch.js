@@ -30,9 +30,18 @@ export default function Munch(props) {
           marginTop: "10px",
         }}
       >
-        <KitchenIcon /> {props.user.favCuisine}
-        <br />
-        <LocalDiningIcon /> {props.user.signatureDish}
+        {!props.user.cityLive && !props.user.cityBorn ? (
+          <Typography>No munch added</Typography>
+        ) : (
+          <div>
+                        <Box sx={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
+            <KitchenIcon sx={{ marginRight: "8px" }} /> {props.user.favCuisine}
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <LocalDiningIcon sx={{ marginRight: "8px" }} /> {props.user.signatureDish}
+            </Box>
+          </div>
+        )}
       </Typography>
     </Container>
   );
