@@ -89,7 +89,16 @@ export default function Navbar() {
               textDecoration: "none",
             }}
           >
-            The <span style={{ fontStyle: "italic" }}>Munch</span>Collective
+            The{" "}
+            <span
+              style={{
+                fontStyle: "italic",
+                margin: "0px 10px 0px 10px",
+              }}
+            >
+              Munch
+            </span>
+            Collective
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -121,27 +130,34 @@ export default function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {Auth.loggedIn()
-                ? loggedinPages.map((page) => (
-                    <MenuItem
-                      key={page}
-                      onClick={handleCloseNavMenu}
-                      component={Link}
-                      to={`/${page.toLowerCase()}`}
-                    >
-                      <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
-                  ))
-                : basicPages.map((page) => (
-                    <MenuItem
-                      key={page}
-                      onClick={handleCloseNavMenu}
-                      component={Link}
-                      to={`/${page.toLowerCase()}`}
-                    >
-                      <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
-                  ))}
+              <MenuItem
+                onClick={handleCloseNavMenu}
+                component={Link}
+                to="/myprofile"
+              >
+                <Typography textAlign="center">My Profile</Typography>
+              </MenuItem>
+              <MenuItem
+                onClick={handleCloseNavMenu}
+                component={Link}
+                to="/search"
+              >
+                <Typography textAlign="center">Search</Typography>
+              </MenuItem>
+              <MenuItem
+                onClick={handleCloseNavMenu}
+                component={Link}
+                to="/mypotlucks"
+              >
+                <Typography textAlign="center">My Potlucks</Typography>
+              </MenuItem>
+              <MenuItem
+                onClick={handleCloseNavMenu}
+                component={Link}
+                to="/logout"
+              >
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -161,7 +177,11 @@ export default function Navbar() {
               textDecoration: "none",
             }}
           >
-            The<span style={{ fontStyle: "italic" }}>Munch</span>Collective
+            The
+            <span style={{ fontStyle: "italic", margin: "0px 10px 0px 10px" }}>
+              Munch
+            </span>
+            Collective
           </Typography>
           {Auth.loggedIn() ? (
             <Box
@@ -183,26 +203,18 @@ export default function Navbar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
                 component={Link}
-                to="/discover"
-              >
-                Discover
-              </Button>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-                component={Link}
                 to="/mypotlucks"
               >
                 My Potlucks
               </Button>
-              <Button
+              {/* <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
                 component={Link}
                 to="/recipebook"
               >
                 Recipe Book
-              </Button>
+              </Button> */}
               {/* <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}

@@ -27,7 +27,6 @@ const Recipe = () => {
     return <div>Loading...</div>;
   }
   return (
-    <div>
       <Grid
         container
         spacing={0}
@@ -40,6 +39,7 @@ const Recipe = () => {
           <Card
             sx={{
               width: 900,
+              backgroundColor: "#fcfaf8"
             }}
           >
             <CardContent sx={{ marginLeft: "150px", marginRight: "80px" }}>
@@ -138,7 +138,6 @@ const Recipe = () => {
           </Card>
         </Grid>
       </Grid>
-    </div>
   );
 };
 
