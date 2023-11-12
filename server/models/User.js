@@ -56,6 +56,18 @@ const userSchema = new Schema(
         ref: "User"
       },
     ],
+    friendRequests: [
+      {
+        type: String, 
+        ref: "User"
+      },
+    ],
+    requestedFriends: [
+      {
+        type: String,
+        ref: "User",
+      },
+    ],
     potlucks: [
       {
         type: Schema.Types.ObjectId,

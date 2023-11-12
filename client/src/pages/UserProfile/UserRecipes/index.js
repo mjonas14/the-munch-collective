@@ -23,7 +23,7 @@ export default function UserRecipes(props) {
   console.log(user.privateRecipes);
 
   if (loading) {
-    return <h1>Loading...</h1>
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -37,11 +37,14 @@ export default function UserRecipes(props) {
     >
       {user.privateRecipes.length ? (
         <div>
-          <Typography variant="h4" sx={{
-            margin: "20px",
-            fontSize: "30px",
-            fontWeight: "bold",
-          }}>
+          <Typography
+            variant="h4"
+            sx={{
+              margin: "20px",
+              fontSize: "30px",
+              fontWeight: "bold",
+            }}
+          >
             Recipes
           </Typography>
           <Grid
@@ -50,23 +53,25 @@ export default function UserRecipes(props) {
             color="black"
             sx={{ marginLeft: "15px" }}
           >
-       {user.privateRecipes.map((recipe, index) => (
-        <RecipeCard
-          key={index}
-          name={recipe.name}
-          comment={recipe.comment}
-          id={recipe._id}
-          img={recipe.img}
-        />
-      ))}
-      </Grid>
-      </div>
+            {user.privateRecipes.map((recipe, index) => (
+              <RecipeCard
+                key={index}
+                name={recipe.name}
+                comment={recipe.comment}
+                id={recipe._id}
+                img={recipe.img}
+              />
+            ))}
+          </Grid>
+        </div>
       ) : (
-        <Typography sx={{
+        <Typography
+          sx={{
             margin: "20px",
-            fontSize: "25px"
-        }}>
-            No Recipes Added
+            fontSize: "25px",
+          }}
+        >
+          No Recipes Added
         </Typography>
       )}
     </Box>

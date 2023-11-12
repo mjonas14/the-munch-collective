@@ -23,11 +23,7 @@ export default function MyProfile() {
           {Auth.loggedIn() ? (
             <Grid container>
               <Grid item xs={4}>
-                <Box
-                  sx={{
-                    height: 1000,
-                  }}
-                >
+                <Box sx={{ height: 1000 }}>
                   <UsernameSec />
                   <InfoSec />
                 </Box>

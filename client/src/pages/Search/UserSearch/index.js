@@ -48,8 +48,8 @@ export default function UserSearch(props) {
       </Typography>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <TableContainer sx={{ maxHeight: 350 }}>
-        {dataFiltered.map((user) => (
-          <SearchUserDisplay key={user} userId={user._id} me={props.me} />
+        {dataFiltered.map((user, index) => (
+          <SearchUserDisplay key={index} userId={user._id} me={props.me} />
         ))}
       </TableContainer>
     </div>

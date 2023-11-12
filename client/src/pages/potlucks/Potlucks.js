@@ -40,8 +40,13 @@ export default function Potlucks() {
             Your Potlucks
           </Typography>
           <Grid>
-            {potlucks.map((item) => (
-            <PotluckBar title={item.title} img={item.img} id={item._id} />
+            {potlucks.map((item, index) => (
+              <PotluckBar
+                key={index}
+                title={item.title}
+                img={item.img}
+                id={item._id}
+              />
             ))}
           </Grid>
         </>

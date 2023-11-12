@@ -154,11 +154,17 @@ const resolvers = {
       );
       return potluck;
     },
-    addFriend: async (parents, { userId }, context) => {
+    requestFriend: async (parents, { userId }, context) => {
       const user = await User.findOneAndUpdate(
         { _id: context.user._id },
-        { $addToSet: { friends: userId } }
+        { $addToSet: { requestedFriends: userId } }
       );
+
+      user = await User.findOneAndUpdate(
+        { _id: userId},
+        { $addToSet: { friendRequests: context.user._id } }
+      );
+      
       return user;
     },
     removeFriend: async (parents, { userId }, context) => {

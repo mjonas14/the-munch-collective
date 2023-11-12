@@ -117,6 +117,8 @@ export const QUERY_GETME = gql`
         tips
         userId
       }
+      friendRequests
+      requestedFriends
     }
   }
 `;
@@ -215,6 +217,8 @@ export const QUERY_GET_USER_BY_ID = gql`
         tips
         userId
       }
+      friendRequests
+      requestedFriends
     }
   }
 `;

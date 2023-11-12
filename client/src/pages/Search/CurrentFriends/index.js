@@ -15,7 +15,7 @@ import { QUERY_GETME } from "../../../utils/queries";
 import UserDisplay from "../../../components/UserDisplay";
 import LongMenu from "../../../components/ThreeDotsFriend";
 
-export default function CurrentFriends() {
+const CurrentFriends = () => {
   const [renderState, setRenderState] = useState("");
   const [numberOfFriends, setNumberOfFriends] = useState(0)
 
@@ -58,7 +58,7 @@ export default function CurrentFriends() {
         Friends ({numberOfFriends})
       </Typography>
       <TableContainer sx={{ maxHeight: 395 }}>
-        {userData.friends.map((friend) => (
+        {userData.friends.map((friend, index) => (
           <Container
             sx={{
               display: "flex",
@@ -66,11 +66,13 @@ export default function CurrentFriends() {
               alignItems: "center"
             }}
           >
-            <UserDisplay key={friend} userId={friend} />
-            <LongMenu key={friend} friendId={friend} />
+            <UserDisplay key={index} userId={friend} />
+            <LongMenu key={index+1000} friendId={friend} />
           </Container>
         ))}
       </TableContainer>
     </Box>
   );
 }
+
+export default CurrentFriends;

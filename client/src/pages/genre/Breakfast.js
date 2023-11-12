@@ -13,7 +13,6 @@ import RecipeCard from "../../components/RecipeCard";
 import GenreHeader from "../../components/GenreHeader";
 
 export default function Breakfast() {
-
   const { loading, data } = useQuery(QUERY_GETPUBLICRECIPEBYMEALTYPE, {
     variables: { mealType: "breakfast" },
   });
@@ -34,12 +33,13 @@ export default function Breakfast() {
         color="black"
       >
         {recipes.map((recipe, index) => (
-                  <RecipeCard
-                  name={recipe.name}
-                  comment={recipe.comment}
-                  image={recipe.img}
-                  id={recipe._id}
-                />
+          <RecipeCard
+            key={index}
+            name={recipe.name}
+            comment={recipe.comment}
+            image={recipe.img}
+            id={recipe._id}
+          />
         ))}
       </Grid>
     </Container>

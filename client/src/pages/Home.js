@@ -23,6 +23,7 @@ const Home = () => {
       >
         {recipes.map((recipe, index) => (
           <RecipeCard
+            key={index}
             name={recipe.name}
             comment={recipe.comment}
             image={recipe.img}

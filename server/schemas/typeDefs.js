@@ -16,6 +16,8 @@ const typeDefs = gql`
         createdAt: String
         privateRecipes: [PrivateRecipe]
         friends: [String]
+        friendRequests: [String]
+        requestedFriends: [String]
         potlucks: [Potluck]
     }
 
@@ -94,7 +96,7 @@ const typeDefs = gql`
         addUserDetails(bio: String, cityBorn: String, cityLive: String, favCuisine: String, signatureDish: String, yob: Float, profilePic: String): User
         createPotluck(title: String!): Potluck
         addUserToPotluck(userId: String!, potluckId: String!): Potluck
-        addFriend(userId: String!): User
+        requestFriend(userId: String!): User
         removeFriend(userId: String!): User
     }
 `;

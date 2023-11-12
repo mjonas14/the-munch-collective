@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import style from "../style.js";
 import {
   Grid,
   Box,
@@ -21,6 +22,13 @@ import { QUERY_GETME } from "../../../../utils/queries";
 import EditProileInfo from "./EditInfoModal";
 
 const InfoSec = () => {
+  const styles = {
+    post: {
+      backgroundColor: "black",
+      height: "420px"
+    },
+  };
+
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
   console.log(userData);
@@ -35,14 +43,11 @@ const InfoSec = () => {
 
   return (
     <Box
-      sx={{
-        height: 420,
-        backgroundColor: "#EBECF0",
-        borderRadius: "16px",
-        margin: "20px 10px 20px 20px",
-        display: "flex",
-        flexDirection: "column",
-      }}
+      // sx={{
+      //   backgroundColor: "black",
+      //   height: 420,
+      // }}
+      sx={style.verticalBox}
     >
       <Container
         sx={{
@@ -141,6 +146,6 @@ const InfoSec = () => {
       <EditProileInfo show={showModal} set={setShowModal} />
     </Box>
   );
-}
+};
 
 export default InfoSec;

@@ -1,13 +1,10 @@
 import React from "react";
-import { 
-    Container,
-    Grid
-} from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_GETPUBLICRECIPEBYMEALTYPE } from "../../utils/queries";
 
-import RecipeCard from '../../components/RecipeCard';
+import RecipeCard from "../../components/RecipeCard";
 import GenreHeader from "../../components/GenreHeader";
 
 const Bread = () => {
@@ -28,12 +25,13 @@ const Bread = () => {
         color="black"
       >
         {recipes.map((recipe, index) => (
-                  <RecipeCard
-                  name={recipe.name}
-                  comment={recipe.comment}
-                  image={recipe.img}
-                  id={recipe._id}
-                />
+          <RecipeCard
+            key={index}
+            name={recipe.name}
+            comment={recipe.comment}
+            image={recipe.img}
+            id={recipe._id}
+          />
         ))}
       </Grid>
     </Container>

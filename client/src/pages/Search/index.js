@@ -14,6 +14,7 @@ import {
 
   import CurrentFriends from "./CurrentFriends";
   import UserSearch from "./UserSearch";
+  import FriendRequests from "./FriendRequests";
 
 const Search = () => {
 
@@ -25,6 +26,7 @@ const Search = () => {
     <Grid container>
       <Grid item xs={4}>
         <CurrentFriends />
+        <FriendRequests />
       </Grid>
       <Grid item xs={8}>
         <UserSearch me={userData} />
