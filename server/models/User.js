@@ -50,22 +50,15 @@ const userSchema = new Schema(
         ref: "PrivateRecipe",
       },
     ],
-    friends: [
+    friendsNew: [
       {
-        type: String,
-        ref: "User"
-      },
-    ],
-    friendRequests: [
-      {
-        type: String, 
-        ref: "User"
-      },
-    ],
-    requestedFriends: [
-      {
-        type: String,
-        ref: "User",
+        friend: {
+          type: String,
+          ref: "User",
+        },
+        status: {
+          type: Number,
+        }
       },
     ],
     potlucks: [

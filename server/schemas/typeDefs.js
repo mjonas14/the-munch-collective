@@ -15,10 +15,13 @@ const typeDefs = gql`
         profilePic: String
         createdAt: String
         privateRecipes: [PrivateRecipe]
-        friends: [String]
-        friendRequests: [String]
-        requestedFriends: [String]
+        friendsNew: [Friend]
         potlucks: [Potluck]
+    }
+
+    type Friend {
+        friend: String
+        status: Int
     }
 
     type PublicRecipe {
@@ -96,7 +99,7 @@ const typeDefs = gql`
         addUserDetails(bio: String, cityBorn: String, cityLive: String, favCuisine: String, signatureDish: String, yob: Float, profilePic: String): User
         createPotluck(title: String!): Potluck
         addUserToPotluck(userId: String!, potluckId: String!): Potluck
-        requestFriend(userId: String!): User
+        addFriend(userId: String!): User
         removeFriend(userId: String!): User
     }
 `;

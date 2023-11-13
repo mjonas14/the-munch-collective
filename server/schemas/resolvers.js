@@ -16,7 +16,9 @@ const resolvers = {
     },
     getMyPotlucks: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findOne({ _id: context.user._id }).populate("potlucks");
+        const user = await User.findOne({ _id: context.user._id }).populate(
+          "potlucks"
+        );
         return user;
       }
     },
@@ -52,7 +54,7 @@ const resolvers = {
     },
     getUserById: async (parent, { userId }, context) => {
       return User.findOne({ _id: userId }).populate("privateRecipes");
-    }
+    },
   },
   Mutation: {
     addPublicRecipe: async (parent, { input }, context) => {
@@ -154,18 +156,21 @@ const resolvers = {
       );
       return potluck;
     },
-    requestFriend: async (parents, { userId }, context) => {
-      const user = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $addToSet: { requestedFriends: userId } }
-      );
+    addFriend: async (parents, { userId }, context) => {
+      if (context.user) {
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { friendsNew: { friend: userId, status: 1 } } }
+        );
 
-      user = await User.findOneAndUpdate(
-        { _id: userId},
-        { $addToSet: { friendRequests: context.user._id } }
-      );
-      
-      return user;
+        user = await User.findOneAndUpdate(
+          { _id: userId },
+          { $addToSet: { friendsNew: { friend: context.user._id, status: 2 } } }
+        );
+
+        return user;
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
     removeFriend: async (parents, { userId }, context) => {
       const user = await User.findOneAndUpdate(
@@ -173,7 +178,7 @@ const resolvers = {
         { $pull: { friends: userId } }
       );
       return user;
-    }
+    },
   },
 };
 
