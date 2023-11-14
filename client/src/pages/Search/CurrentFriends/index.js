@@ -17,7 +17,7 @@ import LongMenu from "../../../components/ThreeDotsFriend";
 
 const CurrentFriends = () => {
   const [renderState, setRenderState] = useState("");
-  const [numberOfFriends, setNumberOfFriends] = useState(0)
+  const [numberOfFriends, setNumberOfFriends] = useState(0);
 
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
@@ -55,24 +55,30 @@ const CurrentFriends = () => {
           margin: "15px 0px 15px 20px",
         }}
       >
-        Friends ({numberOfFriends})
+        Friends ({userData.friendsNew.length})
       </Typography>
-      <TableContainer sx={{ maxHeight: 395 }}>
-        {userData.friends.map((friend, index) => (
-          <Container
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center"
-            }}
-          >
-            <UserDisplay key={index} userId={friend} />
-            <LongMenu key={index+1000} friendId={friend} />
-          </Container>
+      <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
+        {userData.friendsNew.map((friends, index) => (
+          <div>
+            {friends.status === 1 ? (
+              <Container
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <UserDisplay key={index} userId={friends.friend} />
+                <LongMenu key={index + 1000} friendId={friends.friend} />
+              </Container>
+            ) : (
+              <></>
+            )}
+          </div>
         ))}
       </TableContainer>
     </Box>
   );
-}
+};
 
 export default CurrentFriends;

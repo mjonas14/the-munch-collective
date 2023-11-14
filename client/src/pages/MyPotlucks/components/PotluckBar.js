@@ -14,23 +14,20 @@ import {
 import { Link } from "react-router-dom";
 
 export default function PotluckBar(props) {
-
-  console.log(props, "them ones yeah");
-
   return (
     <div>
       <Card
         sx={{
-          width: 900,
           height: 65,
-          margin: "20px 0px 0px 20px",
+          width: "75%",
+          margin: "20px 20px 0px 20px",
           backgroundColor: "#EBECF0",
           borderRadius: "16px",
           display: "flex",
           justifyContent: "space-between",
         }}
       >
-        <CardContent sx={{display: "flex", alignItems: "center"}}>
+        <CardContent sx={{ display: "flex", alignItems: "center" }}>
           <Avatar
             alt="Potluck picture"
             src={props.img}
@@ -40,7 +37,7 @@ export default function PotluckBar(props) {
               {props.title.charAt(0)}
             </Typography>
           </Avatar>
-          <Typography gutterBottom variant="h5" sx={{marginLeft: "30px"}}>
+          <Typography variant="h5" sx={{ marginLeft: "30px" }}>
             {props.title}
           </Typography>
         </CardContent>
@@ -50,7 +47,6 @@ export default function PotluckBar(props) {
             color="primary"
             component={Link}
             to={`/mypotlucks/${props.id}`}
-            // style={{ display: "flex", justfiyContent: "center" }}
           >
             View
           </Button>

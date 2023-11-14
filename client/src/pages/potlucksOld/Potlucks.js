@@ -4,13 +4,13 @@ import { Grid, Box, Typography, Container, IconButton } from "@mui/material";
 import Auth from "../../utils/auth";
 import { useMutation, useQuery } from "@apollo/client";
 import { CREATE_POTLUCK } from "../../utils/mutations";
-import { QUERY_GETMYPOTLUCKS } from "../../utils/queries";
+import { QUERY_GET_MY_POTLUCKS } from "../../utils/queries";
 
-import PotluckBar from "./components/PotluckBar";
+import PotluckBar from "../MyPotlucks/components/PotluckBar";
 
 export default function Potlucks() {
   //   const [createPotluck, { error1, data1 }] = useMutation(CREATE_POTLUCK);
-  const { loading, data } = useQuery(QUERY_GETMYPOTLUCKS);
+  const { loading, data } = useQuery(QUERY_GET_MY_POTLUCKS);
 
   const potlucks = data?.getMyPotlucks.potlucks || [];
 

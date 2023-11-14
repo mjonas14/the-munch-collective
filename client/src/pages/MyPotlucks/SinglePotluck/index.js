@@ -3,20 +3,19 @@ import { Box, Card, CardContent, Typography, Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
-import { QUERY_GETPOTLUCKBYID } from "../../utils/queries";
+import { QUERY_GET_POTLUCK_BY_ID } from "../../../utils/queries";
 
-import UserDisplay from "../../components/UserDisplay";
-import PotluckMembers from "./components/PotluckMembers";
+import UserDisplay from "../../../components/UserDisplay";
+import PotluckMembers from "./PotluckMembers";
 
 export default function SinglePotluck() {
-  const { recId } = useParams();
+  const { potluckId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_GETPOTLUCKBYID, {
-    variables: { potluckId: recId },
+  const { loading, data } = useQuery(QUERY_GET_POTLUCK_BY_ID, {
+    variables: { potluckId: potluckId },
   });
 
   const potluck = data?.getPotluckById || [];
-  console.log(potluck);
 
   return (
     <Grid container>
@@ -26,11 +25,12 @@ export default function SinglePotluck() {
         </div>
       ) : (
         <Grid container>
-          <Grid item xs={4}>
-            <PotluckMembers members={potluck.members} />
-          </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={9}>
             dsf
+          </Grid>
+          <Grid item xs={3}>
+            <PotluckMembers members={potluck.members} />
+            <></>
           </Grid>
         </Grid>
       )}

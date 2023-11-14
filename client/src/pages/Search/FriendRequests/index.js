@@ -12,9 +12,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../../utils/queries";
 
+import UserDisplay from "../../../components/UserDisplay";
+
 const FriendRequests = () => {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
+  console.log(userData.friendsNew);
 
   return (
     <Box
@@ -35,7 +38,31 @@ const FriendRequests = () => {
       >
         Friend Requests
       </Typography>
-      <TableContainer sx={{ maxHeight: 395 }}></TableContainer>
+      <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
+        {userData.friendsNew ? (
+          <>
+            {userData.friendsNew.map((friends, index) => (
+              <div>
+                {friends.status === 2 ? (
+                  <Container
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <UserDisplay key={index} userId={friends.friend} />
+                  </Container>
+                ) : (
+                  <></>
+                )}
+              </div>
+            ))}
+          </>
+        ) : (
+          <></>
+        )}
+      </TableContainer>
     </Box>
   );
 };

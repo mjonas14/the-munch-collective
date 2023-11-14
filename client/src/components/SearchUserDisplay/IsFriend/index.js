@@ -14,14 +14,14 @@ import {
   CardActions,
 } from "@mui/material";
 import { useMutation } from "@apollo/client";
-import { REQUEST_FRIEND } from "../../../utils/mutations";
+import { ADD_FRIEND } from "../../../utils/mutations";
 
 const IsFriend = (props) => {
-    const [requestFriend, { loading, data }] = useMutation(REQUEST_FRIEND);
+    const [addFriend, { loading, data }] = useMutation(ADD_FRIEND);
 
   const handleClick = async (event) => {
     try {
-      const { data } = await requestFriend({
+      const { data } = await addFriend({
         variables: { userId: props.userId },
       });
       if (!data) {
@@ -32,7 +32,7 @@ const IsFriend = (props) => {
     }
   };
 
-  if (props.me.friends.includes(props.userId)) {
+  if (props.me.friendsNew.includes(props.userId)) {
     return (
       <Button
         sx={{
@@ -48,7 +48,7 @@ const IsFriend = (props) => {
         Befriended
       </Button>
     );
-  } else if (props.me.requestedFriends.includes(props.userId)) {
+  } else if (props.me.friendsNew.includes(props.userId)) {
     return (
       <Button
         sx={{

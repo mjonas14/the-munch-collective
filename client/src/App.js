@@ -24,8 +24,9 @@ import MyProfile from './pages/MyProfile';
 import Logout from './pages/Logout';
 import Signup from './pages/Signup';
 import Search from './pages/Search'
-import Potlucks from './pages/potlucks/Potlucks';
-import SinglePotluck from './pages/potlucks/SinglePotluck';
+import Potlucks from './pages/potlucksOld/Potlucks';
+import MyPotlucks from './pages/MyPotlucks'
+import SinglePotluck from './pages/MyPotlucks/SinglePotluck';
 import UserProfile from './pages/UserProfile';
 
 const httpLink = createHttpLink({
@@ -71,8 +72,8 @@ function App() {
             <Route path="/myprofile" element={ <MyProfile />} />
             <Route path="/logout" element={<Logout />} />
             <Route path='/search' element={<Search />} />
-            <Route path='/mypotlucks' element={<Potlucks />} />
-            <Route path='/mypotlucks/:recId' element={<SinglePotluck />} />
+            <Route path='/mypotlucks' element={<MyPotlucks />} />
+            <Route path='/mypotlucks/:potluckId' element={<SinglePotluck />} />
             <Route path='/user/:userId' element={<UserProfile />} />
           </Routes>
           </>

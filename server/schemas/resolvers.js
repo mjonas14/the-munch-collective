@@ -134,16 +134,16 @@ const resolvers = {
         const createdBy = context.user;
         const potluck = await Potluck.create({ title, createdBy });
 
-        // Add the potluck to the user's list of potlucks
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { potlucks: potluck } }
-        );
-
         // Add the user to the potluck's list of members
         await Potluck.findOneAndUpdate(
           { _id: potluck._id },
           { $addToSet: { members: context.user._id } }
+        );
+
+        // Add the potluck to the user's list of potlucks
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { potlucks: potluck } }
         );
 
         return potluck;
@@ -171,6 +171,25 @@ const resolvers = {
         return user;
       }
       throw new AuthenticationError("You need to be logged in!");
+    },
+    acceptFriendReq: async (parents, { requestId, friendId }, context) => {
+      if (context.user) {
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { friendsNew: { $set: { _id: requestId, status: 3 } } }
+        );
+
+        user = await User.findOneAndUpdate(
+          { _id: friendId },
+          { $addToSet: { friendsNew: { friend: friendId, status: 1 } } }
+        );
+
+        user = await User.findOneAndUpdate(
+          { _id: friendId },
+          { $addToSet: { friendsNew: { friend: context.user._id, status: 1 } } }
+        );
+        return user;
+      }
     },
     removeFriend: async (parents, { userId }, context) => {
       const user = await User.findOneAndUpdate(

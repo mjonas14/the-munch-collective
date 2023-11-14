@@ -20,6 +20,7 @@ const typeDefs = gql`
     }
 
     type Friend {
+        _id: ID
         friend: String
         status: Int
     }
@@ -56,7 +57,7 @@ const typeDefs = gql`
         title: String!
         createdBy: User!
         createdAt: String
-        members: [String]
+        members: [User]
         recipes: [PrivateRecipe]
         img: String
     }
@@ -100,6 +101,7 @@ const typeDefs = gql`
         createPotluck(title: String!): Potluck
         addUserToPotluck(userId: String!, potluckId: String!): Potluck
         addFriend(userId: String!): User
+        acceptFriendReq(requestId: String!, friendId: String!): User
         removeFriend(userId: String!): User
     }
 `;

@@ -20,7 +20,6 @@ const Search = () => {
 
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
-  const friends = userData.friends;
 
   return (
     <Grid container>

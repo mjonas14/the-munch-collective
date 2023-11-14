@@ -47,11 +47,15 @@ export default function UserSearch(props) {
         Search all Users
       </Typography>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      {searchQuery ? (
       <TableContainer sx={{ maxHeight: 350 }}>
         {dataFiltered.map((user, index) => (
           <SearchUserDisplay key={index} userId={user._id} me={props.me} />
         ))}
       </TableContainer>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

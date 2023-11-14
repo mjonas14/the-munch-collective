@@ -7,12 +7,12 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
+import TableContainer from "@mui/material/TableContainer";
 
-import UserDisplay from "../../../components/UserDisplay";
+import UserDisplay from "../../../../components/UserDisplay";
 
 export default function PotluckMembers(props) {
-
-    console.log(props.members, "members");
+  console.log(props, "members");
 
   return (
     <Box
@@ -34,7 +34,11 @@ export default function PotluckMembers(props) {
       >
         Members
       </Typography>
-      <UserDisplay user={props.members[0]} />
+      <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
+        {props.members.map((member) => (
+          <UserDisplay userId={member._id} />
+        ))}
+      </TableContainer>
     </Box>
   );
 }

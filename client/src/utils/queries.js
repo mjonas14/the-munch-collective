@@ -102,7 +102,6 @@ export const QUERY_GETME = gql`
         _id
         title
       }
-      friends
       profilePic
       privateRecipes {
         _id
@@ -117,8 +116,11 @@ export const QUERY_GETME = gql`
         tips
         userId
       }
-      friendRequests
-      requestedFriends
+      friendsNew {
+        _id
+        friend
+        status
+      }
     }
   }
 `;
@@ -142,7 +144,7 @@ export const QUERY_GETALLUSERS = gql`
   }
 `;
 
-export const QUERY_GETMYPOTLUCKS = gql`
+export const QUERY_GET_MY_POTLUCKS = gql`
   query getMyPotlucks {
     getMyPotlucks {
       _id
@@ -155,7 +157,7 @@ export const QUERY_GETMYPOTLUCKS = gql`
   }
 `;
 
-export const QUERY_GETPOTLUCKBYID = gql`
+export const QUERY_GET_POTLUCK_BY_ID = gql`
   query getPotluckById($potluckId: ID!) {
     getPotluckById(potluckId: $potluckId) {
       _id
@@ -166,11 +168,6 @@ export const QUERY_GETPOTLUCKBYID = gql`
         profilePic
       }
       img
-      members {
-        username
-        profilePic
-        _id
-      }
       recipes {
         _id
         comment
@@ -183,6 +180,12 @@ export const QUERY_GETPOTLUCKBYID = gql`
         source
         tips
         userId
+      }
+      members {
+        _id
+        username
+        email
+        profilePic
       }
     }
   }
@@ -199,7 +202,6 @@ export const QUERY_GET_USER_BY_ID = gql`
       createdAt
       email
       favCuisine
-      friends
       password
       profilePic
       signatureDish
@@ -217,8 +219,6 @@ export const QUERY_GET_USER_BY_ID = gql`
         tips
         userId
       }
-      friendRequests
-      requestedFriends
     }
   }
 `;

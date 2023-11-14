@@ -49,7 +49,7 @@ export default function UserDisplay(props) {
     </Container>
     );
   }
-  
+
   return (
     <CardActionArea component={Link} to={`/user/${props.userId}`}>
       <Container
