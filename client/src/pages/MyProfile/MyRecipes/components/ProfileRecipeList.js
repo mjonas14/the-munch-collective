@@ -11,9 +11,7 @@ import RecipeCard from "../../../../components/RecipeCard";
 const ProfileRecipeList = ({ recipeData, handlePageChange }) => {
   const { loading, data } = useQuery(QUERY_GETALLPRIVATERECIPES);
   const recipes = data?.getAllPrivateRecipes || [];
-  console.log(recipeData, "yooo");
   const recipeArray = recipeData.data;
-  console.log(recipeArray, "recipe array");
 
   return (
     <Box
@@ -83,6 +81,6 @@ const ProfileRecipeList = ({ recipeData, handlePageChange }) => {
       )}
     </Box>
   );
-}
+};
 
 export default ProfileRecipeList;

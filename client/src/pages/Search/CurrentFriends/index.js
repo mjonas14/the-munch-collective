@@ -39,24 +39,10 @@ const CurrentFriends = () => {
   }
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "#EBECF0",
-        borderRadius: "16px",
-        margin: "20px 10px 20px 20px",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <Typography
-        sx={{
-          fontSize: "30px",
-          fontWeight: "bold",
-          margin: "15px 0px 15px 20px",
-        }}
-      >
+    <Box className="list-box-users">
+      <header className="box-header">
         Friends ({userData.friendsNew.length})
-      </Typography>
+      </header>
       <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
         {userData.friendsNew.map((friends, index) => (
           <div>

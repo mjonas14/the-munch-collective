@@ -37,15 +37,9 @@ export default function UserSearch(props) {
 
   return (
     <div>
-      <Typography
-        sx={{
-          fontSize: "30px",
-          fontWeight: "bold",
-          margin: "15px 0px 15px 20px",
-        }}
-      >
+      <header className="box-header">
         Search all Users
-      </Typography>
+      </header>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {searchQuery ? (
       <TableContainer sx={{ maxHeight: 350 }}>

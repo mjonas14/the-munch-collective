@@ -5,8 +5,11 @@ import { useQuery } from "@apollo/client";
 
 import { QUERY_GET_POTLUCK_BY_ID } from "../../../utils/queries";
 
+// components
 import UserDisplay from "../../../components/UserDisplay";
 import PotluckMembers from "./PotluckMembers";
+import TopBar from "./TopBar";
+import PotluckRecipes from "./PotluckRecipes";
 
 export default function SinglePotluck() {
   const { potluckId } = useParams();
@@ -26,7 +29,8 @@ export default function SinglePotluck() {
       ) : (
         <Grid container>
           <Grid item xs={9}>
-            dsf
+            <TopBar title={potluck.title} img={potluck.img}/>
+            <PotluckRecipes recipes={potluck.recipes} />
           </Grid>
           <Grid item xs={3}>
             <PotluckMembers members={potluck.members} />

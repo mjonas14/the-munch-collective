@@ -24,7 +24,6 @@ import MyProfile from './pages/MyProfile';
 import Logout from './pages/Logout';
 import Signup from './pages/Signup';
 import Search from './pages/Search'
-import Potlucks from './pages/potlucksOld/Potlucks';
 import MyPotlucks from './pages/MyPotlucks'
 import SinglePotluck from './pages/MyPotlucks/SinglePotluck';
 import UserProfile from './pages/UserProfile';

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ProfileRecipeList from "./components/ProfileRecipeList";
 import AddPrivateRecipe from "./components/AddPrivateRecipe";
 
-export default function RightSideSection(data) {
+export default function RightSideSection(props) {
   const [currentPage, setCurrentPage] = useState("PersonalRecipes");
 
   const handlePageChange = (page) => setCurrentPage(page);
@@ -13,7 +13,7 @@ export default function RightSideSection(data) {
     if (currentPage === "PersonalRecipes") {
       return (
         <ProfileRecipeList
-          recipeData={data}
+          recipeData={props}
           handlePageChange={handlePageChange}
         />
       );
@@ -26,10 +26,6 @@ export default function RightSideSection(data) {
         />
       );
     }
-    if (currentPage === "Blog") {
-      return <div>3</div>;
-    }
-    return <div>4</div>;
   };
 
   return <div>{renderPage()}</div>;
