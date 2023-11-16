@@ -58,13 +58,19 @@ const userSchema = new Schema(
         },
         status: {
           type: Number,
-        }
+        },
       },
     ],
     potlucks: [
       {
         type: Schema.Types.ObjectId,
         ref: "Potluck",
+      },
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
       },
     ],
   },

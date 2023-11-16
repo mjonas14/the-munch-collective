@@ -1,5 +1,11 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, PublicRecipe, PrivateRecipe, Potluck } = require("../models");
+const {
+  User,
+  PublicRecipe,
+  PrivateRecipe,
+  Potluck,
+  FriendRequests,
+} = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -156,47 +162,101 @@ const resolvers = {
       );
       return potluck;
     },
-    addFriend: async (parents, { userId }, context) => {
+    addFriend: async (parents, { toUserId }, context) => {
       if (context.user) {
-        const user = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { friendsNew: { friend: userId, status: 1 } } }
-        );
+        const fromUserId = context.user._id;
 
-        user = await User.findOneAndUpdate(
-          { _id: userId },
-          { $addToSet: { friendsNew: { friend: context.user._id, status: 2 } } }
-        );
+        const doesExist = await FriendRequests.findOne({
+          fromUserId,
+          toUserId,
+          status: "pending",
+        });
 
-        return user;
+        if (doesExist) {
+          return {
+            success: false,
+            message: "Friend request already sent",
+          };
+        }
+
+        const friendRequest = await FriendRequests.create({
+          fromUserId,
+          toUserId,
+          status: "pending",
+        });
+
+        return {
+          success: true,
+          message: "Friend request sent!",
+        };
+      }
+    },
+    approveFriend: async (parent, { requestId }, context) => {
+      if (context.user) {
+        const userId = context.user._id;
+
+        // find the request we want to approve
+        const request = await FriendRequests.findOne({
+          _id: requestId,
+          fromUserId: userId,
+          status: "pending",
+        });
+
+        // if it doesnt exist, post message
+        if (!request) {
+          return {
+            success: false,
+            message: "Invalid friend request approved",
+          };
+        }
+
+        // change and save
+        request.status = "accepted";
+        request.save();
+
+        // update users with friend
+        const user = await User.findOne({ _id: context.user._id });
+        const friend = await User.findOne({ _id: request.toUserId });
+        user.friends.push(friend);
+        friend.friends.push(user);
+        user.save();
+        friend.save();
+
+        return {
+          success: true,
+          message: "Friend request approved",
+        };
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    acceptFriendReq: async (parents, { requestId, friendId }, context) => {
+    sayNoToFriend: async (parent, { requestId }, context) => {
       if (context.user) {
-        const user = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { friendsNew: { $set: { _id: requestId, status: 3 } } }
-        );
+        const userId = context.user._id;
 
-        user = await User.findOneAndUpdate(
-          { _id: friendId },
-          { $addToSet: { friendsNew: { friend: friendId, status: 1 } } }
-        );
+        // find the request we want to approve
+        const request = await FriendRequests.findOne({
+          _id: requestId,
+          fromUserId: userId,
+        });
 
-        user = await User.findOneAndUpdate(
-          { _id: friendId },
-          { $addToSet: { friendsNew: { friend: context.user._id, status: 1 } } }
-        );
-        return user;
+        // if it doesnt exist, post message
+        if (!request) {
+          return {
+            success: false,
+            message: "Invalid friend request approved",
+          };
+        }
+
+        // change and save
+        request.status = "noThankYou";
+        request.save();
+        
+        return {
+          success: true,
+          message: "Denied friend request",
+        };
       }
-    },
-    removeFriend: async (parents, { userId }, context) => {
-      const user = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        { $pull: { friends: userId } }
-      );
-      return user;
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
