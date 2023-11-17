@@ -21,7 +21,7 @@ import { REQUEST_FRIEND } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 import UserDisplay from "../UserDisplay";
-import IsFriend from "./IsFriend";
+import AddBtn from "./AddBtn";
 
 export default function SearchUserDisplay(props) {
   const { loading, data } = useQuery(QUERY_GET_USER_BY_ID, {
@@ -36,6 +36,12 @@ export default function SearchUserDisplay(props) {
   if (props.userId === props.me._id) {
     return;
   }
+
+  for (let i = 0; i < props.me.friends.length; i++) {
+    if (props.userId === props.me.friends[i]._id) {
+      return;
+    }
+  };
 
   if (props.userId) {
     return (
@@ -71,7 +77,7 @@ export default function SearchUserDisplay(props) {
             </Typography>
           </Container>
         </CardActionArea>
-        <IsFriend me={props.me} userId={props.userId} />
+        <AddBtn userData={userData}/>
       </Card>
     );
   }

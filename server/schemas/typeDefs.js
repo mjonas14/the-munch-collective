@@ -90,6 +90,8 @@ const typeDefs = gql`
         getPublicRecipeByMealType(mealType: String!): [PublicRecipe]
         getAllUsers: [User]
         getUserById(userId: String!): User
+        getFriendRequest(toUserId: String!): FriendRequests
+        getAllMyRequests: [FriendRequests]
     }
 
     type Mutation {
@@ -102,8 +104,8 @@ const typeDefs = gql`
         createPotluck(title: String!): Potluck
         addUserToPotluck(userId: String!, potluckId: String!): Potluck
         addFriend(toUserId: String!): ResponseAddFriend
-        approveFriend(requestId: String!): ResponseAddFriend
-        sayNoToFriend(requestId: String!): ResponseAddFriend
+        approveFriend(friendId: String!): ResponseAddFriend
+        sayNoToFriend(friendId: String!): ResponseAddFriend
     }
 
     type ResponseAddFriend {

@@ -10,26 +10,28 @@ import {
 import TableContainer from "@mui/material/TableContainer";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQuery } from "@apollo/client";
-import { QUERY_GETME } from "../../../utils/queries";
+import { QUERY_GET_ALL_MY_REQUESTS } from "../../../utils/queries";
 
 import UserDisplay from "../../../components/UserDisplay";
 
-const FriendRequests = () => {
-  const { loading, data } = useQuery(QUERY_GETME);
-  const userData = data?.getMe || [];
-  console.log(userData.friendsNew);
+const FriendRequests = (props) => {
+  const { loading, data } = useQuery(QUERY_GET_ALL_MY_REQUESTS);
+
+  if (loading) {
+    return <></>;
+  }
+
+  const requests = data?.getAllMyRequests || [];
 
   return (
     <Box className="list-box-users">
-      <header className="box-header">
-        Friends Requests
-      </header>
+      <header className="box-header">Friends Requests</header>
       <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
-        {userData.friendsNew ? (
+        {requests.length > 0 ? (
           <>
-            {userData.friendsNew.map((friends, index) => (
+            {requests.map((request, index) => (
               <div>
-                {friends.status === 2 ? (
+                {request.status === "pending" ? (
                   <Container
                     sx={{
                       display: "flex",
@@ -37,7 +39,7 @@ const FriendRequests = () => {
                       alignItems: "center",
                     }}
                   >
-                    <UserDisplay key={index} userId={friends.friend} />
+                    <UserDisplay key={index} userId={request.fromUserId._id} />
                   </Container>
                 ) : (
                   <></>
@@ -46,7 +48,7 @@ const FriendRequests = () => {
             ))}
           </>
         ) : (
-          <></>
+          <h4 style={{marginLeft: "25px"}}>No requests to show</h4>
         )}
       </TableContainer>
     </Box>

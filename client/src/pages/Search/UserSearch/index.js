@@ -20,7 +20,6 @@ import SearchBar from "./SearchBar";
 export default function UserSearch(props) {
   const { loading, data } = useQuery(QUERY_GETALLUSERS);
   const userData = data?.getAllUsers || [];
-  const [isFriend, setIsFriend] = useState(false);
 
   const filterData = (query, userData) => {
     if (!query) {
@@ -37,16 +36,14 @@ export default function UserSearch(props) {
 
   return (
     <div>
-      <header className="box-header">
-        Search all Users
-      </header>
+      <header className="box-header">Search all Users</header>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {searchQuery ? (
-      <TableContainer sx={{ maxHeight: 350 }}>
-        {dataFiltered.map((user, index) => (
-          <SearchUserDisplay key={index} userId={user._id} me={props.me} />
-        ))}
-      </TableContainer>
+        <TableContainer sx={{ maxHeight: 350 }}>
+          {dataFiltered.map((user, index) => (
+            <SearchUserDisplay key={index} userId={user._id} me={props.me} />
+          ))}
+        </TableContainer>
       ) : (
         <></>
       )}

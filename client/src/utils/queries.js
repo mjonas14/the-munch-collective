@@ -102,12 +102,10 @@ export const QUERY_GETME = gql`
         _id
         title
       }
-      profilePic
       privateRecipes {
         _id
         comment
         createdAt
-        img
         ingredients
         mealType
         method
@@ -116,11 +114,11 @@ export const QUERY_GETME = gql`
         tips
         userId
       }
-      friendsNew {
+      friends {
         _id
-        friend
-        status
+        username
       }
+      profilePic
     }
   }
 `;
@@ -218,6 +216,30 @@ export const QUERY_GET_USER_BY_ID = gql`
         source
         tips
         userId
+      }
+    }
+  }
+`;
+
+export const QUERY_GET_FRIEND_REQUEST = gql`
+  query getFriendRequest($toUserId: String!) {
+    getFriendRequest(toUserId: $toUserId) {
+      _id
+      status
+    }
+  }
+`;
+
+export const QUERY_GET_ALL_MY_REQUESTS = gql`
+  query getAllMyRequests {
+    getAllMyRequests {
+      _id
+      fromUserId {
+        _id
+      }
+      status
+      toUserId {
+        _id
       }
     }
   }

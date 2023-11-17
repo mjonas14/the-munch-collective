@@ -17,8 +17,15 @@ import EditProfileModal from "./EditProfileModal";
 const UsernameSec = () => {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
+  console.log(userData, "data of user");
 
     const [showModal, setShowModal] = useState(false);
+
+    if (loading) {
+      return (
+        <h1>Loading...</h1>
+      )
+    }
 
   const handleEdit = (event) => {
     event.preventDefault();

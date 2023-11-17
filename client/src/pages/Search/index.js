@@ -12,7 +12,6 @@ import {
   import { useQuery } from "@apollo/client";
   import { QUERY_GETME } from "../../utils/queries";
 
-
   import CurrentFriends from "./CurrentFriends";
   import UserSearch from "./UserSearch";
   import FriendRequests from "./FriendRequests";
@@ -26,7 +25,7 @@ const Search = () => {
     <Grid container>
       <Grid item xs={4}>
         <CurrentFriends />
-        <FriendRequests />
+        <FriendRequests me={userData}/>
       </Grid>
       <Grid item xs={8}>
         <UserSearch me={userData} />

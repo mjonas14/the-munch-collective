@@ -12,7 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 export default function UserExpertise(props) {
   var status;
   if (props.user.privateRecipes && props.user.privateRecipes.length === 0) {
-    status = "Potato Pealer";
+    status = "Potato Peeler";
   } else if (props.user.privateRecipes && props.user.privateRecipes.length <= 5) {
     status = "Sauce Maker";
   } else if (props.user.privateRecipes && props.user.privateRecipes.length <= 10) {

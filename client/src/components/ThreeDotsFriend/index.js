@@ -26,7 +26,7 @@ export default function LongMenu(props) {
     console.log(renderState, "renderState");
     try {
       const { data } = removeFriend({
-        variables: { userId: props.friendId },
+        variables: { friendId: props._id },
       });
       if (!data) {
         throw new Error("Something went wrong!");

@@ -12,13 +12,12 @@ const resolvers = {
   Query: {
     getMe: async (parent, args, context) => {
       if (context.user) {
-        console.log(context.user);
         const user = await User.findOne({ _id: context.user._id })
           .populate("privateRecipes")
           .populate("potlucks");
         return user;
       }
-      throw new AuthenticationError("Not logged in");
+      throw new AuthenticationError("You need to be logged in!");
     },
     getMyPotlucks: async (parent, args, context) => {
       if (context.user) {
@@ -61,6 +60,29 @@ const resolvers = {
     getUserById: async (parent, { userId }, context) => {
       return User.findOne({ _id: userId }).populate("privateRecipes");
     },
+    getFriendRequest: async (parents, { toUserId }, context) => {
+      if (context.user) {
+        const fromUserId = context.user._id;
+
+        const friendRequest = await FriendRequests.findOne({
+          fromUserId: fromUserId,
+          toUserId: toUserId,
+        });
+
+        console.log(friendRequest);
+
+        return friendRequest;
+      };
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    getAllMyRequests: async (parents, args, context) => {
+      if (context.user) {
+        return await FriendRequests.find({ toUserId: context.user._id })
+        .populate("fromUserId")
+        .populate("toUserId");
+      }
+      throw new AuthenticationError("You need to be logged in!")
+    }
   },
   Mutation: {
     addPublicRecipe: async (parent, { input }, context) => {
@@ -82,12 +104,6 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    // removePublicRecipe: async (parent, { recipeId }, context) => {
-    //   const recipe = await PublicRecipe.findOneAndDelete({
-    //     _id: recipeId,
-    //   });
-    //   return recipe;
-    // },
     addUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
@@ -169,7 +185,6 @@ const resolvers = {
         const doesExist = await FriendRequests.findOne({
           fromUserId,
           toUserId,
-          status: "pending",
         });
 
         if (doesExist) {
@@ -190,15 +205,16 @@ const resolvers = {
           message: "Friend request sent!",
         };
       }
+      throw new AuthenticationError("You need to be logged in!");
     },
-    approveFriend: async (parent, { requestId }, context) => {
+    approveFriend: async (parent, { friendId }, context) => {
       if (context.user) {
         const userId = context.user._id;
 
         // find the request we want to approve
         const request = await FriendRequests.findOne({
-          _id: requestId,
           fromUserId: userId,
+          toUserId: friendId,
           status: "pending",
         });
 
@@ -212,15 +228,15 @@ const resolvers = {
 
         // change and save
         request.status = "accepted";
-        request.save();
+        await request.save();
 
         // update users with friend
         const user = await User.findOne({ _id: context.user._id });
         const friend = await User.findOne({ _id: request.toUserId });
         user.friends.push(friend);
         friend.friends.push(user);
-        user.save();
-        friend.save();
+        await user.save();
+        await friend.save();
 
         return {
           success: true,
@@ -229,14 +245,14 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    sayNoToFriend: async (parent, { requestId }, context) => {
+    sayNoToFriend: async (parent, { friendId }, context) => {
       if (context.user) {
         const userId = context.user._id;
 
         // find the request we want to approve
         const request = await FriendRequests.findOne({
-          _id: requestId,
           fromUserId: userId,
+          toUserId: friendId
         });
 
         // if it doesnt exist, post message
@@ -249,7 +265,7 @@ const resolvers = {
 
         // change and save
         request.status = "noThankYou";
-        request.save();
+        await request.save();
         
         return {
           success: true,

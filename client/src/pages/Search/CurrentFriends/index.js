@@ -39,31 +39,33 @@ const CurrentFriends = () => {
   }
 
   return (
-    <Box className="list-box-users">
-      <header className="box-header">
-        Friends ({userData.friendsNew.length})
-      </header>
-      <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
-        {userData.friendsNew.map((friends, index) => (
-          <div>
-            {friends.status === 1 ? (
-              <Container
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <UserDisplay key={index} userId={friends.friend} />
-                <LongMenu key={index + 1000} friendId={friends.friend} />
-              </Container>
-            ) : (
-              <></>
-            )}
-          </div>
-        ))}
-      </TableContainer>
-    </Box>
+    <>
+      {userData.friends && userData.friends.length > 0 ? (
+        <Box className="list-box-users">
+          <header className="box-header">
+            Friends ({userData.friends.length})
+          </header>
+          <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
+            {userData.friends.map((friend, index) => (
+              <div>
+                <Container
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <UserDisplay key={index} userId={friend._id} />
+                  <LongMenu key={index + 1000} friendId={friend} />
+                </Container>
+              </div>
+            ))}
+          </TableContainer>
+        </Box>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 

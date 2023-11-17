@@ -22,7 +22,7 @@ const ProfileRecipeList = ({ recipeData, handlePageChange }) => {
         padding: "0px",
       }}
     >
-      {recipeArray.length ? (
+      {recipeArray && recipeArray.length ? (
         <div>
           <Container
             sx={{

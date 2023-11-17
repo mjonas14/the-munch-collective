@@ -116,19 +116,27 @@ export const ADD_USER_TO_POTLUCK = gql`
 
 export const ADD_FRIEND = gql`
   mutation addFriend($userId: String!) {
-    addFriend(userId: $userId) {
-      _id
-      username
+    addFriend(toUserId: $userId) {
+      message
+      success
+    }
+  }
+`;
+
+export const APPROVE_FRIEND = gql`
+  mutation approveFriend($friendId: String!) {
+    approveFriend(friendId: $friendId) {
+      message
+      success
     }
   }
 `;
 
 export const REMOVE_FRIEND = gql`
-  mutation removeFriend($userId: String!) {
-    removeFriend(userId: $userId) {
-      _id
-      username
-      friends
+  mutation sayNoToFriend($friendId: String!) {
+    sayNoToFriend(friendId: $friendId) {
+      message
+      success
     }
   }
 `;
