@@ -6,22 +6,45 @@ import {
   Avatar,
   Typography,
   IconButton,
+  TableContainer,
 } from "@mui/material";
-import TableContainer from "@mui/material/TableContainer";
-import EditIcon from "@mui/icons-material/Edit";
-import { useQuery } from "@apollo/client";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CancelIcon from "@mui/icons-material/Cancel";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_GET_ALL_MY_REQUESTS } from "../../../utils/queries";
+import { APPROVE_FRIEND } from "../../../utils/mutations";
 
 import UserDisplay from "../../../components/UserDisplay";
+import Request from "./Request";
 
-const FriendRequests = (props) => {
+const FriendRequests = ({ friendAdded, setFriendAdded, me }) => {
+  const [status, setStatus] = useState("");
   const { loading, data } = useQuery(QUERY_GET_ALL_MY_REQUESTS);
+  const [approveFriend] = useMutation(APPROVE_FRIEND);
 
   if (loading) {
     return <></>;
   }
 
   const requests = data?.getAllMyRequests || [];
+
+  const handleApprove = async (id) => {
+    try {
+      const { data } = await approveFriend({
+        variables: { friendId: id },
+      });
+      console.log(data);
+      if (!data) {
+        throw new Error("Something went wrong!");
+      }
+      setFriendAdded(id);
+      setStatus("Accepted");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDecline = async (id) => {};
 
   return (
     <Box className="list-box-users">
@@ -30,25 +53,15 @@ const FriendRequests = (props) => {
         {requests.length > 0 ? (
           <>
             {requests.map((request, index) => (
-              <div>
-                {request.status === "pending" ? (
-                  <Container
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <UserDisplay key={index} userId={request.fromUserId._id} />
-                  </Container>
-                ) : (
-                  <></>
-                )}
-              </div>
+              <>
+                <Request request={request} />
+              </>
             ))}
           </>
         ) : (
-          <h4 style={{marginLeft: "25px"}}>No requests to show</h4>
+          <Typography sx={{ marginLeft: "20px" }}>
+            No requests to show
+          </Typography>
         )}
       </TableContainer>
     </Box>

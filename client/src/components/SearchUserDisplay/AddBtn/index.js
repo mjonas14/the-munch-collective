@@ -39,7 +39,6 @@ const AddBtn = (props) => {
         },
       });
 
-      console.log(data, "data here");
       if (!data) {
         throw new Error("Something went wrong!");
       }

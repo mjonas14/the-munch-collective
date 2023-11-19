@@ -132,7 +132,7 @@ export const APPROVE_FRIEND = gql`
   }
 `;
 
-export const REMOVE_FRIEND = gql`
+export const DECLINE_FRIEND = gql`
   mutation sayNoToFriend($friendId: String!) {
     sayNoToFriend(friendId: $friendId) {
       message

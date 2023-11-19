@@ -6,7 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { useMutation } from "@apollo/client";
-import { REMOVE_FRIEND } from "../../utils/mutations";
+import { DECLINE_FRIEND } from "../../utils/mutations";
 
 const ITEM_HEIGHT = 48;
 
@@ -18,7 +18,7 @@ export default function LongMenu(props) {
     setAnchorEl(event.currentTarget);
   };
 
-  const [removeFriend, { loading, data }] = useMutation(REMOVE_FRIEND);
+  const [removeFriend, { loading, data }] = useMutation(DECLINE_FRIEND);
 
   const handleRemove = () => {
     setAnchorEl(null);

@@ -10,17 +10,21 @@ import {
 import TableContainer from "@mui/material/TableContainer";
 import EditIcon from "@mui/icons-material/Edit";
 import { useQuery } from "@apollo/client";
-import { QUERY_GETME } from "../../../utils/queries";
+import { QUERY_GETME, QUERY_GET_USER_BY_ID } from "../../../utils/queries";
 
 import UserDisplay from "../../../components/UserDisplay";
 import LongMenu from "../../../components/ThreeDotsFriend";
 
-const CurrentFriends = () => {
+const CurrentFriends = (props) => {
   const [renderState, setRenderState] = useState("");
   const [numberOfFriends, setNumberOfFriends] = useState(0);
 
   const { loading, data } = useQuery(QUERY_GETME);
+  const { loading1, data1 } = useQuery(QUERY_GET_USER_BY_ID, {
+    variables: { userId: props.friendAdded },
+  });
   const userData = data?.getMe || [];
+  let list = userData.friends;
 
   if (loading) {
     return (
@@ -38,15 +42,17 @@ const CurrentFriends = () => {
     );
   }
 
+  const user = data1?.getUserById || {};
+  console.log(user);
+  // if (user) list.push(user);
+
   return (
     <>
-      {userData.friends && userData.friends.length > 0 ? (
+      {list && list.length > 0 ? (
         <Box className="list-box-users">
-          <header className="box-header">
-            Friends ({userData.friends.length})
-          </header>
+          <header className="box-header">Friends ({list.length})</header>
           <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
-            {userData.friends.map((friend, index) => (
+            {list.map((friend, index) => (
               <div>
                 <Container
                   sx={{

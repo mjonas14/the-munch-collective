@@ -72,17 +72,17 @@ const resolvers = {
         console.log(friendRequest);
 
         return friendRequest;
-      };
+      }
       throw new AuthenticationError("You need to be logged in!");
     },
     getAllMyRequests: async (parents, args, context) => {
       if (context.user) {
         return await FriendRequests.find({ toUserId: context.user._id })
-        .populate("fromUserId")
-        .populate("toUserId");
+          .populate("fromUserId")
+          .populate("toUserId");
       }
-      throw new AuthenticationError("You need to be logged in!")
-    }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
   Mutation: {
     addPublicRecipe: async (parent, { input }, context) => {
@@ -213,8 +213,8 @@ const resolvers = {
 
         // find the request we want to approve
         const request = await FriendRequests.findOne({
-          fromUserId: userId,
-          toUserId: friendId,
+          fromUserId: friendId,
+          toUserId: userId,
           status: "pending",
         });
 
@@ -232,7 +232,7 @@ const resolvers = {
 
         // update users with friend
         const user = await User.findOne({ _id: context.user._id });
-        const friend = await User.findOne({ _id: request.toUserId });
+        const friend = await User.findOne({ _id: request.fromUserId });
         user.friends.push(friend);
         friend.friends.push(user);
         await user.save();
@@ -251,8 +251,8 @@ const resolvers = {
 
         // find the request we want to approve
         const request = await FriendRequests.findOne({
-          fromUserId: userId,
-          toUserId: friendId
+          fromUserId: friendId,
+          toUserId: userId,
         });
 
         // if it doesnt exist, post message
@@ -266,7 +266,7 @@ const resolvers = {
         // change and save
         request.status = "noThankYou";
         await request.save();
-        
+
         return {
           success: true,
           message: "Denied friend request",
