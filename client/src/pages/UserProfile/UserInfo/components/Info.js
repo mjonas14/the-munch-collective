@@ -15,12 +15,6 @@ import HouseIcon from "@mui/icons-material/House";
 export default function Munch(props) {
   console.log(props.user);
 
-  let d = new Date(props.user.createdAt);
-  console.log(d.toString());
-  console.log(d.toDateString());
-  var formatted_date = moment(props.user.createdAt).format("YYYY-MM-DD");
-  console.log(formatted_date);
-
   return (
     <Container>
       <Typography

@@ -13,15 +13,15 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_GET_USER_BY_ID } from "../../../utils/queries";
 
-export default function UserImage() {
-  const { userId } = useParams();
-  const { loading, data } = useQuery(QUERY_GET_USER_BY_ID, {
-    variables: { userId: userId },
-  });
-  const user = data?.getUserById || [];
+export default function UserImage({ loading, user }) {
+
+  console.log(loading, "loading");
+  console.log(user, "username");
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <h1>Loading...</h1>
+    )
   }
 
   return (
