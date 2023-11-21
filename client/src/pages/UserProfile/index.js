@@ -38,8 +38,11 @@ export default function UserProfile() {
     <h1>Loading...</h1>;
   }
 
-  const isFriend = me.friends.some((friend) => friend._id === user._id);
-  console.log(isFriend, "friend");
+  let isFriend = false;
+  console.log(me.friends, "friends");
+  if (me.friends && me.friends.length > 0) {
+    isFriend = me.friends.some((friend) => friend._id === user._id);
+  }
 
   return (
     <Grid container>

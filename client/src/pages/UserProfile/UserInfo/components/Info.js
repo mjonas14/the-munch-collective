@@ -11,41 +11,54 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import CribIcon from "@mui/icons-material/Crib";
 import HouseIcon from "@mui/icons-material/House";
+import LockIcon from '@mui/icons-material/Lock';
 
-export default function Munch(props) {
-  console.log(props.user);
+export default function Munch({ user, isFriend }) {
+  console.log(user);
 
   return (
-    <Container>
-      <Typography
-        sx={{
-          fontSize: "25px",
-          fontWeight: "bold",
-          marginTop: "20px",
-        }}
-      >
-        Info
-      </Typography>
-      <Typography
-        sx={{
-          fontSize: "18px",
-          marginTop: "10px",
-        }}
-      >
-        {!props.user.cityLive && !props.user.cityBorn ? (
-          <Typography>No info added</Typography>
+    <>
+      <Container>
+        <Typography
+          sx={{
+            fontSize: "25px",
+            fontWeight: "bold",
+            marginTop: "20px",
+          }}
+        >
+          Info
+        </Typography>
+        {isFriend ? (
+          <Typography
+            sx={{
+              fontSize: "18px",
+              marginTop: "10px",
+            }}
+          >
+            {!user.cityLive && !user.cityBorn ? (
+              <Typography>No info added</Typography>
+            ) : (
+              <div>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <HouseIcon sx={{ marginRight: "8px" }} />
+                  {user.cityLive}
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <CribIcon sx={{ marginRight: "8px" }} /> {user.cityBorn}
+                </Box>
+              </div>
+            )}
+          </Typography>
         ) : (
-          <div>
-            <Box sx={{ display: "flex", alignItems: "center", marginBottom: "20px" }}>
-              <HouseIcon sx={{ marginRight: "8px" }} />
-              {props.user.cityLive}
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <CribIcon sx={{ marginRight: "8px" }} /> {props.user.cityBorn}
-            </Box>
-          </div>
+          <LockIcon />
         )}
-      </Typography>
-    </Container>
+      </Container>
+    </>
   );
 }

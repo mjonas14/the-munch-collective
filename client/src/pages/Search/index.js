@@ -36,7 +36,7 @@ const Search = () => {
           me={userData}
         />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={5}>
         <UserSearch me={userData} />
       </Grid>
     </Grid>

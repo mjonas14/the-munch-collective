@@ -19,41 +19,18 @@ import Info from "./components/Info";
 
 export default function UserInfo({ loading, user, isFriend }) {
   return (
-    <>
-      {isFriend ? (
-        <Box
-          sx={{
-            height: 240,
-            backgroundColor: "#EBECF0",
-            borderRadius: "16px",
-            margin: "20px 20px 20px 10px",
-            display: "flex",
-          }}
-        >
-          <Info user={user} />
-          <Munch user={user} />
-          <UserExpertise user={user} />
-        </Box>
-      ) : (
-        <Box
-          sx={{
-            height: 240,
-            backgroundColor: "#EBECF0",
-            borderRadius: "16px",
-            margin: "20px 20px 20px 10px",
-            display: "flex",
-          }}
-        >
-          <Typography
-            sx={{
-              margin: "20px",
-              fontSize: "25px",
-            }}
-          >
-            You must be friends to view
-          </Typography>
-        </Box>
-      )}
-    </>
+    <Box
+      sx={{
+        height: 240,
+        backgroundColor: "#EBECF0",
+        borderRadius: "16px",
+        margin: "20px 20px 20px 10px",
+        display: "flex",
+      }}
+    >
+      <Info user={user} isFriend={isFriend} />
+      <Munch user={user} isFriend={isFriend} />
+      <UserExpertise user={user} />
+    </Box>
   );
 }

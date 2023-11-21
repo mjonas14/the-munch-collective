@@ -12,20 +12,24 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_GET_USER_BY_ID } from "../../../utils/queries";
 
+import LockIcon from "@mui/icons-material/Lock";
+
+// components
 import RecipeCard from "../../../components/RecipeCard";
 
 export default function UserRecipes({ loading, user, isFriend }) {
   return (
-    <>
+    <Box
+      sx={{
+        backgroundColor: "#EBECF0",
+        borderRadius: "16px",
+        margin: "0px 20px 20px 20px",
+        display: "flex",
+        minHeight: "200px",
+      }}
+    >
       {isFriend ? (
-        <Box
-          sx={{
-            backgroundColor: "#EBECF0",
-            borderRadius: "16px",
-            margin: "0px 20px 20px 20px",
-            display: "flex",
-          }}
-        >
+        <>
           {user.privateRecipes && user.privateRecipes.length ? (
             <div>
               <Typography
@@ -36,7 +40,7 @@ export default function UserRecipes({ loading, user, isFriend }) {
                   fontWeight: "bold",
                 }}
               >
-                Recipes
+                Recipes ({user.privateRecipes.length})
               </Typography>
               <Grid
                 container
@@ -65,27 +69,22 @@ export default function UserRecipes({ loading, user, isFriend }) {
               No Recipes Added
             </Typography>
           )}
-        </Box>
+        </>
       ) : (
-        <Box
-          sx={{
-            height: 240,
-            backgroundColor: "#EBECF0",
-            borderRadius: "16px",
-            margin: "20px 20px 20px 10px",
-            display: "flex",
-          }}
-        >
+        <div>
           <Typography
+            variant="h4"
             sx={{
               margin: "20px",
-              fontSize: "25px",
+              fontSize: "30px",
+              fontWeight: "bold",
             }}
           >
-            You must be friends to view
+            Recipes
           </Typography>
-        </Box>
+          <LockIcon sx={{ marginLeft: "20px" }}/>
+        </div>
       )}
-    </>
+    </Box>
   );
 }

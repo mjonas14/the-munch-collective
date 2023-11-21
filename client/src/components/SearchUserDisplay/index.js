@@ -52,7 +52,7 @@ export default function SearchUserDisplay(props) {
           margin: "20px 0px 20px 0px",
           display: "flex",
           justifyContent: "space-between",
-          width: "75%",
+          width: "97%",
           padding: "0px",
         }}
       >
