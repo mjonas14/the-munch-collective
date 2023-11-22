@@ -18,7 +18,7 @@ export default function LandingPageHeader() {
           textDecoration: "none",
         }}
       >
-        The<span style={{ fontStyle: "italic" }}>Munch</span>Collective
+        The<span style={{ fontStyle: "italic", marginLeft: "15px", marginRight: "15px" }}>Munch</span>Collective
       </Typography>
     )
 }

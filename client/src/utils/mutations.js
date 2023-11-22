@@ -140,3 +140,12 @@ export const DECLINE_FRIEND = gql`
     }
   }
 `;
+
+export const ADD_FRIEND_TO_POTLUCK = gql`
+  mutation addFriendToPotluck($potluckId: String!, $friendId: String!) {
+    addFriendToPotluck(potluckId: $potluckId, friendId: $friendId) {
+      message
+      success
+    }
+  }
+`;
