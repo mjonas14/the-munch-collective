@@ -274,6 +274,35 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    addFriendToPotluck: async (parent, { potluckId, friendId }, context) => {
+      if (context.user) {
+        const user = await User.findOne({ _id: friendId });
+        const potluck = await Potluck.findOne({ _id: potluckId });
+
+        if (!user) {
+          return {
+            success: false,
+            message: "User doesn't exist.",
+          };
+        }
+
+        if (!potluck) {
+          return {
+            success: false,
+            message: "Potluck doesn't exist.",
+          };
+        }
+
+        potluck.members.push(user);
+        await potluck.save();
+
+        return {
+          success: true,
+          message: `${user.username} successfully added to Potluck!`,
+        };
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 

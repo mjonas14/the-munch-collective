@@ -14,8 +14,9 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
 import Auth from "../../../../utils/auth";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_GETME } from "../../../../utils/queries";
+import { ADD_FRIEND_TO_POTLUCK } from "../../../../utils/mutations";
 
 // components
 import UserDisplay from "../../../../components/UserDisplay";
@@ -23,6 +24,7 @@ import UserDisplay from "../../../../components/UserDisplay";
 export default function PotluckMembers({ members }) {
   const { loading, data } = useQuery(QUERY_GETME);
   const me = data?.getMe || [];
+  const [addFriendToPotluck] = useMutation(ADD_FRIEND_TO_POTLUCK);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const tempList = ["One", "Two", "Three"];
@@ -38,13 +40,22 @@ export default function PotluckMembers({ members }) {
 
   const handleMenuClick = (name) => {
     console.log(name, "name");
+
+    try {
+      const { data } = addFriendToPotluck({
+        variable: { 
+          potluckId: 
+        }
+      })
+    } catch (err) {
+      console.error(err);
+    }
+
     handleClose();
-  }
+  };
 
   if (loading) {
-    return (
-      <></>
-    )
+    return <></>;
   }
 
   return (
@@ -76,7 +87,9 @@ export default function PotluckMembers({ members }) {
           }}
         >
           {me.friends.map((friend) => (
-            <MenuItem key={friend} onClick={() => handleMenuClick(friend)}>{friend.username}</MenuItem>
+            <MenuItem key={friend} onClick={() => handleMenuClick(friend)}>
+              {friend.username}
+            </MenuItem>
           ))}
         </Menu>
       </Container>
