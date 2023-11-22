@@ -9,6 +9,12 @@
     margin: 15px 0px 15px 20px;
   }
 
+  .box-subheader {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
   .list-box-users {
     background-color: #EBECF0;
     border-radius: 16px;
@@ -23,5 +29,20 @@
     border-radius: 16px;
     display: flex;
     min-height: 200px;
+  }
+
+  .list-box-general {
+    background-color: #EBECF0;
+    border-radius: 16px;
+    display: flex;
+  }
+
+  .add-button {
+    display: flex;
+    align-items: center;
+    border-radius: 16px;
+    margin: 10px;
+    width: 150px;
+    justify-content: center;
   }
   

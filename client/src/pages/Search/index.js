@@ -8,10 +8,10 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../utils/queries";
 
+// components
 import CurrentFriends from "./CurrentFriends";
 import UserSearch from "./UserSearch";
 import FriendRequests from "./FriendRequests";
@@ -25,16 +25,8 @@ const Search = () => {
   return (
     <Grid container>
       <Grid item xs={4}>
-        <CurrentFriends
-          friendAdded={friendAdded}
-          setFriendAdded={setFriendAdded}
-          me={userData}
-        />
-        <FriendRequests
-          friendAdded={friendAdded}
-          setFriendAdded={setFriendAdded}
-          me={userData}
-        />
+        <CurrentFriends me={userData} />
+        <FriendRequests />
       </Grid>
       <Grid item xs={5}>
         <UserSearch me={userData} />

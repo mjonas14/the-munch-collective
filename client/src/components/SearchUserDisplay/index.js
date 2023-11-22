@@ -30,7 +30,7 @@ export default function SearchUserDisplay(props) {
   const userData = data?.getUserById || [];
 
   if (loading) {
-    return <div></div>;
+    return (<></>);
   }
 
   if (props.userId === props.me._id) {

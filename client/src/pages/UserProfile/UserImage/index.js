@@ -7,31 +7,16 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { QUERY_GET_USER_BY_ID } from "../../../utils/queries";
 
 export default function UserImage({ loading, user }) {
 
-  console.log(loading, "loading");
-  console.log(user, "username");
-
-  if (loading) {
-    return (
-      <h1>Loading...</h1>
-    )
-  }
+  if (loading) return (<h1>Loading...</h1>)
 
   return (
-    <Box
+    <Box className={"list-box-general"}
       sx={{
         height: 240,
-        backgroundColor: "#EBECF0",
-        borderRadius: "16px",
         margin: "20px 10px 20px 20px",
-        display: "flex",
         alignItems: "center",
       }}
     >
@@ -60,13 +45,7 @@ export default function UserImage({ loading, user }) {
           flexWrap: "wrap",
         }}
       >
-        <Typography
-          sx={{
-            fontSize: "30px",
-            fontWeight: "bold",
-            marginTop: "15px",
-          }}
-        >
+        <Typography className={"title"} sx={{ marginTop: "15px" }}>
           {user.username}
         </Typography>
       </Container>

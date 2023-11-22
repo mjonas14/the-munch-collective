@@ -8,43 +8,20 @@ import {
   IconButton,
   TableContainer,
 } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CancelIcon from "@mui/icons-material/Cancel";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { QUERY_GET_ALL_MY_REQUESTS } from "../../../utils/queries";
-import { APPROVE_FRIEND } from "../../../utils/mutations";
 
-import UserDisplay from "../../../components/UserDisplay";
+// components
 import Request from "./Request";
 
-const FriendRequests = ({ friendAdded, setFriendAdded, me }) => {
-  const [status, setStatus] = useState("");
+const FriendRequests = () => {
   const { loading, data } = useQuery(QUERY_GET_ALL_MY_REQUESTS);
-  const [approveFriend] = useMutation(APPROVE_FRIEND);
 
   if (loading) {
     return <></>;
   }
 
   const requests = data?.getAllMyRequests || [];
-
-  const handleApprove = async (id) => {
-    try {
-      const { data } = await approveFriend({
-        variables: { friendId: id },
-      });
-      console.log(data);
-      if (!data) {
-        throw new Error("Something went wrong!");
-      }
-      setFriendAdded(id);
-      setStatus("Accepted");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleDecline = async (id) => {};
 
   return (
     <Box className="list-box-users">
@@ -54,7 +31,7 @@ const FriendRequests = ({ friendAdded, setFriendAdded, me }) => {
           <>
             {requests.map((request, index) => (
               <>
-                <Request request={request} />
+                <Request key={index} request={request} />
               </>
             ))}
           </>

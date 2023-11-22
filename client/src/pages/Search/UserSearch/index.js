@@ -17,7 +17,7 @@ import { QUERY_GETALLUSERS } from "../../../utils/queries";
 import SearchUserDisplay from "../../../components/SearchUserDisplay";
 import SearchBar from "./SearchBar";
 
-export default function UserSearch(props) {
+export default function UserSearch({ me }) {
   const { loading, data } = useQuery(QUERY_GETALLUSERS);
   const userData = data?.getAllUsers || [];
 
@@ -41,7 +41,7 @@ export default function UserSearch(props) {
       {searchQuery ? (
         <TableContainer sx={{ maxHeight: 400 }}>
           {dataFiltered.map((user, index) => (
-            <SearchUserDisplay key={index} userId={user._id} me={props.me} />
+            <SearchUserDisplay key={index} userId={user._id} me={me} />
           ))}
         </TableContainer>
       ) : (

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
+// components
 import image from "../../utils/assets/images/Home_Image.png";
 import ShareRecipeModal from "../ShareRecipeModal";
 

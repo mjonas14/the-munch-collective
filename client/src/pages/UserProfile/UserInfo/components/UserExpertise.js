@@ -10,16 +10,20 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function UserExpertise(props) {
-  var status;
+
+  // Define experties status based on number of recipes added
+  var status = "";
   if (props.user.privateRecipes && props.user.privateRecipes.length === 0) {
+    status = "Dish Washer";
+  } else if (props.user.privateRecipes && props.user.privateRecipes.length <= 1) {
     status = "Potato Peeler";
   } else if (props.user.privateRecipes && props.user.privateRecipes.length <= 5) {
     status = "Sauce Maker";
   } else if (props.user.privateRecipes && props.user.privateRecipes.length <= 10) {
     status = "Sue Chef";
-  } else {
+  } else if (props.user.privateRecipes && props.user.privateRecipes.length > 10) {
     status = "Head Chef";
-  }
+  };
 
   return (
     <Container

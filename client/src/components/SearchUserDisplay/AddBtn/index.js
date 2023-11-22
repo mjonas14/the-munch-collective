@@ -51,15 +51,9 @@ const AddBtn = (props) => {
 
   if (requestData.length === 0) {
     return (
-      <Button
+      <Button className={"add-button"}
         sx={{
-          display: "flex",
-          alignItems: "center",
-          borderRadius: "16px",
-          margin: "10px",
-          width: "150px",
-          justifyContent: "center",
-          color: btnColor,
+          color: "blue",
         }}
         onClick={(event) => handleClick(event)}
       >
@@ -68,20 +62,13 @@ const AddBtn = (props) => {
     );
     } else if (requestData.status === "pending") {
     return (
-      <Typography
+      <Button disabled className={"add-button"}
         sx={{
-          display: "flex",
-          alignItems: "center",
-          borderRadius: "16px",
-          margin: "10px",
-          width: "150px",
-          justifyContent: "center",
           color: "red",
-          fontSize: "14px"
         }}
       >
         REQUESTED
-      </Typography>
+      </Button>
     );
   }
 };
