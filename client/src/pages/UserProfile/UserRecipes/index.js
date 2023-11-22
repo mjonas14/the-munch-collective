@@ -8,10 +8,7 @@ import {
   IconButton,
 } from "@mui/material";
 
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { QUERY_GET_USER_BY_ID } from "../../../utils/queries";
-
+// MUI icons
 import LockIcon from "@mui/icons-material/Lock";
 
 // components
@@ -19,27 +16,12 @@ import RecipeCard from "../../../components/RecipeCard";
 
 export default function UserRecipes({ loading, user, isFriend }) {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#EBECF0",
-        borderRadius: "16px",
-        margin: "0px 20px 20px 20px",
-        display: "flex",
-        minHeight: "200px",
-      }}
-    >
+    <Box className={"list-box-recipes"} sx={{ margin: "0px 20px 20px 20px" }}>
       {isFriend ? (
         <>
           {user.privateRecipes && user.privateRecipes.length ? (
             <div>
-              <Typography
-                variant="h4"
-                sx={{
-                  margin: "20px",
-                  fontSize: "30px",
-                  fontWeight: "bold",
-                }}
-              >
+              <Typography className={"box-header"} variant="h4">
                 Recipes ({user.privateRecipes.length})
               </Typography>
               <Grid
@@ -60,26 +42,14 @@ export default function UserRecipes({ loading, user, isFriend }) {
               </Grid>
             </div>
           ) : (
-            <Typography
-              sx={{
-                margin: "20px",
-                fontSize: "25px",
-              }}
-            >
+            <Typography variant="h4" sx={{ margin: "20px" }}>
               No Recipes Added
             </Typography>
           )}
         </>
       ) : (
         <div>
-          <Typography
-            variant="h4"
-            sx={{
-              margin: "20px",
-              fontSize: "30px",
-              fontWeight: "bold",
-            }}
-          >
+          <Typography className={"box-header"} variant="h4">
             Recipes
           </Typography>
           <LockIcon sx={{ marginLeft: "20px" }}/>

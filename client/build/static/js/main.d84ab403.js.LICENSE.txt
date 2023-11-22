@@ -1,3 +1,5 @@
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+
 /**
  * @license React
  * react-dom.production.min.js
@@ -49,15 +51,7 @@
  */
 
 /**
- * @mui/styled-engine v5.13.2
- *
- * @license MIT
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-/**
- * @remix-run/router v1.7.2
+ * @remix-run/router v1.12.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -68,7 +62,7 @@
  */
 
 /**
- * React Router DOM v6.14.2
+ * React Router DOM v6.19.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -79,7 +73,7 @@
  */
 
 /**
- * React Router v6.14.2
+ * React Router v6.19.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -97,3 +91,5 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+//! moment.js

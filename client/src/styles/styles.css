@@ -17,4 +17,11 @@
     flex-direction: column;
     min-height: 150px;
   }
+
+  .list-box-recipes {
+    background-color: #EBECF0;
+    border-radius: 16px;
+    display: flex;
+    min-height: 200px;
+  }
   
