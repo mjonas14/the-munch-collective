@@ -44,7 +44,7 @@ export default function PotluckMembers({ members }) {
     try {
       const { data } = addFriendToPotluck({
         variable: { 
-          potluckId: 
+          potluckId: name._id
         }
       })
     } catch (err) {
