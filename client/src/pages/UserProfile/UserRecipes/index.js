@@ -8,10 +8,6 @@ import {
   IconButton,
 } from "@mui/material";
 
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
-import { QUERY_GET_USER_BY_ID } from "../../../utils/queries";
-
 import LockIcon from "@mui/icons-material/Lock";
 
 // components
