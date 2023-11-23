@@ -14,6 +14,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
 import Auth from "../../../../utils/auth";
+import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_GETME } from "../../../../utils/queries";
 import { ADD_FRIEND_TO_POTLUCK } from "../../../../utils/mutations";
@@ -22,6 +23,7 @@ import { ADD_FRIEND_TO_POTLUCK } from "../../../../utils/mutations";
 import UserDisplay from "../../../../components/UserDisplay";
 
 export default function PotluckMembers({ members }) {
+  const { potluckId } = useParams();
   const { loading, data } = useQuery(QUERY_GETME);
   const me = data?.getMe || [];
   const [addFriendToPotluck] = useMutation(ADD_FRIEND_TO_POTLUCK);
@@ -40,11 +42,13 @@ export default function PotluckMembers({ members }) {
 
   const handleMenuClick = (name) => {
     console.log(name, "name");
+    console.log(potluckId, "Id");
 
     try {
       const { data } = addFriendToPotluck({
-        variable: { 
-          potluckId: name._id
+        variables: { 
+          potluckId: potluckId,
+          friendId: name._id,
         }
       })
     } catch (err) {
@@ -59,7 +63,7 @@ export default function PotluckMembers({ members }) {
   }
 
   return (
-    <Box className="list-box-users">
+    <Box className="list-box-users" sx={{marginLeft: "0px"}}>
       <Container
         sx={{
           display: "flex",
@@ -67,7 +71,7 @@ export default function PotluckMembers({ members }) {
           alignItems: "center",
         }}
       >
-        <header className="box-header">Members</header>
+        <header className="box-header-sc">Members</header>
         <IconButton onClick={handleClick}>
           <PersonAddAlt1Icon />
         </IconButton>

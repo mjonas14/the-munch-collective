@@ -16,7 +16,7 @@ import LockIcon from '@mui/icons-material/Lock';
 export default function Munch({ user, isFriend }) {
   return (
     <Container>
-      <Typography className={"box-subheader"}>Munch</Typography>
+      <div className={"box-subheader"}>Munch</div>
       {isFriend ? (
       <Typography
         sx={{

@@ -8,7 +8,14 @@ import RecipeCard from "../../../../components/RecipeCard";
 
 const PotluckRecipes = (props) => {
   return (
-    <Box className="list-box-users">
+    <Box sx={{
+      backgroundColor: "#EBECF0",
+      borderRadius: "16px",
+      display: "flex",
+      flexDirection: "column",
+      minHeight: "150px",
+      margin: "20px"
+    }}>
       <Container
         sx={{
           display: "flex",
@@ -16,7 +23,7 @@ const PotluckRecipes = (props) => {
           alignItems: "center",
         }}
       >
-        <header className="box-header">Your Recipes</header>
+        <header className="box-header-sc">Your Recipes</header>
         <IconButton
               aria-label="edit"
               onClick={() => console.log("Clicked!")}

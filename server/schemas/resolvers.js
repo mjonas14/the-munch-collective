@@ -296,6 +296,12 @@ const resolvers = {
         potluck.members.push(user);
         await potluck.save();
 
+        // Add the potluck to the user's list of potlucks
+        await User.findOneAndUpdate(
+          { _id: friendId },
+          { $addToSet: { potlucks: potluck } }
+        );
+
         return {
           success: true,
           message: `${user.username} successfully added to Potluck!`,

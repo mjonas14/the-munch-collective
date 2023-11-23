@@ -54,7 +54,7 @@ export default function Navbar() {
   return (
     <AppBar position="static">
       <Container
-        maxWidth="xl"
+        maxWidth="xxl"
         style={{ backgroundColor: "#1D5D9B", height: "120px", padding: "20px" }}
       >
         <Toolbar disableGutters>

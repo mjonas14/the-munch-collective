@@ -19,7 +19,7 @@ export default function Munch({ user, isFriend }) {
   return (
     <>
       <Container>
-        <Typography className={"box-subheader"}>Info</Typography>
+        <div className={"box-subheader"}>Info</div>
         {isFriend ? (
           <Typography
             sx={{

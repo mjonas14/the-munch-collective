@@ -9,13 +9,12 @@ import {
 } from "@mui/material";
 
 export default function UserImage({ loading, user }) {
-
-  if (loading) return (<h1>Loading...</h1>)
+  if (loading) return <h1>Loading...</h1>;
 
   return (
-    <Box className={"list-box-general"}
+    <Box
+      className={"list-box-recipes"}
       sx={{
-        height: 240,
         margin: "20px 10px 20px 20px",
         alignItems: "center",
       }}
@@ -45,7 +44,13 @@ export default function UserImage({ loading, user }) {
           flexWrap: "wrap",
         }}
       >
-        <Typography className={"title"} sx={{ marginTop: "15px" }}>
+        <Typography
+          sx={{
+            fontSize: "25px",
+            fontWeight: "bold",
+            marginTop: "15px",
+          }}
+        >
           {user.username}
         </Typography>
       </Container>
