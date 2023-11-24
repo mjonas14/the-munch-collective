@@ -4,18 +4,14 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 // components
-import RecipeCard from "../../../../components/RecipeCard";
+import RecipeCardLg from "../../../../components/RecipeCardLg";
+import AddRecipesModal from "./Modal";
 
-const PotluckRecipes = (props) => {
+const PotluckRecipes = ({ me, potluck }) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <Box sx={{
-      backgroundColor: "#EBECF0",
-      borderRadius: "16px",
-      display: "flex",
-      flexDirection: "column",
-      minHeight: "150px",
-      margin: "20px"
-    }}>
+    <Box className={"list-box-users"}>
       <Container
         sx={{
           display: "flex",
@@ -23,16 +19,16 @@ const PotluckRecipes = (props) => {
           alignItems: "center",
         }}
       >
-        <header className="box-header-sc">Your Recipes</header>
+        <header className="box-header-sc">Shared Recipes</header>
         <IconButton
               aria-label="edit"
-              onClick={() => console.log("Clicked!")}
+              onClick={() => setShowModal(true)}
               sx={{ margin: "15px" }}
             >
               <AddCircleIcon fontSize="large" />
             </IconButton>
       </Container>
-      {props.recipes.length ? (
+      {potluck.recipes.length ? (
         <div>
           <Grid
             container
@@ -41,8 +37,8 @@ const PotluckRecipes = (props) => {
             sx={{ marginLeft: "15px" }}
           >
             <></>
-            {props.recipes.map((recipe, index) => (
-              <RecipeCard
+            {potluck.recipes.map((recipe, index) => (
+              <RecipeCardLg
                 key={index}
                 name={recipe.name}
                 comment={recipe.comment}
@@ -67,6 +63,7 @@ const PotluckRecipes = (props) => {
           </Container>
         </>
       )}
+      <AddRecipesModal me={me} potluck={potluck} showModal={showModal} setShowModal={setShowModal} />
     </Box>
   );
 };

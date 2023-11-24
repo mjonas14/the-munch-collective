@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_GETALLPUBLICRECIPES } from "../utils/queries";
-import RecipeCard from "../components/RecipeCard";
+import RecipeCardLg from "../components/RecipeCardLg";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_GETALLPUBLICRECIPES);
@@ -22,7 +22,7 @@ const Home = () => {
         color="black"
       >
         {recipes.map((recipe, index) => (
-          <RecipeCard
+          <RecipeCardLg
             key={index}
             name={recipe.name}
             comment={recipe.comment}

@@ -149,3 +149,12 @@ export const ADD_FRIEND_TO_POTLUCK = gql`
     }
   }
 `;
+
+export const ADD_RECIPE_TO_POTLUCK = gql`
+  mutation addRecipeToPotluck($potluckId: String!, $recId: String!) {
+    addRecipeToPotluck(potluckId: $potluckId, recId: $recId) {
+      message
+      success
+    }
+  }
+`;

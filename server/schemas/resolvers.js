@@ -28,9 +28,9 @@ const resolvers = {
       }
     },
     getPotluckById: async (parent, { potluckId }) => {
-      const potluck = await Potluck.findOne({ _id: potluckId }).populate(
-        "members"
-      );
+      const potluck = await Potluck.findOne({ _id: potluckId })
+        .populate("members")
+        .populate("recipes");
       return potluck;
     },
     getAllPublicRecipes: async () => {
@@ -305,6 +305,33 @@ const resolvers = {
         return {
           success: true,
           message: `${user.username} successfully added to Potluck!`,
+        };
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    addRecipeToPotluck: async (parent, { potluckId, recId }, context) => {
+      if (context.user) {
+        const recipe = await PrivateRecipe.findOne({ _id: recId });
+        const potluck = await Potluck.findOneAndUpdate(
+          { _id: potluckId },
+          { $addToSet: { recipes: recipe } }
+        );
+
+        if (!potluck) {
+          return {
+            success: false,
+            message: "Potluck does not exist",
+          };
+        }
+        if (!recipe) {
+          return {
+            success: false,
+            message: "Recipe does not exist",
+          };
+        }
+        return {
+          success: true,
+          message: "Recipe successfully added to potluck",
         };
       }
       throw new AuthenticationError("You need to be logged in!");

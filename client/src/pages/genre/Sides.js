@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_GETPUBLICRECIPEBYMEALTYPE } from "../../utils/queries";
-import RecipeCard from "../../components/RecipeCard";
+import RecipeCardLg from "../../components/RecipeCardLg";
 import GenreHeader from "../../components/GenreHeader";
 
 export default function Sides() {
@@ -33,7 +33,7 @@ export default function Sides() {
         color="black"
       >
         {recipes.map((recipe, index) => (
-          <RecipeCard
+          <RecipeCardLg
             key={index}
             name={recipe.name}
             comment={recipe.comment}

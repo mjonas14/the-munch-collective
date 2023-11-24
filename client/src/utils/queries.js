@@ -162,6 +162,7 @@ export const QUERY_GET_POTLUCK_BY_ID = gql`
       title
       createdAt
       createdBy {
+        _id
         username
         profilePic
       }

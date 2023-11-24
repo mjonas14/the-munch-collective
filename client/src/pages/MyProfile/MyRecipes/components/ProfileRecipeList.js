@@ -6,7 +6,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETALLPRIVATERECIPES } from "../../../../utils/queries";
 
-import RecipeCard from "../../../../components/RecipeCard";
+import RecipeCardLg from "../../../../components/RecipeCardLg";
 
 const ProfileRecipeList = ({ recipeData, handlePageChange }) => {
   const { loading, data } = useQuery(QUERY_GETALLPRIVATERECIPES);
@@ -47,7 +47,7 @@ const ProfileRecipeList = ({ recipeData, handlePageChange }) => {
             sx={{ marginLeft: "15px" }}
           >
             {recipeArray.map((recipe, index) => (
-              <RecipeCard
+              <RecipeCardLg
                 key={index}
                 name={recipe.name}
                 comment={recipe.comment}

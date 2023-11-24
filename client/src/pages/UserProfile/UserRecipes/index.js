@@ -12,7 +12,7 @@ import {
 import LockIcon from "@mui/icons-material/Lock";
 
 // components
-import RecipeCard from "../../../components/RecipeCard";
+import RecipeCardLg from "../../../components/RecipeCardLg";
 
 export default function UserRecipes({ loading, user, isFriend }) {
   return (
@@ -21,9 +21,9 @@ export default function UserRecipes({ loading, user, isFriend }) {
         <>
           {user.privateRecipes && user.privateRecipes.length ? (
             <div>
-              <Typography className={"box-header"} variant="h4">
+              <header className={"box-header"} variant="h4">
                 Recipes ({user.privateRecipes.length})
-              </Typography>
+              </header>
               <Grid
                 container
                 direction="row"
@@ -31,7 +31,7 @@ export default function UserRecipes({ loading, user, isFriend }) {
                 sx={{ marginLeft: "15px" }}
               >
                 {user.privateRecipes.map((recipe, index) => (
-                  <RecipeCard
+                  <RecipeCardLg
                     key={index}
                     name={recipe.name}
                     comment={recipe.comment}

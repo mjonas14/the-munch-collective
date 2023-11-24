@@ -4,16 +4,16 @@ import { Grid, Box, Typography, Container, IconButton } from "@mui/material";
 import Auth from "../../utils/auth";
 import { useMutation, useQuery } from "@apollo/client";
 import { CREATE_POTLUCK } from "../../utils/mutations";
-import { QUERY_GET_MY_POTLUCKS } from "../../utils/queries";
+import { QUERY_GET_MY_POTLUCKS, QUERY_GETME } from "../../utils/queries";
 
 // components
 import PotluckBar from './components/PotluckBar'
 
 const MyPotlucks = () => {
-  const { loading, data } = useQuery(QUERY_GET_MY_POTLUCKS);
-  const potlucks = data?.getMyPotlucks.potlucks || [];
+  const { loading: myPtlkLoading, data: myPtlkData } = useQuery(QUERY_GET_MY_POTLUCKS);
+  const potlucks = myPtlkData?.getMyPotlucks.potlucks || [];
 
-  if (loading) {
+  if (myPtlkLoading) {
     <h4>Loading...</h4>;
   }
 

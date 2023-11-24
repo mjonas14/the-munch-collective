@@ -103,13 +103,14 @@ const typeDefs = gql`
         addUserDetails(bio: String, cityBorn: String, cityLive: String, favCuisine: String, signatureDish: String, yob: Float, profilePic: String): User
         createPotluck(title: String!): Potluck
         addUserToPotluck(userId: String!, potluckId: String!): Potluck
-        addFriend(toUserId: String!): ResponseAddFriend
-        approveFriend(friendId: String!): ResponseAddFriend
-        sayNoToFriend(friendId: String!): ResponseAddFriend
-        addFriendToPotluck(potluckId: String!, friendId: String!): ResponseAddFriend
+        addFriend(toUserId: String!): Response
+        approveFriend(friendId: String!): Response
+        sayNoToFriend(friendId: String!): Response
+        addFriendToPotluck(potluckId: String!, friendId: String!): Response
+        addRecipeToPotluck(potluckId: String!, recId: String!): Response
     }
 
-    type ResponseAddFriend {
+    type Response {
         success: Boolean,
         message: String,
     }

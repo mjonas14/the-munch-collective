@@ -4,7 +4,7 @@ import { Container, Grid } from "@mui/material";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETPUBLICRECIPEBYMEALTYPE } from "../../utils/queries";
 
-import RecipeCard from "../../components/RecipeCard";
+import RecipeCardLg from "../../components/RecipeCardLg";
 import GenreHeader from "../../components/GenreHeader";
 
 const Bread = () => {
@@ -25,7 +25,7 @@ const Bread = () => {
         color="black"
       >
         {recipes.map((recipe, index) => (
-          <RecipeCard
+          <RecipeCardLg
             key={index}
             name={recipe.name}
             comment={recipe.comment}

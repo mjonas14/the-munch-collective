@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import image from "../../utils/assets/images/Home_Image.png";
 import ShareRecipeModal from "../ShareRecipeModal";
 
-const RecipeCard = ({ name, comment, id, img }) => {
+const RecipeCardLg = ({ name, comment, id, img }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = (event) => {
@@ -63,4 +63,4 @@ const RecipeCard = ({ name, comment, id, img }) => {
   );
 };
 
-export default RecipeCard;
+export default RecipeCardLg;
