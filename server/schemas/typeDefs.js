@@ -108,6 +108,7 @@ const typeDefs = gql`
         sayNoToFriend(friendId: String!): Response
         addFriendToPotluck(potluckId: String!, friendId: String!): Response
         addRecipeToPotluck(potluckId: String!, recId: String!): Response
+        removeRecipeFromPotluck(potluckId: String!, recId: String!): Response
     }
 
     type Response {

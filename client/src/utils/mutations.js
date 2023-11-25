@@ -158,3 +158,12 @@ export const ADD_RECIPE_TO_POTLUCK = gql`
     }
   }
 `;
+
+export const REMOVE_RECIPE_FROM_POTLUCK = gql`
+  mutation removeRecipeFromPotluck($potluckId: String!, $recId: String!) {
+    removeRecipeFromPotluck(potluckId: $potluckId, recId: $recId) {
+      message
+      success
+    }
+  }
+`;

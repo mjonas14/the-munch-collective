@@ -336,6 +336,27 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    removeRecipeFromPotluck: async (parent, { potluckId, recId }, context) => {
+      if (context.user) {
+        const potluck = await Potluck.findOneAndUpdate(
+          { _id: potluckId },
+          { $pull: { recipes: recId } }
+        );
+
+        if (!potluck) {
+          return {
+            success: false,
+            message: "Potluck does not exist",
+          };
+        }
+
+        return {
+          success: true,
+          message: "Recipe successfully removed to potluck",
+        };
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
 };
 

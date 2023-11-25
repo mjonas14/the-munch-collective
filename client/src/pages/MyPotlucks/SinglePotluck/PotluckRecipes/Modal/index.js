@@ -15,10 +15,11 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { ADD_RECIPE_TO_POTLUCK } from "../../../../../utils/mutations";
+import { ADD_RECIPE_TO_POTLUCK, REMOVE_RECIPE_FROM_POTLUCK } from "../../../../../utils/mutations";
 
 const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
   const [addRecipeToPotluck] = useMutation(ADD_RECIPE_TO_POTLUCK);
+  const [removeRecipeFromPotluck] = useMutation(REMOVE_RECIPE_FROM_POTLUCK);
   const style = {
     position: "absolute",
     top: "50%",
@@ -35,14 +36,29 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
     setShowModal(false);
   };
 
-  const handleSubmit = async (recId) => {
+  const handleRemove = async (recId) => {
     try {
-      const { data } = addRecipeToPotluck({
+      const { data } = removeRecipeFromPotluck({
+        variables: {
+          potluckId: potluck._id,
+          recId: recId,
+        }
+      });
+      setShowModal(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleAdd = async (recId) => {
+    try {
+      const { data } = await addRecipeToPotluck({
         variables: {
           potluckId: potluck._id,
           recId: recId,
         },
       });
+      setShowModal(false);
     } catch (err) {
       console.log(err);
     }
@@ -52,7 +68,7 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
-      open={true}
+      open={showModal}
       onClose={handleClose}
       closeAfterTransition
       slots={{ backdrop: Backdrop }}
@@ -62,7 +78,7 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
         },
       }}
     >
-      <Fade in={true}>
+      <Fade in={showModal}>
         <Box sx={style}>
           <Typography id="transition-modal-title" variant="h6" component="h2">
             Choose recipes to share
@@ -99,7 +115,10 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
                       <Button
                         size="small"
                         color="error"
-                        onClick={handleSubmit}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleRemove(recipe._id);
+                        }}
                         style={{ display: "flex", justfiyContent: "center" }}
                       >
                         Unshare
@@ -110,7 +129,7 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
                         color="primary"
                         onClick={(e) => {
                           e.preventDefault();
-                          handleSubmit(recipe._id);
+                          handleAdd(recipe._id);
                         }}
                         style={{ display: "flex", justfiyContent: "center" }}
                       >
