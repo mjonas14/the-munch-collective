@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Backdrop,
   Box,
@@ -15,9 +15,16 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { ADD_RECIPE_TO_POTLUCK, REMOVE_RECIPE_FROM_POTLUCK } from "../../../../../utils/mutations";
+import {
+  ADD_RECIPE_TO_POTLUCK,
+  REMOVE_RECIPE_FROM_POTLUCK,
+} from "../../../../../utils/mutations";
+
+// components
+import ShareBtn from "./ShareBtn";
 
 const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
+  const [shareStatus, setShareStatus] = useState("Share")
   const [addRecipeToPotluck] = useMutation(ADD_RECIPE_TO_POTLUCK);
   const [removeRecipeFromPotluck] = useMutation(REMOVE_RECIPE_FROM_POTLUCK);
   const style = {
@@ -42,13 +49,12 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
         variables: {
           potluckId: potluck._id,
           recId: recId,
-        }
+        },
       });
-      setShowModal(false);
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   const handleAdd = async (recId) => {
     try {
@@ -58,7 +64,7 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
           recId: recId,
         },
       });
-      setShowModal(false);
+      setShareStatus("Unshare")
     } catch (err) {
       console.log(err);
     }
@@ -111,31 +117,7 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    {potluck.recipes.some((rec) => rec._id === recipe._id) ? (
-                      <Button
-                        size="small"
-                        color="error"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleRemove(recipe._id);
-                        }}
-                        style={{ display: "flex", justfiyContent: "center" }}
-                      >
-                        Unshare
-                      </Button>
-                    ) : (
-                      <Button
-                        size="small"
-                        color="primary"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleAdd(recipe._id);
-                        }}
-                        style={{ display: "flex", justfiyContent: "center" }}
-                      >
-                        Share
-                      </Button>
-                    )}
+                    <ShareBtn potluck={potluck} recId={recipe._id} />
                   </CardActions>
                 </Card>
               ))}

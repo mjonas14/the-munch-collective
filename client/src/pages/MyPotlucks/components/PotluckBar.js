@@ -19,7 +19,6 @@ export default function PotluckBar(props) {
       <Card
         sx={{
           height: 65,
-          width: "75%",
           margin: "20px 20px 0px 20px",
           backgroundColor: "#EBECF0",
           borderRadius: "16px",

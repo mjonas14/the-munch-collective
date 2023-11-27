@@ -51,6 +51,9 @@ export default function PotluckMembers({ members }) {
           friendId: name._id,
         }
       })
+      if (!data) {
+        throw new Error("Something went wrong!");
+      }
     } catch (err) {
       console.error(err);
     }
