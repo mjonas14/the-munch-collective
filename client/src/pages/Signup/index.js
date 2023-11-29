@@ -135,7 +135,6 @@ export default function Signup() {
                   id="lastName"
                   label="Last Name"
                   name="lastName"
-                  autoFocus
                 />
                 <TextField
                   margin="normal"

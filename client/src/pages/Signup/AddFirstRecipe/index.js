@@ -5,6 +5,10 @@ import {
   TextField,
   FormControlLabel,
   FormLabel,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
   Checkbox,
   Link,
   Paper,
@@ -24,11 +28,33 @@ import { ADD_PRIVATE_RECIPE } from "../../../utils/mutations";
 import LandingPageHeader from "../../../components/LandingPageHeader";
 
 const AddFirstRecipe = () => {
-  const [instructions, setInstructions] = useState([{ id: 1, value: "" }]);
+  const [ingredients, setIngredients] = useState([]);
+  const [method, setMethod] = useState([]);
+  const [tips, setTips] = useState([]);
+  const [mType, setMType] = useState('');
+
 
   const [addPrivateRecipe] = useMutation(ADD_PRIVATE_RECIPE);
   const { loading, data } = useQuery(QUERY_GETME);
   const me = data?.getMe || [];
+
+  const mealType = [
+    'Breakfast',
+    'Brunch',
+    'Lunch',
+    'Dinner',
+    'Snack',
+    'Appetizer',
+    'Main Course',
+    'Side Dish',
+    'Dessert',
+    'Beverage',
+  ];
+
+  const handleChange = (event) => {
+    console.log(event.currentTarget)
+    setMType(event.target.value);
+  };
 
   if (loading) {
     <h3>Loading...</h3>;
@@ -47,20 +73,49 @@ const AddFirstRecipe = () => {
     });
   }
 
-  const handleAddField = () => {
-    const newField = { id: instructions.length + 1, value: "" };
-    setInstructions([...instructions, newField]);
+  const handleAddIng = () => {
+    const newField = { id: ingredients.length + 1, value: "" };
+    setIngredients([...ingredients, newField]);
   };
 
-  const handleFieldChange = (id, value) => {
-    const updatedFields = instructions.map((field) =>
+  const handleAddMthd = () => {
+    const newField = { id: method.length + 1, value: "" };
+    setMethod([...method, newField]);
+  };
+
+  const handleAddTip = () => {
+    const newField = { id: tips.length + 1, value: "" };
+    setTips([...tips, newField]);
+  };
+
+  const handleIngChange = (id, value) => {
+    const updatedFields = ingredients.map((field) =>
       field.id === id ? { ...field, value } : field
     );
-    setInstructions(updatedFields);
+    setIngredients(updatedFields);
+  };
+
+  const handleMthdChange = (id, value) => {
+    const updatedFields = method.map((field) =>
+      field.id === id ? { ...field, value } : field
+    );
+    setMethod(updatedFields);
+  };
+
+  const handleTipChange = (id, value) => {
+    const updatedFields = tips.map((field) =>
+      field.id === id ? { ...field, value } : field
+    );
+    setTips(updatedFields);
   };
 
   const compileInputs = () => {
-    return instructions.map((field) => field.value);
+    const inputs = {
+      ingredients: ingredients.map((field) => field.value),
+      method: method.map((field) => field.value),
+      tips: tips.map((field) => field.value)
+    };
+    return inputs;
   };
 
   const handleSubmit = async (event) => {
@@ -150,14 +205,22 @@ const AddFirstRecipe = () => {
             placeholder="Server over ice cream with fresh berries"
             name="comment"
           />
-          <FormLabel>Meal Type:</FormLabel>
-          <TextField
-            margin="normal"
-            fullWidth
-            placeholder="Dessert"
-            id="mealType"
-            name="mealType"
-          />
+<Box sx={{ width: 200 }}>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Meal Type</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={mType}
+          label="Meal Type"
+          onChange={handleChange}
+        >
+          {mealType.map((type) => (
+                      <MenuItem key={type} value={type}>{type}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
           <FormLabel>Ingredients:</FormLabel>
           <TextField
             margin="normal"
@@ -165,18 +228,23 @@ const AddFirstRecipe = () => {
             placeholder="1 cup sugar"
             name="ingredient1"
           />
-          {instructions.map((field) => (
+          {ingredients.map((field) => (
             <TextField
               key={field.id}
               value={field.value}
-              onChange={(e) => handleFieldChange(field.id, e.target.value)}
+              onChange={(e) => handleIngChange(field.id, e.target.value)}
               margin="normal"
               fullWidth
             />
           ))}
-          <Button onClick={handleAddField} variant="contained">
-            Add Instruction
-          </Button>
+          <Container
+            sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}
+          >
+            <IconButton  onClick={handleAddIng}>
+              <AddCircleIcon />
+            </IconButton>
+            <Typography>Add Ingredient</Typography>
+          </Container>
           <FormLabel>Method:</FormLabel>
           <TextField
             margin="normal"
@@ -185,6 +253,23 @@ const AddFirstRecipe = () => {
             placeholder="Mix the sugar and cacao powder in a bowl"
             name="step1"
           />
+          {method.map((field) => (
+            <TextField
+              key={field.id}
+              value={field.value}
+              onChange={(e) => handleMthdChange(field.id, e.target.value)}
+              margin="normal"
+              fullWidth
+            />
+          ))}
+          <Container
+            sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}
+          >
+            <IconButton  onClick={handleAddMthd}>
+              <AddCircleIcon />
+            </IconButton>
+            <Typography>Add Method</Typography>
+          </Container>
           <FormLabel>Image:</FormLabel>
           <div>
             <input
@@ -196,23 +281,30 @@ const AddFirstRecipe = () => {
             />
           </div>
           <FormLabel>Tips:</FormLabel>
+          {tips.map((field) => (
+            <TextField
+              key={field.id}
+              value={field.value}
+              onChange={(e) => handleTipChange(field.id, e.target.value)}
+              margin="normal"
+              fullWidth
+            />
+          ))}
           <Container
             sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}
           >
-            <IconButton>
+            <IconButton  onClick={handleAddTip}>
               <AddCircleIcon />
             </IconButton>
             <Typography>Add Tip</Typography>
           </Container>
           <FormLabel>Source:</FormLabel>
-          <Container
-            sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}
-          >
-            <IconButton>
-              <AddCircleIcon />
-            </IconButton>
-            <Typography>Add Source</Typography>
-          </Container>
+          <TextField
+            margin="normal"
+            fullWidth
+            placeholder="NYT Cooking"
+            name="source"
+          />
           <Button
             type="submit"
             fullWidth
