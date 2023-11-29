@@ -27,6 +27,8 @@ import Search from "./pages/Search";
 import MyPotlucks from "./pages/MyPotlucks";
 import SinglePotluck from "./pages/MyPotlucks/SinglePotluck";
 import UserProfile from "./pages/UserProfile";
+import AddInfo from "./pages/Signup/AddInfo";
+import AddFirstRecipe from "./pages/Signup/AddFirstRecipe";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:5174/graphql",
@@ -54,35 +56,37 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-          {Auth.loggedIn() ? (
-            <>
-              <Navbar />
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/breakfast" element={<Breakfast />} />
-                <Route path="/bread" element={<Bread />} />
-                <Route path="/mains" element={<Mains />} />
-                <Route path="/sides" element={<Sides />} />
-                <Route path="/sweets" element={<Sweets />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/recipe/:recId" element={<Recipe />} />
-                <Route path="/myprofile" element={<MyProfile />} />
-                <Route path="/logout" element={<Logout />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/mypotlucks" element={<MyPotlucks />} />
-                <Route
-                  path="/mypotlucks/:potluckId"
-                  element={<SinglePotluck />}
-                />
-                <Route path="/user/:userId" element={<UserProfile />} />
-              </Routes>
-            </>
-          ) : (
+        {Auth.loggedIn() && Auth.signedUp() ? (
+          <div>
+            <Navbar />
             <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/breakfast" element={<Breakfast />} />
+              <Route path="/bread" element={<Bread />} />
+              <Route path="/mains" element={<Mains />} />
+              <Route path="/sides" element={<Sides />} />
+              <Route path="/sweets" element={<Sweets />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/recipe/:recId" element={<Recipe />} />
+              <Route path="/myprofile" element={<MyProfile />} />
+              <Route path="/logout" element={<Logout />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/mypotlucks" element={<MyPotlucks />} />
+              <Route
+                path="/mypotlucks/:potluckId"
+                element={<SinglePotluck />}
+              />
+              <Route path="/user/:userId" element={<UserProfile />} />
             </Routes>
-          )}
+          </div>
+        ) : (
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signup/add-info" element={<AddInfo />} />
+            <Route path="/signup/add-first-recipe" element={<AddFirstRecipe />} />
+          </Routes>
+        )}
       </Router>
     </ApolloProvider>
   );

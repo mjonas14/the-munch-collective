@@ -52,6 +52,9 @@ const CreatePotluckModal = ({ showModal, setShowModal }) => {
         throw new Error("Something went wrong!");
       }
 
+      const redirectUrl = `http://localhost:3000/mypotlucks/${data.createPotluck._id}`;
+      window.location.href = redirectUrl;
+
       handleClose();
     } catch (err) {
       console.log(err);
@@ -100,7 +103,7 @@ const CreatePotluckModal = ({ showModal, setShowModal }) => {
               variant="contained"
               sx={{ margin: "30px 10px 20px 10px" }}
             >
-              Add Recipe
+              Create Potluck
             </Button>
           </Box>
         </Box>

@@ -8,7 +8,7 @@ import {
   Button,
   Typography,
   Item,
-  Grid
+  Grid,
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
@@ -16,14 +16,11 @@ import Auth from "../../../../utils/auth";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_GETALLPRIVATERECIPES } from "../../../../utils/queries";
 
-import {
-  ADD_PUBLIC_RECIPE,
-  ADD_PRIVATE_RECIPE,
-} from "../../../../utils/mutations";
+import { ADD_PRIVATE_RECIPE } from "../../../../utils/mutations";
 import CancelIcon from "@mui/icons-material/Cancel";
 
 export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
-  const [addPrivateRecipe, { error, data }] = useMutation(ADD_PRIVATE_RECIPE);
+  const [addPrivateRecipe] = useMutation(ADD_PRIVATE_RECIPE);
 
   function convertToBase64(file) {
     return new Promise((resolve, reject) => {

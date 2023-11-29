@@ -36,6 +36,7 @@ export default function Login() {
         throw new Error("something went wrong!");
       }
       Auth.login(data.login.token);
+      Auth.signup();
       window.location.replace("/myprofile");
     } catch (err) {
       console.error(err);

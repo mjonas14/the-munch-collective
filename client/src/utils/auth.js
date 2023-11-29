@@ -15,6 +15,12 @@ class AuthService {
     return !!token && !this.isTokenExpired(token); // handwaiving here
   }
 
+  // check if user is signed up
+  signedUp() {
+    const status = localStorage.getItem('status')
+    return status === 'complete';
+  }
+
   // check if token is expired
   isTokenExpired(token) {
     try {
@@ -39,9 +45,15 @@ class AuthService {
     // window.location.assign('/');
   }
 
+  signup() {
+    // Saves complete once signup process is done
+    localStorage.setItem('status', 'complete');
+  }
+
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
+    localStorage.removeItem('status');
     // this will reload the page and reset the state of the application
     window.location.assign('/');
   }

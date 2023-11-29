@@ -25,7 +25,7 @@ const style = {
 };
 
 const EditProileInfo = (props) => {
-  const [addUserDetails, { loading1, data1 }] = useMutation(ADD_USER_DETAILS);
+  const [addUserDetails] = useMutation(ADD_USER_DETAILS);
 
   const handleClose = () => {
     props.set(false);

@@ -12,15 +12,15 @@ import {
   Typography,
   Container
 } from "@mui/material";
-import LandingPageHeader from "../components/LandingPageHeader";
+import LandingPageHeader from "../../components/LandingPageHeader";
 
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
-import { ADD_USER, LOGIN_USER } from "../utils/mutations";
+import { ADD_USER, LOGIN_USER } from "../../utils/mutations";
 
 export default function Signup() {
-  const [addUser, { error2, data2 }] = useMutation(ADD_USER);
-  const [login, { error3, data3 }] = useMutation(LOGIN_USER);
+  const [addUser] = useMutation(ADD_USER);
+  const [login] = useMutation(LOGIN_USER);
 
   const handleSubmit1 = async (event) => {
     event.preventDefault();
@@ -34,7 +34,7 @@ export default function Signup() {
     try {
       const { data } = await addUser({
         variables: {
-          username: formData.get("username"),
+          username: formData.get("firstName") + " " + formData.get("lastName"),
           email: formData.get("email"),
           password: formData.get("password"),
         },
@@ -43,7 +43,7 @@ export default function Signup() {
       try {
         const { data } = await login({
           variables: {
-            username: formData.get("username"),
+            username: formData.get("firstName") + " " + formData.get("lastName"),
             password: formData.get("password"),
           },
         });
@@ -51,7 +51,7 @@ export default function Signup() {
           throw new Error("Something went wrong with login!");
         }
         Auth.login(data.login.token);
-        window.location.replace("/myprofile");
+        window.location.replace("/signup/add-info");
       } catch (err) {
         console.log(err);
       }
@@ -123,9 +123,18 @@ export default function Signup() {
                   margin="normal"
                   required
                   fullWidth
-                  id="username"
-                  label="Username"
-                  name="username"
+                  id="firstName"
+                  label="First Name"
+                  name="firstName"
+                  autoFocus
+                />
+                                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
                   autoFocus
                 />
                 <TextField
