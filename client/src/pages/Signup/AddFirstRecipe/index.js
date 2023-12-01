@@ -193,38 +193,53 @@ const AddFirstRecipe = () => {
           <TextField
             margin="normal"
             fullWidth
-            id="name"
             placeholder="Chocolate Sauce"
             name="name"
           />
-          <FormLabel>Comment:</FormLabel>
-          <TextField
-            margin="normal"
-            fullWidth
-            id="stp3"
-            placeholder="Server over ice cream with fresh berries"
-            name="comment"
-          />
-<Box sx={{ width: 200 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Meal Type</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={mType}
-          label="Meal Type"
-          onChange={handleChange}
-        >
-          {mealType.map((type) => (
-                      <MenuItem key={type} value={type}>{type}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+          <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <Box sx={{ 
+              width: 300, 
+              display: "flex",
+              flexDirection: "column" 
+              }}>
+            <FormLabel>Meal Type:</FormLabel>
+              <FormControl fullWidth>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  size="small"
+                  value={mType}
+                  onChange={handleChange}
+                >
+                  {mealType.map((type) => (
+                    <MenuItem key={type} value={type}>{type}</MenuItem>
+                ))}
+                </Select>
+              </FormControl>
+            </Box>
+            <Box
+              component="form"
+              sx={{
+                '& .MuiTextField-root': { m: 1, width: '50ch' },
+                display: "flex",
+                flexDirection: "column"
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <FormLabel>Comment:</FormLabel>
+              <TextField
+                  id="outlined-multiline-static"
+                  multiline
+                  size="small"
+                />
+            </Box>
+          </Box>
           <FormLabel>Ingredients:</FormLabel>
           <TextField
             margin="normal"
             fullWidth
+            size="small"
             placeholder="1 cup sugar"
             name="ingredient1"
           />
@@ -232,6 +247,7 @@ const AddFirstRecipe = () => {
             <TextField
               key={field.id}
               value={field.value}
+              size="small"
               onChange={(e) => handleIngChange(field.id, e.target.value)}
               margin="normal"
               fullWidth
@@ -249,7 +265,7 @@ const AddFirstRecipe = () => {
           <TextField
             margin="normal"
             fullWidth
-            id="stp1"
+            size="small"
             placeholder="Mix the sugar and cacao powder in a bowl"
             name="step1"
           />
@@ -257,6 +273,7 @@ const AddFirstRecipe = () => {
             <TextField
               key={field.id}
               value={field.value}
+              size="small"
               onChange={(e) => handleMthdChange(field.id, e.target.value)}
               margin="normal"
               fullWidth
@@ -285,6 +302,7 @@ const AddFirstRecipe = () => {
             <TextField
               key={field.id}
               value={field.value}
+              size="small"
               onChange={(e) => handleTipChange(field.id, e.target.value)}
               margin="normal"
               fullWidth
@@ -302,6 +320,7 @@ const AddFirstRecipe = () => {
           <TextField
             margin="normal"
             fullWidth
+            size="small"
             placeholder="NYT Cooking"
             name="source"
           />
