@@ -34,6 +34,19 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
       };
     });
   }
+  
+  const mealType = [
+    "Appetizer",
+    "Beverage",
+    "Breakfast",
+    "Brunch",
+    "Dessert",
+    "Dinner",
+    "Lunch",
+    "Main Course",
+    "Side Dish",
+    "Snack",
+  ];
 
   const handleAdd = async (event) => {
     event.preventDefault();

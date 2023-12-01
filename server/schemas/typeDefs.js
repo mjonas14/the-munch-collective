@@ -48,7 +48,7 @@ const typeDefs = gql`
         method: [String!]
         img: String
         source: String
-        tips: String
+        tips: [String]
         mealType: String!
         createdAt: String
     }
@@ -70,7 +70,7 @@ const typeDefs = gql`
         method: [String!]
         img: String
         source: String
-        tips: String
+        tips: [String]
         mealType: String!
     }
 
@@ -96,7 +96,7 @@ const typeDefs = gql`
 
     type Mutation {
         addPublicRecipe(input: publicRecipeInput!): PublicRecipe
-        addPrivateRecipe(userId: String!, input: publicRecipeInput!): PrivateRecipe
+        addPrivateRecipe(input: publicRecipeInput!): PrivateRecipe
         removePublicRecipe(recipeId: String!): PublicRecipe
         addUser(username: String!, email: String!, password: String!): Auth
         login(username: String!, password: String!): Auth

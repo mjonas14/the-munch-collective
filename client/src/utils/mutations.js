@@ -74,8 +74,8 @@ export const ADD_PUBLIC_RECIPE = gql`
 `;
 
 export const ADD_PRIVATE_RECIPE = gql`
-  mutation addPrivateRecipe($userId: String!, $input: publicRecipeInput!) {
-    addPrivateRecipe(userId: $userId, input: $input) {
+  mutation addPrivateRecipe($input: publicRecipeInput!) {
+    addPrivateRecipe(input: $input) {
       name
       userId
       _id

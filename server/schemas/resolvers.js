@@ -90,7 +90,7 @@ const resolvers = {
 
       return newRecipe;
     },
-    addPrivateRecipe: async (parent, { userId, input }, context) => {
+    addPrivateRecipe: async (parent, { input }, context) => {
       if (context.user) {
         input.userId = context.user._id;
         const newRecipe1 = await PrivateRecipe.create(input);

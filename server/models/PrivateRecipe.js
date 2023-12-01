@@ -9,7 +9,6 @@ const privateRecipeSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
   comment: {
     type: String,
@@ -32,9 +31,11 @@ const privateRecipeSchema = new Schema({
   source: {
     type: String,
   },
-  tips: {
-    type: String,
-  },
+  tips: [
+    {
+      type: String,
+    },
+  ],
   mealType: {
     type: String,
     required: true,
