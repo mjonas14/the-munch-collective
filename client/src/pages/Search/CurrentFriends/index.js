@@ -1,23 +1,11 @@
-import React, { useState } from "react";
-import {
-  Grid,
-  Box,
-  Container,
-  Avatar,
-  Typography,
-  IconButton,
-} from "@mui/material";
+import React from "react";
+import { Box, Container } from "@mui/material";
 import TableContainer from "@mui/material/TableContainer";
-import EditIcon from "@mui/icons-material/Edit";
-import { useQuery } from "@apollo/client";
-import { QUERY_GETME, QUERY_GET_USER_BY_ID } from "../../../utils/queries";
-
 import UserDisplay from "../../../components/UserDisplay";
 import LongMenu from "../../../components/ThreeDotsFriend";
 
 const CurrentFriends = ({ me }) => {
-
-  let friendList = me.friends || [];
+  const friendList = me.friends || [];
 
   return (
     <>

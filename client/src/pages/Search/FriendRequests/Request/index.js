@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  Box,
-  Container,
-  Avatar,
-  Typography,
-  IconButton,
-  TableContainer,
-} from "@mui/material";
+import { Container, Typography, IconButton } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useMutation } from "@apollo/client";
@@ -20,12 +12,12 @@ const Request = ({ request }) => {
   const [status, setStatus] = useState("");
   const [approveFriend] = useMutation(APPROVE_FRIEND);
   const [sayNoToFriend] = useMutation(DECLINE_FRIEND);
+
   const handleApprove = async (id) => {
     try {
       const { data } = await approveFriend({
         variables: { friendId: id },
       });
-      console.log(data);
       if (!data) {
         throw new Error("Something went wrong!");
       }
@@ -40,7 +32,6 @@ const Request = ({ request }) => {
       const { data } = await sayNoToFriend({
         variables: { friendId: id },
       });
-      console.log(data);
       if (!data) {
         throw new Error("Something went wrong!");
       }

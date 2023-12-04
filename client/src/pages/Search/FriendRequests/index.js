@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  Box,
-  Container,
-  Avatar,
-  Typography,
-  IconButton,
-  TableContainer,
-} from "@mui/material";
+import { Box, Typography, TableContainer } from "@mui/material";
 import { useQuery } from "@apollo/client";
 import { QUERY_GET_ALL_MY_REQUESTS } from "../../../utils/queries";
 
@@ -21,15 +13,17 @@ const FriendRequests = () => {
     return <></>;
   }
 
+  // Get requests and filter for only those pending
   const requests = data?.getAllMyRequests || [];
+  const pendingReqs = requests.filter((req) => req.status != "accepted");
 
   return (
     <Box className="list-box-users">
       <header className="box-header">Friends Requests</header>
       <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
-        {requests.length > 0 ? (
+        {pendingReqs.length > 0 ? (
           <>
-            {requests.map((request, index) => (
+            {pendingReqs.map((request, index) => (
               <>
                 <Request key={index} request={request} />
               </>

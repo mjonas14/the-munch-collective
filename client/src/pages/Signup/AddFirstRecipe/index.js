@@ -21,8 +21,7 @@ import {
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Auth from "../../../utils/auth";
 
-import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_GETME } from "../../../utils/queries";
+import { useMutation } from "@apollo/client";
 import { ADD_PRIVATE_RECIPE } from "../../../utils/mutations";
 
 // components
@@ -35,8 +34,6 @@ const AddFirstRecipe = () => {
   const [mType, setMType] = useState("");
 
   const [addPrivateRecipe] = useMutation(ADD_PRIVATE_RECIPE);
-  const { loading, data } = useQuery(QUERY_GETME);
-  const me = data?.getMe || [];
 
   const mealType = [
     "Appetizer",
@@ -55,10 +52,6 @@ const AddFirstRecipe = () => {
     console.log(event.currentTarget);
     setMType(event.target.value);
   };
-
-  if (loading) {
-    <h3>Loading...</h3>;
-  }
 
   function convertToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -109,34 +102,12 @@ const AddFirstRecipe = () => {
     setTips(updatedFields);
   };
 
-  const compileInputs = () => {
-    const inputs = {
-      ingredients: ingredients.map((field) => field.value),
-      method: method.map((field) => field.value),
-      tips: tips.map((field) => field.value),
-    };
-    return inputs;
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
 
     var base64 = await convertToBase64(formData.get("img"));
-
-    const vibe = {
-      name: formData.get("name"),
-      ingredients: ingredients.map((field) => field.value),
-      method: method.map((field) => field.value),
-      mealType: formData.get("mealType"),
-      comment: formData.get("comment") || "",
-      img: base64,
-      source: formData.get("source"),
-      tips: tips.map((field) => field.value),
-    };
-
-    console.log(vibe);
 
     try {
       // Using arbitrary number that is within confidence interval for a non-image upload
