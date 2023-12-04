@@ -11,7 +11,7 @@ import {
 import Auth from "../../utils/auth";
 import { useMutation, useQuery } from "@apollo/client";
 import { CREATE_POTLUCK } from "../../utils/mutations";
-import { QUERY_GET_MY_POTLUCKS, QUERY_GETME } from "../../utils/queries";
+import { QUERY_GET_MY_POTLUCKS } from "../../utils/queries";
 
 // components
 import PotluckBar from "./components/PotluckBar";

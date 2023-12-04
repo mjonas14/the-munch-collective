@@ -21,9 +21,12 @@ import PotluckRecipes from "./PotluckRecipes";
 export default function SinglePotluck() {
   const { potluckId } = useParams();
   const { loading: meLoading, data: meData } = useQuery(QUERY_GETME);
-  const { loading: potluckLoading, data: potluckData } = useQuery(QUERY_GET_POTLUCK_BY_ID, {
-    variables: { potluckId: potluckId },
-  });
+  const { loading: potluckLoading, data: potluckData } = useQuery(
+    QUERY_GET_POTLUCK_BY_ID,
+    {
+      variables: { potluckId: potluckId },
+    }
+  );
 
   if (potluckLoading || meLoading) {
     return <></>;
@@ -32,33 +35,32 @@ export default function SinglePotluck() {
   const potluck = potluckData?.getPotluckById || [];
   const me = meData?.getMe || [];
 
-  console.log(potluck, "p")
-  console.log(me, "m")
-
+  // Am I the creator?
   const iCreate = potluck.createdBy._id === me._id;
 
   return (
     <>
       {iCreate ? (
-        <div>It was I who created this here potluck!</div>
+        <Grid container>
+          <Grid item xs={9}>
+            <TopBar title={potluck.title} img={potluck.img} />
+            <PotluckRecipes me={me} potluck={potluck} />
+          </Grid>
+          <Grid item xs={3}>
+            <PotluckMembers members={potluck.members} />
+            <></>
+          </Grid>
+        </Grid>
       ) : (
         <Grid container>
-          {potluckLoading || meLoading ? (
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <CircularProgress />
-            </Box>
-          ) : (
-            <Grid container>
-              <Grid item xs={9}>
-                <TopBar title={potluck.title} img={potluck.img} />
-                <PotluckRecipes me={me} potluck={potluck} />
-              </Grid>
-              <Grid item xs={3}>
-                <PotluckMembers members={potluck.members} />
-                <></>
-              </Grid>
-            </Grid>
-          )}
+          <Grid item xs={9}>
+            <TopBar title={potluck.title} img={potluck.img} />
+            <PotluckRecipes me={me} potluck={potluck} />
+          </Grid>
+          <Grid item xs={3}>
+            <PotluckMembers members={potluck.members} />
+            <></>
+          </Grid>
         </Grid>
       )}
     </>

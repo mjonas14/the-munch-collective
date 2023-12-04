@@ -9,6 +9,7 @@ import {
   CardActions,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import "../../styles/styles.css";
 
 // components
 import image from "../../utils/assets/images/Home_Image.png";
@@ -24,7 +25,7 @@ const RecipeCardLg = ({ name, comment, id, img }) => {
 
   return (
     <div>
-      <Card sx={{ width: 300, height: 320, margin: "0px 10px 20px 10px" }}>
+      <Card sx={{ width: 250, height: 320, margin: "10px" }}>
         <CardActionArea
           component={Link}
           to={`/recipe/${id}`}
@@ -32,9 +33,10 @@ const RecipeCardLg = ({ name, comment, id, img }) => {
         >
           <CardMedia
             component="img"
-            height="140"
+            height="150px"
             image={img || image}
             alt={name}
+            sx={{ border: "20px solid white", boxSizing: "border-box" }}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
