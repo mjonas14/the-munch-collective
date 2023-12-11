@@ -45,14 +45,12 @@ export default function UserProfile() {
   }
 
   return (
-    <Grid container>
+    <Grid container sx={{ mt: "20px" }}>
       <Grid item xs={4}>
-        <UserImage loading={userLoading} user={user} />
-      </Grid>
-      <Grid item xs={8}>
+        <UserImage loading={userLoading} user={user} />\{" "}
         <UserInfo loading={userLoading} user={user} isFriend={isFriend} />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={8}>
         <UserRecipes loading={userLoading} user={user} isFriend={isFriend} />
       </Grid>
     </Grid>

@@ -19,13 +19,11 @@ const UsernameSec = () => {
   const userData = data?.getMe || [];
   console.log(userData, "data of user");
 
-    const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-    if (loading) {
-      return (
-        <h1>Loading...</h1>
-      )
-    }
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
 
   const handleEdit = (event) => {
     event.preventDefault();
@@ -87,15 +85,15 @@ const UsernameSec = () => {
           sx={{
             fontSize: "30px",
             fontWeight: "bold",
-            marginTop: "15px"
+            marginTop: "15px",
           }}
         >
           {userData.username}
         </Typography>
       </Container>
-      <EditProfileModal show={showModal} set={setShowModal}/>
+      <EditProfileModal show={showModal} set={setShowModal} />
     </Box>
   );
-}
+};
 
 export default UsernameSec;

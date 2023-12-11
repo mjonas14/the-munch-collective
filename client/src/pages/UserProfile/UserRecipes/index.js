@@ -21,7 +21,7 @@ export default function UserRecipes({ loading, user, isFriend }) {
         <>
           {user.privateRecipes && user.privateRecipes.length ? (
             <div>
-              <header className={"box-header"} variant="h4">
+              <header className={"box-header"}>
                 Recipes ({user.privateRecipes.length})
               </header>
               <Grid

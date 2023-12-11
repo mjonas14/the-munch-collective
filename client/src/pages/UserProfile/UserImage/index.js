@@ -15,8 +15,11 @@ export default function UserImage({ loading, user }) {
     <Box
       className={"list-box-recipes"}
       sx={{
-        margin: "20px 10px 20px 20px",
+        ml: "20px",
         alignItems: "center",
+        height: 290,
+        disply: "flex",
+        flexDirection: "column",
       }}
     >
       <Container
@@ -25,6 +28,7 @@ export default function UserImage({ loading, user }) {
           justifyContent: "center",
           alignItems: "center",
           position: "relative",
+          mt: "40px",
         }}
       >
         <Avatar

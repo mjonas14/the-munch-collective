@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import style from "../style.js";
 import {
-  Grid,
   Box,
   Container,
-  Avatar,
   Typography,
   IconButton,
 } from "@mui/material";
@@ -43,10 +41,6 @@ const InfoSec = () => {
 
   return (
     <Box
-      // sx={{
-      //   backgroundColor: "black",
-      //   height: 420,
-      // }}
       sx={style.verticalBox}
     >
       <Container
