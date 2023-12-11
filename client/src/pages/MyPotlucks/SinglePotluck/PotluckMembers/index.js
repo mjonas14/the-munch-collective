@@ -22,51 +22,49 @@ import { ADD_FRIEND_TO_POTLUCK } from "../../../../utils/mutations";
 // components
 import UserDisplay from "../../../../components/UserDisplay";
 
-export default function PotluckMembers({ members }) {
+export default function PotluckMembers({ me, members }) {
   const { potluckId } = useParams();
-  const { loading, data } = useQuery(QUERY_GETME);
-  const me = data?.getMe || [];
+  const [memberList, setMemberList] = useState(members);
   const [addFriendToPotluck] = useMutation(ADD_FRIEND_TO_POTLUCK);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const tempList = ["One", "Two", "Three"];
+  console.log(me.friends, "friends");
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = (event) => {
-    console.log(event, "Closed!");
     setAnchorEl(null);
   };
 
-  const handleMenuClick = (name) => {
-    console.log(name, "name");
-    console.log(potluckId, "Id");
-
+  const handleMenuClick = async (user) => {
     try {
-      const { data } = addFriendToPotluck({
-        variables: { 
+      const data = await addFriendToPotluck({
+        variables: {
           potluckId: potluckId,
-          friendId: name._id,
-        }
-      })
+          friendId: user._id,
+        },
+      });
+      console.log(data, "data");
+      if (!data.data.addFriendToPotluck.success) {
+        alert(data.data.addFriendToPotluck.message);
+        throw new Error("Something went wrong!");
+      }
       if (!data) {
         throw new Error("Something went wrong!");
       }
+      setMemberList([...memberList, user]);
     } catch (err) {
       console.error(err);
     }
-
     handleClose();
   };
 
-  if (loading) {
-    return <></>;
-  }
+  console.log(memberList);
 
   return (
-    <Box className="list-box-users" sx={{marginLeft: "0px"}}>
+    <Box className="list-box-users" sx={{ marginLeft: "0px" }}>
       <Container
         sx={{
           display: "flex",
@@ -93,16 +91,16 @@ export default function PotluckMembers({ members }) {
             },
           }}
         >
-          {me.friends.map((friend) => (
-            <MenuItem key={friend} onClick={() => handleMenuClick(friend)}>
+          {me.friends.map((friend, index) => (
+            <MenuItem key={index} onClick={() => handleMenuClick(friend)}>
               {friend.username}
             </MenuItem>
           ))}
         </Menu>
       </Container>
       <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
-        {members.map((member) => (
-          <UserDisplay userId={member._id} />
+        {memberList.map((member, index) => (
+          <UserDisplay key={index} userId={member._id} />
         ))}
       </TableContainer>
     </Box>

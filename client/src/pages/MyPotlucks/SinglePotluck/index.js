@@ -47,7 +47,7 @@ export default function SinglePotluck() {
             <PotluckRecipes me={me} potluck={potluck} />
           </Grid>
           <Grid item xs={3}>
-            <PotluckMembers members={potluck.members} />
+            <PotluckMembers me={me} members={potluck.members} />
             <></>
           </Grid>
         </Grid>

@@ -9,6 +9,7 @@ import AddRecipesModal from "./Modal";
 
 const PotluckRecipes = ({ me, potluck }) => {
   const [showModal, setShowModal] = useState(false);
+  const [recipes, setRecipes] = useState(potluck.recipes);
 
   return (
     <Box className={"list-box-users"}>
@@ -21,14 +22,14 @@ const PotluckRecipes = ({ me, potluck }) => {
       >
         <header className="box-header-sc">Shared Recipes</header>
         <IconButton
-              aria-label="edit"
-              onClick={() => setShowModal(true)}
-              sx={{ margin: "15px" }}
-            >
-              <AddCircleIcon fontSize="large" />
-            </IconButton>
+          aria-label="edit"
+          onClick={() => setShowModal(true)}
+          sx={{ margin: "15px" }}
+        >
+          <AddCircleIcon fontSize="large" />
+        </IconButton>
       </Container>
-      {potluck.recipes.length ? (
+      {recipes.length ? (
         <div>
           <Grid
             container
@@ -36,8 +37,7 @@ const PotluckRecipes = ({ me, potluck }) => {
             color="black"
             sx={{ marginLeft: "15px" }}
           >
-            <></>
-            {potluck.recipes.map((recipe, index) => (
+            {recipes.map((recipe, index) => (
               <RecipeCardLg
                 key={index}
                 name={recipe.name}
@@ -49,21 +49,26 @@ const PotluckRecipes = ({ me, potluck }) => {
           </Grid>
         </div>
       ) : (
-        <>
-          <Container
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="h5">
-              Start adding recipes to your shared Recipe Book!
-            </Typography>
-          </Container>
-        </>
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h5">
+            Start adding recipes to your shared Recipe Book!
+          </Typography>
+        </Container>
       )}
-      <AddRecipesModal me={me} potluck={potluck} showModal={showModal} setShowModal={setShowModal} />
+      <AddRecipesModal
+        setRecipes={setRecipes}
+        recipes={recipes}
+        me={me}
+        potluck={potluck}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </Box>
   );
 };

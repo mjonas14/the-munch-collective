@@ -20,14 +20,10 @@ import {
   REMOVE_RECIPE_FROM_POTLUCK,
 } from "../../../../../../utils/mutations";
 
-const ShareBtn = ({ potluck, recId }) => {
+const ShareBtn = ({ setRecipes, recipes, potluck, recipe, recId }) => {
   const [btnState, setBtnState] = useState(true);
   const [addRecipeToPotluck] = useMutation(ADD_RECIPE_TO_POTLUCK);
   const [removeRecipeFromPotluck] = useMutation(REMOVE_RECIPE_FROM_POTLUCK);
-
-  if (potluck.recipes.some((recipe) => recipe._id === recId)) {
-    setBtnState(!btnState);
-  }
 
   const handleRemove = async (recId) => {
     try {
@@ -37,7 +33,8 @@ const ShareBtn = ({ potluck, recId }) => {
           recId: recId,
         },
       });
-      setBtnState(!btnState);
+      // setBtnState(!btnState);
+      setRecipes(prevArray => prevArray.filter(item => item !== recipe))
     } catch (err) {
       console.log(err);
     }
@@ -51,7 +48,8 @@ const ShareBtn = ({ potluck, recId }) => {
           recId: recId,
         },
       });
-      setBtnState(!btnState);
+      // setBtnState(!btnState);
+      setRecipes(prevArray => [...prevArray, recipe]);
     } catch (err) {
       console.log(err);
     }
@@ -87,7 +85,7 @@ const ShareBtn = ({ potluck, recId }) => {
 
   return (
     <>
-      {potluck.recipes.some((recipe) => recipe._id === recId) ? (
+      {recipes.some((recipe) => recipe._id === recId) ? (
         <Button
           size="small"
           color="error"
@@ -97,7 +95,7 @@ const ShareBtn = ({ potluck, recId }) => {
           }}
           style={{ display: "flex", justfiyContent: "center" }}
         >
-          {btnState ? "Share" : "Unshare"}
+          {!btnState ? "Share" : "Unshare"}
         </Button>
       ) : (
         <Button

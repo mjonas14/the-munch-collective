@@ -14,7 +14,8 @@ const resolvers = {
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id })
           .populate("privateRecipes")
-          .populate("potlucks");
+          .populate("potlucks")
+          .populate("friends");
         return user;
       }
       throw new AuthenticationError("You need to be logged in!");
@@ -279,6 +280,9 @@ const resolvers = {
         const user = await User.findOne({ _id: friendId });
         const potluck = await Potluck.findOne({ _id: potluckId });
 
+
+        console.log(user._id, "id of user");
+
         if (!user) {
           return {
             success: false,
@@ -290,6 +294,13 @@ const resolvers = {
           return {
             success: false,
             message: "Potluck doesn't exist.",
+          };
+        }
+
+        if (potluck.members.some((member) => member._id.toString() === friendId.toString())) {
+          return {
+            success: false,
+            message: `${user.username} is already a member`,
           };
         }
 

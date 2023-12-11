@@ -39,12 +39,12 @@ const RecipeCardLg = ({ name, comment, id, img }) => {
             sx={{ border: "20px solid white", boxSizing: "border-box" }}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant="h6" component="div">
               {name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {comment && comment.length > 120
-                ? comment.substring(0, 120) + "..."
+              {comment && comment.length > 100
+                ? comment.substring(0, 100) + "..."
                 : comment}
             </Typography>
           </CardContent>

@@ -23,8 +23,7 @@ import {
 // components
 import ShareBtn from "./ShareBtn";
 
-const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
-  const [shareStatus, setShareStatus] = useState("Share")
+const AddRecipesModal = ({ setRecipes, recipes, me, potluck, showModal, setShowModal }) => {
   const [addRecipeToPotluck] = useMutation(ADD_RECIPE_TO_POTLUCK);
   const [removeRecipeFromPotluck] = useMutation(REMOVE_RECIPE_FROM_POTLUCK);
   const style = {
@@ -43,32 +42,32 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
     setShowModal(false);
   };
 
-  const handleRemove = async (recId) => {
-    try {
-      const { data } = removeRecipeFromPotluck({
-        variables: {
-          potluckId: potluck._id,
-          recId: recId,
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleRemove = async (recId) => {
+  //   try {
+  //     const { data } = removeRecipeFromPotluck({
+  //       variables: {
+  //         potluckId: potluck._id,
+  //         recId: recId,
+  //       },
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  const handleAdd = async (recId) => {
-    try {
-      const { data } = await addRecipeToPotluck({
-        variables: {
-          potluckId: potluck._id,
-          recId: recId,
-        },
-      });
-      setShareStatus("Unshare")
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleAdd = async (recId) => {
+  //   try {
+  //     const { data } = await addRecipeToPotluck({
+  //       variables: {
+  //         potluckId: potluck._id,
+  //         recId: recId,
+  //       },
+  //     });
+  //     setShareStatus("Unshare")
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <Modal
@@ -103,6 +102,7 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
             >
               {me.privateRecipes.map((recipe, index) => (
                 <Card
+                key={index}
                   sx={{
                     width: 300,
                     height: 50,
@@ -117,7 +117,7 @@ const AddRecipesModal = ({ me, potluck, showModal, setShowModal }) => {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <ShareBtn potluck={potluck} recId={recipe._id} />
+                    <ShareBtn setRecipes={setRecipes} recipes={recipes} potluck={potluck} recipe={recipe} recId={recipe._id} />
                   </CardActions>
                 </Card>
               ))}
