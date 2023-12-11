@@ -42,6 +42,7 @@ const typeDefs = gql`
     type PrivateRecipe {
         _id: ID
         userId: String!
+        createdBy: User
         name: String!
         comment: String
         ingredients: [String!]

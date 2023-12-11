@@ -7,6 +7,8 @@ import {
   Button,
   CardActionArea,
   CardActions,
+  Box,
+  Avatar,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import "../../styles/styles.css";
@@ -49,16 +51,21 @@ const RecipeCardLg = ({ name, comment, id, img }) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button
-            size="small"
-            color="primary"
-            onClick={handleSubmit}
-            style={{ display: "flex", justfiyContent: "center" }}
-          >
-            Share
-          </Button>
-        </CardActions>
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <CardActions>
+            <Button
+              size="small"
+              color="primary"
+              onClick={handleSubmit}
+              style={{ display: "flex", justfiyContent: "center" }}
+            >
+              Share
+            </Button>
+          </CardActions>
+          <Avatar alt="Profile picture" src="" sx={{ width: 20, height: 20, mr: "20px" }}>
+            <Typography sx={{ fontSize: "10px" }}>T</Typography>
+          </Avatar>
+        </Box>
       </Card>
       <ShareRecipeModal show={showModal} set={setShowModal} recipeId={id} />
     </div>

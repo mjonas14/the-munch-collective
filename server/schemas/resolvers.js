@@ -94,6 +94,7 @@ const resolvers = {
     addPrivateRecipe: async (parent, { input }, context) => {
       if (context.user) {
         input.userId = context.user._id;
+        input.createdBy = context.user;
         const newRecipe1 = await PrivateRecipe.create(input);
 
         await User.findOneAndUpdate(

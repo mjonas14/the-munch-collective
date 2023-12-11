@@ -136,7 +136,6 @@ const AddFirstRecipe = () => {
       window.location.replace("/myprofile");
     } catch (err) {
       console.error(err);
-      alert("Shieee");
     }
   };
 

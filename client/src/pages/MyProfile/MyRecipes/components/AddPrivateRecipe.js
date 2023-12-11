@@ -23,24 +23,11 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import AddFirstRecipe from "../../../Signup/AddFirstRecipe";
 
 export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
-  const [ingredients, setIngredients] = useState([]);
-  const [method, setMethod] = useState([]);
+  const [ingredients, setIngredients] = useState([{ id: 1, value: "" }]);
+  const [method, setMethod] = useState([{ id: 1, value: "" }]);
   const [tips, setTips] = useState([]);
   const [mType, setMType] = useState("");
   const [addPrivateRecipe] = useMutation(ADD_PRIVATE_RECIPE);
-
-  function convertToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  }
 
   const mealType = [
     "Appetizer",
@@ -56,7 +43,6 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
   ];
 
   const handleChange = (event) => {
-    console.log(event.currentTarget);
     setMType(event.target.value);
   };
 
@@ -93,6 +79,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
       field.id === id ? { ...field, value } : field
     );
     setIngredients(updatedFields);
+    console.log(ingredients, "ingredient");
   };
 
   const handleMthdChange = (id, value) => {
@@ -114,20 +101,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
 
     const formData = new FormData(event.currentTarget);
 
-    const file = formData.get("img");
-    var base64 = await convertToBase64(file);
-
-    const methodItem = [
-      formData.get("step1"),
-      formData.get("step2"),
-      formData.get("step3"),
-    ];
-
-    const ingredientsItem = [
-      formData.get("ing1"),
-      formData.get("ing2"),
-      formData.get("ing3"),
-    ];
+    var base64 = await convertToBase64(formData.get("img"));
 
     try {
       // Using arbitrary number that is within confidence interval for a non-image upload
@@ -139,26 +113,23 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
         variables: {
           input: {
             name: formData.get("name"),
-            ingredients: ingredientsItem,
-            method: methodItem,
+            ingredients: ingredients.map((field) => field.value),
+            method: method.map((field) => field.value),
             mealType: formData.get("mealType"),
             comment: formData.get("comment") || "",
             img: base64,
             source: formData.get("source"),
-            tips: formData.get("tips"),
+            tips: tips.map((field) => field.value),
           },
-          userId: "",
         },
       });
       if (!data) {
         throw new Error("Something went wrong!");
       }
-      handlePageChange("PersonalRecipes");
+      // handlePageChange("PersonalRecipes");
       window.location.reload();
-      // Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
-      alert("Shieee");
     }
   };
 
@@ -214,150 +185,115 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
             </Select>
           </FormControl>
         </Box>
-        <FormLabel>Ingredients:</FormLabel>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            width: "50%",
-          }}
-        >
-          <FormLabel>1.</FormLabel>
-          <TextField
-            margin="normal"
-            fullWidth
-            id="ing1"
-            placeholder="1 cup sugar"
-            name="ing1"
-            size="small"
-            sx={{ margin: "10px" }}
-          />
-        </Box>
-        {ingredients.map((field) => (
-          <Box
+        <Box sx={{ marginTop: "20px" }}>
+          <FormLabel>Ingredients:</FormLabel>
+          {ingredients.map((field) => (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                flexDirection: "row",
+                width: "50%",
+              }}
+            >
+              <FormLabel>{field.id}.</FormLabel>
+              <TextField
+                key={field.id}
+                value={field.value}
+                size="small"
+                onChange={(e) => handleIngChange(field.id, e.target.value)}
+                margin="normal"
+                fullWidth
+                sx={{ margin: "10px" }}
+              />
+            </Box>
+          ))}
+          <Container
             sx={{
               display: "flex",
               alignItems: "center",
-              flexDirection: "row",
-              width: "50%",
+              paddingLeft: "0px",
             }}
           >
-            <FormLabel>{field.id + 1}.</FormLabel>
+            <IconButton onClick={handleAddIng}>
+              <AddCircleIcon />
+            </IconButton>
+            <Typography>Add Ingredient</Typography>
+          </Container>
+        </Box>
+        <Box sx={{ marginTop: "20px" }}>
+          <FormLabel>Method:</FormLabel>
+          {method.map((field) => (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <FormLabel>{field.id}.</FormLabel>
+              <TextField
+                key={field.id}
+                value={field.value}
+                size="small"
+                onChange={(e) => handleMthdChange(field.id, e.target.value)}
+                margin="normal"
+                fullWidth
+                sx={{ margin: "10px" }}
+              />
+            </Box>
+          ))}
+          <Container
+            sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}
+          >
+            <IconButton onClick={handleAddMthd}>
+              <AddCircleIcon />
+            </IconButton>
+            <Typography>Add Step</Typography>
+          </Container>
+        </Box>
+        <Box sx={{ display: "flex", marginTop: "25px" }}>
+          <FormLabel>Image:</FormLabel>
+          <Box sx={{ marginLeft: "20px" }}>
+            <input
+              type="file"
+              label="Image"
+              id="upload-image"
+              name="img"
+              accept=".jpeg, .png"
+            />
+          </Box>
+        </Box>
+        <Box sx={{ marginTop: "20px" }}>
+          <FormLabel>Tips:</FormLabel>
+          {tips.map((field) => (
             <TextField
               key={field.id}
               value={field.value}
               size="small"
-              onChange={(e) => handleIngChange(field.id, e.target.value)}
+              onChange={(e) => handleTipChange(field.id, e.target.value)}
               margin="normal"
               fullWidth
-              sx={{ margin: "10px" }}
             />
-          </Box>
-        ))}
-        <Container
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            paddingLeft: "0px",
-          }}
-        >
-          <IconButton onClick={handleAddIng}>
-            <AddCircleIcon />
-          </IconButton>
-          <Typography>Add Ingredient</Typography>
-        </Container>
-        <FormLabel>Method:</FormLabel>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            width: "80%",
-          }}
-        >
-          <FormLabel>1.</FormLabel>
+          ))}
+          <Container
+            sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}
+          >
+            <IconButton onClick={handleAddTip}>
+              <AddCircleIcon />
+            </IconButton>
+            <Typography>Add Tip</Typography>
+          </Container>
+        </Box>
+        <Box sx={{ marginTop: "20px" }}>
+          <FormLabel>Source:</FormLabel>
           <TextField
             margin="normal"
             fullWidth
-            id="stp1"
-            placeholder="Mix the sugar and cacao powder in a bowl"
-            name="step1"
             size="small"
-            sx={{ margin: "10px" }}
+            placeholder="NYT Cooking"
+            name="source"
           />
         </Box>
-        {method.map((field) => (
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              flexDirection: "row",
-              width: "80%",
-            }}
-          >
-            <FormLabel>{field.id + 1}.</FormLabel>
-            <TextField
-              key={field.id}
-              value={field.value}
-              size="small"
-              onChange={(e) => handleIngChange(field.id, e.target.value)}
-              margin="normal"
-              fullWidth
-              sx={{ margin: "10px" }}
-            />
-          </Box>
-        ))}
-        <Container
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            paddingLeft: "0px",
-          }}
-        >
-          <IconButton onClick={handleAddMthd}>
-            <AddCircleIcon />
-          </IconButton>
-          <Typography>Add Step</Typography>
-        </Container>
-        <FormLabel>Comment:</FormLabel>
-        <TextField
-          margin="normal"
-          fullWidth
-          id="stp3"
-          placeholder="Server over ice cream with fresh berries"
-          name="comment"
-          size="small"
-          sx={{ margin: "10px" }}
-        />
-        <FormLabel>Image:</FormLabel>
-        <div>
-          <input
-            type="file"
-            label="Image"
-            id="upload-image"
-            name="img"
-            accept=".jpeg, .png"
-          />
-        </div>
-        <FormLabel>Tips:</FormLabel>
-        <Container
-          sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}
-        >
-          <IconButton>
-            <AddCircleIcon />
-          </IconButton>
-          <Typography>Add Tip</Typography>
-        </Container>
-        <FormLabel>Source:</FormLabel>
-        <Container
-          sx={{ display: "flex", alignItems: "center", paddingLeft: "0px" }}
-        >
-          <IconButton>
-            <AddCircleIcon />
-          </IconButton>
-          <Typography>Add Source</Typography>
-        </Container>
         <Container sx={{ display: "flex", padding: "0px" }}>
           <Button
             type="submit"
