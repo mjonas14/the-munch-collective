@@ -33,8 +33,7 @@ const ShareBtn = ({ setRecipes, recipes, potluck, recipe, recId }) => {
           recId: recId,
         },
       });
-      // setBtnState(!btnState);
-      setRecipes(prevArray => prevArray.filter(item => item !== recipe))
+      setRecipes((prevArray) => prevArray.filter((item) => item._id !== recId));
     } catch (err) {
       console.log(err);
     }
@@ -48,8 +47,7 @@ const ShareBtn = ({ setRecipes, recipes, potluck, recipe, recId }) => {
           recId: recId,
         },
       });
-      // setBtnState(!btnState);
-      setRecipes(prevArray => [...prevArray, recipe]);
+      setRecipes((prevArray) => [...prevArray, recipe]);
     } catch (err) {
       console.log(err);
     }

@@ -39,7 +39,7 @@ export default function SinglePotluck() {
   const iCreate = potluck.createdBy._id === me._id;
 
   return (
-    <>
+    <div>
       {iCreate ? (
         <Grid container>
           <Grid item xs={9}>
@@ -63,6 +63,6 @@ export default function SinglePotluck() {
           </Grid>
         </Grid>
       )}
-    </>
+    </div>
   );
 }

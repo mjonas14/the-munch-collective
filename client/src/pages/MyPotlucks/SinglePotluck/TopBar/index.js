@@ -7,9 +7,6 @@ import {
   Typography,
   IconButton,
 } from "@mui/material";
-import TableContainer from "@mui/material/TableContainer";
-
-import UserDisplay from "../../../../components/UserDisplay";
 
 export default function TopBar({ title, img }) {
   return (
@@ -21,9 +18,7 @@ export default function TopBar({ title, img }) {
       >
         <Typography sx={{ fontSize: "35px" }}>{title.charAt(0)}</Typography>
       </Avatar>
-      <Typography>
         <header className="title">{title}</header>
-      </Typography>
     </Box>
   );
 }

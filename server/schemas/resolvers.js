@@ -280,9 +280,6 @@ const resolvers = {
         const user = await User.findOne({ _id: friendId });
         const potluck = await Potluck.findOne({ _id: potluckId });
 
-
-        console.log(user._id, "id of user");
-
         if (!user) {
           return {
             success: false,
@@ -297,7 +294,11 @@ const resolvers = {
           };
         }
 
-        if (potluck.members.some((member) => member._id.toString() === friendId.toString())) {
+        if (
+          potluck.members.some(
+            (member) => member._id.toString() === friendId.toString()
+          )
+        ) {
           return {
             success: false,
             message: `${user.username} is already a member`,
