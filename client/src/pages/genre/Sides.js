@@ -35,10 +35,7 @@ export default function Sides() {
         {recipes.map((recipe, index) => (
           <RecipeCardLg
             key={index}
-            name={recipe.name}
-            comment={recipe.comment}
-            image={recipe.img}
-            id={recipe._id}
+            recipe={recipe}
           />
         ))}
       </Grid>

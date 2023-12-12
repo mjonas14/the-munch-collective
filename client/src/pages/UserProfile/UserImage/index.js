@@ -16,6 +16,7 @@ export default function UserImage({ loading, user }) {
       className={"list-box-recipes"}
       sx={{
         ml: "20px",
+        mb: "20px",
         alignItems: "center",
         height: 290,
         disply: "flex",

@@ -47,7 +47,7 @@ export default function UserProfile() {
   return (
     <Grid container sx={{ mt: "20px" }}>
       <Grid item xs={4}>
-        <UserImage loading={userLoading} user={user} />\{" "}
+        <UserImage loading={userLoading} user={user} />
         <UserInfo loading={userLoading} user={user} isFriend={isFriend} />
       </Grid>
       <Grid item xs={8}>

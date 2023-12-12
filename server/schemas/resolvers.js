@@ -31,7 +31,13 @@ const resolvers = {
     getPotluckById: async (parent, { potluckId }) => {
       const potluck = await Potluck.findOne({ _id: potluckId })
         .populate("members")
-        .populate("recipes");
+        .populate("createdBy")
+        .populate({
+          path: "recipes",
+          populate: {
+            path: "createdBy"
+          },
+        });
       return potluck;
     },
     getAllPublicRecipes: async () => {
@@ -40,9 +46,10 @@ const resolvers = {
       return recipeData;
     },
     getAllPrivateRecipes: async (parent, { userId }, context) => {
-      console.log("Hit Private!");
       if (context.user) {
-        const recipeData = await PrivateRecipe.find({ _id: context.user._id });
+        const recipeData = await PrivateRecipe.find({
+          _id: context.user._id,
+        }).populate("createdBy");
         return recipeData;
       }
     },
@@ -50,7 +57,7 @@ const resolvers = {
       return PublicRecipe.findOne({ _id: recipeId });
     },
     getPrivateRecipeById: async (parent, { recipeId }) => {
-      return PrivateRecipe.findOne({ _id: recipeId });
+      return PrivateRecipe.findOne({ _id: recipeId }).populate("createdBy");
     },
     getPublicRecipeByMealType: async (parent, { mealType }) => {
       return PublicRecipe.find({ mealType: mealType });

@@ -28,8 +28,6 @@ export default function PotluckMembers({ me, members }) {
   const [addFriendToPotluck] = useMutation(ADD_FRIEND_TO_POTLUCK);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  console.log(me.friends, "friends");
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -60,8 +58,6 @@ export default function PotluckMembers({ me, members }) {
     }
     handleClose();
   };
-
-  console.log(memberList);
 
   return (
     <Box className="list-box-users" sx={{ marginLeft: "0px" }}>

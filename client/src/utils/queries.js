@@ -30,6 +30,11 @@ export const QUERY_GETALLPRIVATERECIPES = gql`
       tips
       source
       createdAt
+      createdBy {
+        _id
+        username
+        profilePic
+      }
     }
   }
 `;
@@ -64,6 +69,11 @@ export const QUERY_GETPRIVATERECIPEBYID = gql`
       method
       source
       tips
+      createdBy {
+        _id
+        username
+        profilePic
+      }
     }
   }
 `;
@@ -179,6 +189,11 @@ export const QUERY_GET_POTLUCK_BY_ID = gql`
         source
         tips
         userId
+        createdBy {
+          username
+          profilePic
+          _id
+        }
       }
       members {
         _id

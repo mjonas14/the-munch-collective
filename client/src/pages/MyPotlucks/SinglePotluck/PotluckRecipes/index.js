@@ -40,10 +40,7 @@ const PotluckRecipes = ({ me, potluck }) => {
             {recipes.map((recipe, index) => (
               <RecipeCardLg
                 key={index}
-                name={recipe.name}
-                comment={recipe.comment}
-                id={recipe._id}
-                img={recipe.img}
+                recipe={recipe}
               />
             ))}
           </Grid>

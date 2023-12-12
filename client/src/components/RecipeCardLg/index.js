@@ -17,9 +17,9 @@ import "../../styles/styles.css";
 import image from "../../utils/assets/images/Home_Image.png";
 import ShareRecipeModal from "../ShareRecipeModal";
 
-const RecipeCardLg = ({ name, comment, id, img }) => {
+const RecipeCardLg = ({ recipe }) => {
   const [showModal, setShowModal] = useState(false);
-
+  console.log(recipe);
   const handleSubmit = (event) => {
     event.preventDefault();
     setShowModal(true);
@@ -30,28 +30,34 @@ const RecipeCardLg = ({ name, comment, id, img }) => {
       <Card sx={{ width: 250, height: 320, margin: "10px" }}>
         <CardActionArea
           component={Link}
-          to={`/recipe/${id}`}
+          to={`/recipe/${recipe._id}`}
           sx={{ height: 270 }}
         >
           <CardMedia
             component="img"
             height="150px"
-            image={img || image}
-            alt={name}
+            image={recipe.img || image}
+            alt={recipe.name}
             sx={{ border: "20px solid white", boxSizing: "border-box" }}
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
-              {name}
+              {recipe.name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {comment && comment.length > 100
-                ? comment.substring(0, 100) + "..."
-                : comment}
+              {recipe.comment && recipe.comment.length > 100
+                ? recipe.comment.substring(0, 100) + "..."
+                : recipe.comment}
             </Typography>
           </CardContent>
         </CardActionArea>
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <CardActions>
             <Button
               size="small"
@@ -62,12 +68,24 @@ const RecipeCardLg = ({ name, comment, id, img }) => {
               Share
             </Button>
           </CardActions>
-          <Avatar alt="Profile picture" src="" sx={{ width: 20, height: 20, mr: "20px" }}>
-            <Typography sx={{ fontSize: "10px" }}>T</Typography>
+          <Avatar
+            alt="Profile picture"
+            src={recipe.createdBy ? recipe.createdBy.profilePic : ""}
+            sx={{ width: 20, height: 20, mr: "20px" }}
+            component={Link}
+            to={`/user/${recipe.createdBy ? recipe.createdBy._id : ""}`}
+          >
+            <Typography sx={{ fontSize: "10px" }}>
+              {recipe.createdBy ? recipe.createdBy.username.charAt(0) : "A"}
+            </Typography>
           </Avatar>
         </Box>
       </Card>
-      <ShareRecipeModal show={showModal} set={setShowModal} recipeId={id} />
+      <ShareRecipeModal
+        show={showModal}
+        set={setShowModal}
+        recipeId={recipe._id}
+      />
     </div>
   );
 };
