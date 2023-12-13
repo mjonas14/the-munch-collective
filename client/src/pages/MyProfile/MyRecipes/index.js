@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ProfileRecipeList from "./components/ProfileRecipeList";
 import AddPrivateRecipe from "./components/AddPrivateRecipe";
 
-export default function RightSideSection(props) {
+export default function MyRecipes(props) {
   const [currentPage, setCurrentPage] = useState("PersonalRecipes");
 
   const handlePageChange = (page) => setCurrentPage(page);

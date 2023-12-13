@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import style from "../style.js";
 import {
   Grid,
   Box,
@@ -12,9 +11,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../../../utils/queries";
 
-import EditProfileModal from "./EditProfileModal";
+import EditProfileModal from "./Modal/EditProfileModal.js";
 
-const UsernameSec = () => {
+const ProfileSec = () => {
   const { loading, data } = useQuery(QUERY_GETME);
   const userData = data?.getMe || [];
   console.log(userData, "data of user");
@@ -96,4 +95,4 @@ const UsernameSec = () => {
   );
 };
 
-export default UsernameSec;
+export default ProfileSec;

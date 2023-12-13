@@ -5,9 +5,8 @@ import Auth from "../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../utils/queries";
 
-import UsernameSec from "./MyInfo/ProfileSection";
-import InfoSec from "./MyInfo/InfoSection";
-import RightSideSection from "./MyRecipes";
+import MyInfo from "./MyInfo";
+import MyRecipes from "./MyRecipes";
 import ErrorPage from "../../components/Error";
 
 export default function MyProfile() {
@@ -24,12 +23,11 @@ export default function MyProfile() {
             <Grid container>
               <Grid item xs={4}>
                 <Box sx={{ height: 1000 }}>
-                  <UsernameSec />
-                  <InfoSec />
+                  <MyInfo />
                 </Box>
               </Grid>
               <Grid item xs={8}>
-                <RightSideSection data={userData.privateRecipes} />
+                <MyRecipes data={userData.privateRecipes} />
               </Grid>
             </Grid>
           ) : (

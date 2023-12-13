@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 import { useMutation } from "@apollo/client";
-import { ADD_USER_DETAILS } from "../../../../utils/mutations";
+import { ADD_USER_DETAILS } from "../../../../../utils/mutations";
 
 const style = {
   position: "absolute",
@@ -24,7 +24,7 @@ const style = {
   p: 4,
 };
 
-const EditProileInfo = (props) => {
+const EditInfoModal = (props) => {
   const [addUserDetails] = useMutation(ADD_USER_DETAILS);
 
   const handleClose = () => {
@@ -144,4 +144,4 @@ const EditProileInfo = (props) => {
   );
 }
 
-export default EditProileInfo;
+export default EditInfoModal;

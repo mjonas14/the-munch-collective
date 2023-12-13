@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 import { useMutation } from "@apollo/client";
-import { ADD_USER_DETAILS } from "../../../../utils/mutations";
+import { ADD_USER_DETAILS } from "../../../../../utils/mutations";
 
 const style = {
   position: "absolute",
