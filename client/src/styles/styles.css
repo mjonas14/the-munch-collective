@@ -51,4 +51,23 @@
     width: 150px;
     justify-content: center;
   }
+
+  .recipe {
+    width: 850px;
+    background-color: #fcfaf8;
+    position: relative;
+  }
+
+  .recipe::after {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    border: 1px solid lightgray;
+    border-radius: 2;
+    pointer-events: none;
+    margin: -10px;
+  }
   

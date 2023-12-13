@@ -160,30 +160,41 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
           name="name"
           size="small"
         />
-        <Box
-          sx={{
-            width: 300,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <FormLabel>Meal Type:</FormLabel>
-          <FormControl width="50px" sx={{ margin: "8px" }}>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              size="small"
-              value={mType}
-              onChange={handleChange}
-              name="mealType"
-            >
-              {mealType.map((type) => (
-                <MenuItem key={type} value={type}>
-                  {type}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+        <Box>
+          <FormLabel>Comment:</FormLabel>
+          <TextField
+            margin="normal"
+            placeholder="Chocolate Sauce"
+            name="comment"
+            size="small"
+            fullWidth
+            multiline
+          />
+          <Box
+            sx={{
+              width: 300,
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <FormLabel>Meal Type:</FormLabel>
+            <FormControl width="50px" sx={{ margin: "8px" }}>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                size="small"
+                value={mType}
+                onChange={handleChange}
+                name="mealType"
+              >
+                {mealType.map((type) => (
+                  <MenuItem key={type} value={type}>
+                    {type}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
         </Box>
         <Box sx={{ marginTop: "20px" }}>
           <FormLabel>Ingredients:</FormLabel>
@@ -205,6 +216,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
                 margin="normal"
                 fullWidth
                 sx={{ margin: "10px" }}
+                autoFocus
               />
             </Box>
           ))}
@@ -239,6 +251,8 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
                 margin="normal"
                 fullWidth
                 sx={{ margin: "10px" }}
+                autoFocus
+                multiline
               />
             </Box>
           ))}

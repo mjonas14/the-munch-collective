@@ -31,10 +31,7 @@ export default function UserRecipes({ loading, user, isFriend }) {
                 sx={{ marginLeft: "15px" }}
               >
                 {user.privateRecipes.map((recipe, index) => (
-                  <RecipeCardLg
-                    key={index}
-                    recipe={recipe}
-                  />
+                  <RecipeCardLg key={index} recipe={recipe} />
                 ))}
               </Grid>
             </div>
@@ -46,10 +43,8 @@ export default function UserRecipes({ loading, user, isFriend }) {
         </>
       ) : (
         <div>
-          <Typography className={"box-header"} variant="h4">
-            Recipes
-          </Typography>
-          <LockIcon sx={{ marginLeft: "20px" }}/>
+          <header className={"box-header"}>Recipes</header>
+          <LockIcon sx={{ marginLeft: "20px" }} />
         </div>
       )}
     </Box>

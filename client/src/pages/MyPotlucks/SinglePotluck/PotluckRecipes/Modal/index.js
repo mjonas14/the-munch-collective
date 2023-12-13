@@ -12,6 +12,7 @@ import {
   Card,
   CardContent,
   Grid,
+  TableContainer,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
@@ -23,7 +24,14 @@ import {
 // components
 import ShareBtn from "./ShareBtn";
 
-const AddRecipesModal = ({ setRecipes, recipes, me, potluck, showModal, setShowModal }) => {
+const AddRecipesModal = ({
+  setRecipes,
+  recipes,
+  me,
+  potluck,
+  showModal,
+  setShowModal,
+}) => {
   const [addRecipeToPotluck] = useMutation(ADD_RECIPE_TO_POTLUCK);
   const [removeRecipeFromPotluck] = useMutation(REMOVE_RECIPE_FROM_POTLUCK);
   const style = {
@@ -92,37 +100,54 @@ const AddRecipesModal = ({ setRecipes, recipes, me, potluck, showModal, setShowM
             The recips you select will be added to the potluck and shared with
             its members. Happy cooking!
           </Typography>
-          <Box noValidate sx={{ mt: 1 }}>
-            {" "}
-            <Grid
-              container
-              direction="row"
-              color="black"
-              sx={{ marginLeft: "15px" }}
-            >
-              {me.privateRecipes.map((recipe, index) => (
-                <Card
-                key={index}
-                  sx={{
-                    width: 300,
-                    height: 50,
-                    margin: "0px 10px 20px 10px",
-                    display: "flex",
-                    justifyContent: "speace-between",
-                  }}
-                >
-                  <CardActionArea component={Link} to={`/recipe/${recipe._id}`}>
-                    <CardContent sx={{ display: "flex", alignItems: "center" }}>
-                      <header>{recipe.name}</header>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions>
-                    <ShareBtn setRecipes={setRecipes} recipes={recipes} potluck={potluck} recipe={recipe} recId={recipe._id} />
-                  </CardActions>
-                </Card>
-              ))}
-            </Grid>
-          </Box>
+          <TableContainer sx={{ maxHeight: 300, marginTop: "25px" }}>
+            <Box noValidate sx={{ mt: 1 }}>
+              {" "}
+              <Grid
+                container
+                direction="row"
+                color="black"
+                sx={{ marginLeft: "15px" }}
+              >
+                {me.privateRecipes.map((recipe, index) => (
+                  <Card
+                    key={index}
+                    sx={{
+                      width: 300,
+                      height: 50,
+                      margin: "0px 10px 20px 10px",
+                      display: "flex",
+                      justifyContent: "speace-between",
+                    }}
+                  >
+                    <CardActionArea
+                      component={Link}
+                      to={`/recipe/${recipe._id}`}
+                    >
+                      <CardContent
+                        sx={{ display: "flex", alignItems: "center" }}
+                      >
+                        <header>
+                          {recipe.name.length < 22
+                            ? recipe.name
+                            : recipe.name.substring(0, 22) + "..."}
+                        </header>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <ShareBtn
+                        setRecipes={setRecipes}
+                        recipes={recipes}
+                        potluck={potluck}
+                        recipe={recipe}
+                        recId={recipe._id}
+                      />
+                    </CardActions>
+                  </Card>
+                ))}
+              </Grid>
+            </Box>
+          </TableContainer>
         </Box>
       </Fade>
     </Modal>

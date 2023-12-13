@@ -38,28 +38,33 @@ const Recipe = () => {
       direction="column"
       alignItems="center"
       justify="center"
-      style={{ minHeight: "100vh", marginTop: "20px" }}
+      style={{ minHeight: "100vh", marginTop: "20px", marginBottom: "30px" }}
     >
       <Grid item xs={3}>
-        <Card
-          sx={{
-            width: 900,
-            backgroundColor: "#fcfaf8",
-          }}
-        >
-          <CardContent sx={{ marginLeft: "150px", marginRight: "80px" }}>
+        <Card className="recipe">
+          <CardContent sx={{ marginLeft: "100px", marginRight: "80px" }}>
             <Typography
-              component="div"
-              sx={{ marginTop: "10px", color: "gray" }}
+              component="h5"
+              sx={{
+                marginTop: "45px",
+                color: "gray",
+              }}
             >
-              {/* {recipe.createdAt.substring(0, recipe.createdAt.length - 12)} */}
+              {recipe.createdAt}
             </Typography>
-            <Typography variant="h3" component="div" sx={{ marginTop: "20px" }}>
+            <Typography
+              variant="h3"
+              component="div"
+              align="center"
+              sx={{ marginTop: "20px", }}
+            >
               {recipe.name}
             </Typography>
             <Typography
               sx={{ mb: 1.5, marginTop: "10px" }}
               color="text.secondary"
+              align="center"
+              fontStyle="italic"
             >
               {recipe.comment}
             </Typography>
@@ -74,9 +79,9 @@ const Recipe = () => {
                 <Typography
                   key={index}
                   variant="body1"
-                  sx={{ marginTop: "3px", fontWeight: "light" }}
+                  sx={{ fontWeight: "light", mt: "3px" }}
                 >
-                  {ingredient}
+                  - {ingredient.toLowerCase()}
                 </Typography>
               ))
             ) : (
@@ -95,7 +100,7 @@ const Recipe = () => {
                   variant="body1"
                   sx={{
                     fontWeight: "light",
-                    marginTop: "10px",
+                    mt: "10px",
                     marginLeft: "20px",
                   }}
                 >
@@ -105,7 +110,7 @@ const Recipe = () => {
             ) : (
               <h1>Nope</h1>
             )}
-            {recipe.tips ? (
+            {recipe.tips && recipe.tips.length > 0 ? (
               <div>
                 <Typography
                   variant="body1"
@@ -129,7 +134,9 @@ const Recipe = () => {
                 ))}
               </div>
             ) : (
-              <div style={{ marginBottom: "40px" }}></div>
+              <>
+                <Box sx={{ marginBottom: "40px", height: "100px" }}></Box>
+              </>
             )}
             {recipe.source ? (
               <div>

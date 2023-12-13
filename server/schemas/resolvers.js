@@ -35,7 +35,7 @@ const resolvers = {
         .populate({
           path: "recipes",
           populate: {
-            path: "createdBy"
+            path: "createdBy",
           },
         });
       return potluck;
@@ -66,7 +66,12 @@ const resolvers = {
       return User.find();
     },
     getUserById: async (parent, { userId }, context) => {
-      return User.findOne({ _id: userId }).populate("privateRecipes");
+      return User.findOne({ _id: userId }).populate({
+        path: "privateRecipes",
+        populate: {
+          path: "createdBy",
+        },
+      });
     },
     getFriendRequest: async (parents, { toUserId }, context) => {
       if (context.user) {

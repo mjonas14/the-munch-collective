@@ -232,6 +232,11 @@ export const QUERY_GET_USER_BY_ID = gql`
         source
         tips
         userId
+        createdBy {
+          _id
+          username
+          profilePic
+        }
       }
     }
   }
