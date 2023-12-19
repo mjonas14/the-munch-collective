@@ -26,3 +26,4 @@ OG
 *.njsproj
 *.sln
 *.sw?
+.env
