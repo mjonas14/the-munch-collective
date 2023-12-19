@@ -1,14 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.8e5d4d65.css",
-    "main.js": "/static/js/main.d84ab403.js",
+    "main.css": "/static/css/main.e56a117d.css",
+    "main.js": "/static/js/main.eae1ef21.js",
     "static/media/Home_Image.png": "/static/media/Home_Image.eeb650d0d12c2a52c9fe.png",
+    "static/media/Potluck_Img.jpeg": "/static/media/Potluck_Img.ff52010391a215f08cec.jpeg",
     "index.html": "/index.html",
-    "main.8e5d4d65.css.map": "/static/css/main.8e5d4d65.css.map",
-    "main.d84ab403.js.map": "/static/js/main.d84ab403.js.map"
+    "main.e56a117d.css.map": "/static/css/main.e56a117d.css.map",
+    "main.eae1ef21.js.map": "/static/js/main.eae1ef21.js.map"
   },
   "entrypoints": [
-    "static/css/main.8e5d4d65.css",
-    "static/js/main.d84ab403.js"
+    "static/css/main.e56a117d.css",
+    "static/js/main.eae1ef21.js"
   ]
 }
