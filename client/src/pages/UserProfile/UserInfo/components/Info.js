@@ -34,7 +34,7 @@ export default function Munch({ user, isFriend }) {
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "20px",
+                    marginBottom: "8px",
                   }}
                 >
                   <HouseIcon sx={{ marginRight: "8px" }} />

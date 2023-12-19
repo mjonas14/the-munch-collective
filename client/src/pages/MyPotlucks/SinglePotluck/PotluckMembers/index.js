@@ -88,7 +88,13 @@ export default function PotluckMembers({ me, members }) {
           }}
         >
           {me.friends.map((friend, index) => (
-            <MenuItem key={index} onClick={() => handleMenuClick(friend)}>
+            <MenuItem
+              key={index}
+              onClick={() => handleMenuClick(friend)}
+              disabled={
+                members.some((user) => user._id === friend._id) ? true : false
+              }
+            >
               {friend.username}
             </MenuItem>
           ))}

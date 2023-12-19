@@ -32,6 +32,7 @@ export default function UserExpertise(props) {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        mt: "40px"
       }}
     >
       <Typography

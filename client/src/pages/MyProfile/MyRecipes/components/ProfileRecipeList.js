@@ -19,32 +19,31 @@ const ProfileRecipeList = ({ recipeData, handlePageChange }) => {
         backgroundColor: "#EBECF0",
         borderRadius: "16px",
         margin: "20px 20px 20px 10px",
-        padding: "0px",
       }}
     >
       {recipeArray && recipeArray.length ? (
         <div>
-          <Container
+          <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
             }}
           >
-            <Typography variant="h4">Your Recipes</Typography>
+            <header className="box-header">Your Recipes</header>
             <IconButton
               aria-label="edit"
               onClick={() => handlePageChange("AddRecipe")}
-              sx={{ margin: "15px" }}
+              sx={{mr: "20px"}}
             >
               <AddCircleIcon fontSize="large" />
             </IconButton>
-          </Container>
+          </Box>
           <Grid
             container
             direction="row"
             color="black"
-            sx={{ marginLeft: "15px" }}
+            sx={{ ml: "10px", pr: "20px" }}
           >
             {recipeArray.map((recipe, index) => (
               <RecipeCardLg

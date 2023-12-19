@@ -71,12 +71,12 @@ const RecipeCardLg = ({ recipe }) => {
           <Avatar
             alt="Profile picture"
             src={recipe.createdBy ? recipe.createdBy.profilePic : ""}
-            sx={{ width: 20, height: 20, mr: "20px" }}
+            sx={{ width: 20, height: 20, mr: "20px", textDecoration: "none" }}
             component={Link}
             to={`/user/${recipe.createdBy ? recipe.createdBy._id : ""}`}
           >
-            <Typography sx={{ fontSize: "10px" }}>
-              {recipe.createdBy ? recipe.createdBy.username.charAt(0) : "A"}
+            <Typography sx={{ fontSize: "10px", mt: "2px" }}>
+              {recipe.createdBy ? recipe.createdBy.username.charAt(0) : ""}
             </Typography>
           </Avatar>
         </Box>

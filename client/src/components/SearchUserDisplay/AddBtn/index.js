@@ -60,7 +60,7 @@ const AddBtn = (props) => {
         {friendStatus}
       </Button>
     );
-    } else if (requestData.status === "pending") {
+    } else if (requestData.status === "pending" || friendStatus === "requested") {
     return (
       <Button disabled className={"add-button"}
         sx={{

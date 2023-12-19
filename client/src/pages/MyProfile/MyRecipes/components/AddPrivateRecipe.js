@@ -159,6 +159,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
           placeholder="Chocolate Sauce"
           name="name"
           size="small"
+          autoFocus
         />
         <Box>
           <FormLabel>Comment:</FormLabel>
@@ -216,7 +217,6 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
                 margin="normal"
                 fullWidth
                 sx={{ margin: "10px" }}
-                autoFocus
               />
             </Box>
           ))}
@@ -251,7 +251,6 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
                 margin="normal"
                 fullWidth
                 sx={{ margin: "10px" }}
-                autoFocus
                 multiline
               />
             </Box>
@@ -287,6 +286,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
               onChange={(e) => handleTipChange(field.id, e.target.value)}
               margin="normal"
               fullWidth
+              autoFocus
             />
           ))}
           <Container

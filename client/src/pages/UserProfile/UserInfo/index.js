@@ -19,7 +19,6 @@ export default function UserInfo({ loading, user, isFriend }) {
       className={"list-box-recipes"}
       sx={{ ml: "20px", display: "flex", flexDirection: "column" }}
     >
-      <header className="box-header">Info</header>
       <UserExpertise user={user} />
       <Info user={user} isFriend={isFriend} />
       <Munch user={user} isFriend={isFriend} />

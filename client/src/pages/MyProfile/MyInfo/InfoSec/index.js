@@ -62,6 +62,19 @@ const InfoSec = () => {
           <EditIcon />
         </IconButton>
       </Container>
+      {userData.bio ? (
+        <Container
+        align="center"
+          sx={{
+            marginBottom: "20px",
+            fontStyle: "italic"
+          }}
+        >
+          {userData.bio}
+        </Container>
+      ) : (
+        <></>
+      )}
       {userData.cityLive ? (
         <Container
           sx={{
@@ -122,7 +135,7 @@ const InfoSec = () => {
             alignItems: "center",
           }}
         >
-          <LocalDiningIcon sx={{ marginRight: "10px" }} /> Loves to cook{" "}
+          <LocalDiningIcon sx={{ marginRight: "10px" }} /> Loves to eat{" "}
           {userData.favCuisine}
         </Container>
       ) : (
@@ -131,21 +144,7 @@ const InfoSec = () => {
       {userData.signatureDish ? (
         <Container
           sx={{
-            marginBottom: "15px",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <KitchenIcon sx={{ marginRight: "10px" }} /> Loves to eat{" "}
-          {userData.signatureDish}
-        </Container>
-      ) : (
-        <></>
-      )}
-      {userData.signatureDish ? (
-        <Container
-          sx={{
-            marginBottom: "15px",
+            marginBottom: "50px",
             display: "flex",
             alignItems: "center",
           }}
@@ -156,7 +155,7 @@ const InfoSec = () => {
       ) : (
         <></>
       )}
-      <EditInfoModal show={showModal} set={setShowModal} />
+      <EditInfoModal show={showModal} set={setShowModal} me={userData} />
     </Box>
   );
 };
