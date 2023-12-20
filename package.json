@@ -2,8 +2,8 @@
   "name": "the_munch_collective",
   "version": "0.1.0",
   "engines": {
-    "node": "^20.10.0",
-    "npm": "^10.2.3"
+    "node": "^20.0.0",
+    "npm": "^10.0.0"
   },
   "dependencies": {
     "concurrently": "^8.2.0",
@@ -11,7 +11,6 @@
     "dotenv": "^16.3.1",
     "mdbreact": "^5.2.0",
     "mongodb": "^6.3.0",
-    "n": "^9.2.0",
     "npm": "^10.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -21,7 +20,7 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i",
+    "installAll": "cd server && npm i && cd ../client && npm i",
     "postinstall": "cd client && npm run build --mode=production",
     "front": "cd client && npm run dev",
     "heroku-postbuild": "npm install"
