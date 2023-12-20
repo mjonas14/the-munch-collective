@@ -2,8 +2,8 @@
   "name": "the_munch_collective",
   "version": "0.1.0",
   "engines": {
-    "node": "^20.0.0",
-    "npm": "^10.0.0"
+    "node": "^20.x",
+    "npm": "10.x"
   },
   "dependencies": {
     "concurrently": "^8.2.0",
@@ -20,8 +20,6 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "installAll": "cd server && npm i && cd ../client && npm i",
-    "postinstall": "cd client && npm run build --mode=production",
     "front": "cd client && npm run dev",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build"
   },
@@ -42,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
   }
 }
