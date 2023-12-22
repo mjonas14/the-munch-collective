@@ -8,7 +8,7 @@ const cors = require("cors");
 const myParser = require("body-parser");
 
 const app = express();
-const PORT = Number.parseInt(process.env.PORT) || 5174;
+const PORT = process.env.PORT || 5174;
 
 const server = new ApolloServer({
   typeDefs,
