@@ -52,7 +52,7 @@ const CreatePotluckModal = ({ showModal, setShowModal }) => {
         throw new Error("Something went wrong!");
       }
 
-      const redirectUrl = `http://localhost:3000/mypotlucks/${data.createPotluck._id}`;
+      const redirectUrl = `/mypotlucks/${data.createPotluck._id}`;
       window.location.href = redirectUrl;
 
       handleClose();
