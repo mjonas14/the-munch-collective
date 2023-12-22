@@ -1,2 +1,1 @@
-web: cd client && npm start
-backend: cd server && npm start
+web: node server/server.js
