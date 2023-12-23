@@ -1,17 +1,10 @@
 import React from "react";
 import {
   Button,
-  CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
-  Link,
-  Paper,
   Box,
-  Grid,
   Typography,
   Container,
-  FormLabel,
 } from "@mui/material";
 
 import { useQuery, useMutation } from "@apollo/client";
@@ -76,9 +69,7 @@ const AddInfo = () => {
             }}
           >
             <Button sx={{ width: "100px" }} disabled></Button>
-            <Typography variant="h4">
-              Welcome {me.username}!
-            </Typography>
+            <Typography variant="h4">Welcome {me.username}!</Typography>
             <Button
               onClick={() =>
                 window.location.replace("/signup/add-first-recipe")
@@ -96,8 +87,8 @@ const AddInfo = () => {
               mb="25px"
               width="600px"
             >
-              Tell us a bit more about yourself. This information will be added
-              to your profile and will be visible only to your friends.
+              Tell us a bit more about yourself! This information will be added
+              to your profile and will only be visible to your friends.
             </Typography>
           </Box>
           <Box align="center">
@@ -109,22 +100,34 @@ const AddInfo = () => {
               sx={{ mt: 1, width: "800px" }}
             >
               <Container sx={{ display: "flex", flexDirection: "row" }}>
-                <Box sx={{ margin: "10px" }}>
-                  <FormLabel>Where do you live?</FormLabel>
-                  <TextField
-                    margin="normal"
-                    fullWidth
-                    id="cityLive"
-                    name="cityLive"
-                  />
-                </Box>
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  multiline
+                  rows={3}
+                  name="bio"
+                  label="Tell us about you!"
+                  type="bio"
+                  id="bio"
+                  sx={{ margin: "10px" }}
+                />
+              </Container>
+              <Container sx={{ display: "flex", flexDirection: "row" }}>
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  label="Where do you live?"
+                  id="cityLive"
+                  name="cityLive"
+                  sx={{ m: "10px" }}
+                />
                 <TextField
                   margin="normal"
                   fullWidth
                   id="cityBorn"
                   label="Where were you born?"
                   name="cityBorn"
-                  sx={{ margin: "10px" }}
+                  sx={{ m: "10px" }}
                 />
               </Container>
               <Container sx={{ display: "flex", flexDirection: "row" }}>
@@ -156,17 +159,6 @@ const AddInfo = () => {
                   label="Signature dish"
                   type="signatureDish"
                   id="signatureDish"
-                  sx={{ margin: "10px" }}
-                />
-              </Container>
-              <Container sx={{ display: "flex", flexDirection: "row" }}>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  name="bio"
-                  label="Tell us about you!"
-                  type="bio"
-                  id="bio"
                   sx={{ margin: "10px" }}
                 />
               </Container>

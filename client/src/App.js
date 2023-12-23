@@ -32,6 +32,7 @@ import AddFirstRecipe from "./pages/Signup/AddFirstRecipe";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
+  // uri: "http://localhost:5174/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
@@ -52,13 +53,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// {Auth.loggedIn() && Auth.signedUp() ? (
-
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        {Auth.loggedIn() ? (
+        {Auth.loggedIn() && Auth.signedUp() ? (
           <div>
             <Navbar />
             <Routes>
@@ -86,7 +85,10 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signup/add-info" element={<AddInfo />} />
-            <Route path="/signup/add-first-recipe" element={<AddFirstRecipe />} />
+            <Route
+              path="/signup/add-first-recipe"
+              element={<AddFirstRecipe />}
+            />
           </Routes>
         )}
       </Router>
