@@ -61,7 +61,7 @@ const ProfileRecipeList = ({ recipeData, handlePageChange }) => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h4">Your Recipe Book is empty</Typography>
+          <hedaer className="box-header">Your Recipe Book is empty</hedaer>
           <ArrowRightAltIcon
             sx={{ margin: "25px", color: "gray" }}
             fontSize="large"

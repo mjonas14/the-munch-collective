@@ -169,7 +169,10 @@ const AddFirstRecipe = () => {
               Add Your First Recipe!
             </Typography>
             <Button
-              onClick={() => window.location.replace("/myprofile")}
+              onClick={() => {
+                Auth.signup();
+                window.location.replace("/myprofile");
+              }}
               sx={{ height: "30px", width: "100px" }}
             >
               Add later
