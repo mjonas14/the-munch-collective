@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, CardContent, Typography, Grid, List } from "@mui/material";
+import { Box, Card, CardContent, Typography, Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 

@@ -192,7 +192,7 @@ const resolvers = {
       );
       return potluck;
     },
-    addFriend: async (parents, { toUserId }, context) => {
+    addFriend: async (parent, { toUserId }, context) => {
       if (context.user) {
         const fromUserId = context.user._id;
 
@@ -217,6 +217,43 @@ const resolvers = {
         return {
           success: true,
           message: "Friend request sent!",
+        };
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    removeFriend: async (parent, { friendId }, context) => {
+      if (context.user) {
+        const user = await User.findOne({ _id: context.user._id });
+
+        // if it doesnt exist, post message
+        if (!user) {
+          return {
+            success: false,
+            message: "Invalid user",
+          };
+        }
+
+        let temp = user.friends;
+        // console.log(temp);
+        const initLength = user.friends.length;
+        user.friends = user.friends.filter((friend) => {
+          friend.toString() != friendId.toString();
+        });
+        const fnlLength = user.friends.length;
+        // console.log(temp.toString());
+
+        if (initLength === fnlLength) {
+          return {
+            success: false,
+            message: "Friend was not removed",
+          };
+        }
+
+        await user.save();
+
+        return {
+          success: true,
+          message: "Friend successfully removed",
         };
       }
       throw new AuthenticationError("You need to be logged in!");
@@ -263,7 +300,7 @@ const resolvers = {
       if (context.user) {
         const userId = context.user._id;
 
-        // find the request we want to approve
+        // find the request we want to decline
         const request = await FriendRequests.findOne({
           fromUserId: friendId,
           toUserId: userId,

@@ -1,49 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Grid,
-  Box,
   Container,
   Avatar,
   Typography,
-  IconButton,
-  Button,
   Card,
-  CardContent,
-  CardMedia,
   CardActionArea,
-  CardActions,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { QUERY_GET_USER_BY_ID } from "../../utils/queries";
-import { REQUEST_FRIEND } from "../../utils/mutations";
-import Auth from "../../utils/auth";
 
-import UserDisplay from "../UserDisplay";
+// components
 import AddBtn from "./AddBtn";
 
-export default function SearchUserDisplay(props) {
+export default function SearchUserDisplay({ userId, me }) {
   const { loading, data } = useQuery(QUERY_GET_USER_BY_ID, {
-    variables: { userId: props.userId },
+    variables: { userId: userId },
   });
   const userData = data?.getUserById || [];
 
   if (loading) {
-    return (<></>);
+    return <></>;
   }
 
-  if (props.userId === props.me._id) {
+  if (userId === me._id) {
     return;
   }
 
-  for (let i = 0; i < props.me.friends.length; i++) {
-    if (props.userId === props.me.friends[i]._id) {
+  for (let i = 0; i < me.friends.length; i++) {
+    if (userId === me.friends[i]._id) {
       return;
     }
-  };
+  }
 
-  if (props.userId) {
+  if (userId) {
     return (
       <Card
         sx={{
@@ -56,7 +47,7 @@ export default function SearchUserDisplay(props) {
           padding: "0px",
         }}
       >
-        <CardActionArea component={Link} to={`/user/${props.userId}`}>
+        <CardActionArea component={Link} to={`/user/${userId}`}>
           <Container
             sx={{
               display: "flex",
@@ -77,7 +68,7 @@ export default function SearchUserDisplay(props) {
             </Typography>
           </Container>
         </CardActionArea>
-        <AddBtn userData={userData}/>
+        <AddBtn userData={userData} />
       </Card>
     );
   }

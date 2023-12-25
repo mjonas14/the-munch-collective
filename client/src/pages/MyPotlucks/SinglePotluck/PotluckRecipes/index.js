@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Grid, Box, Typography, Container, IconButton } from "@mui/material";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 // components

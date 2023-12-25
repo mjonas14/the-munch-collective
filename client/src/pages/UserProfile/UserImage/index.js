@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import {
-  Grid,
   Box,
   Container,
   Avatar,
   Typography,
-  IconButton,
 } from "@mui/material";
 
 export default function UserImage({ loading, user }) {

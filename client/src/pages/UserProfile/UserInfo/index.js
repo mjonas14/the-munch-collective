@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  Box,
-  Container,
-  Avatar,
-  Typography,
-  IconButton,
-} from "@mui/material";
+import { Box } from "@mui/material";
 
 // components
 import UserExpertise from "./components/UserExpertise";

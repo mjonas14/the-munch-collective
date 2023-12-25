@@ -8,8 +8,6 @@ import {
   Grid,
   Typography,
   Container,
-  Checkbox,
-  FormControlLabel,
 } from "@mui/material";
 
 import Auth from "../utils/auth";

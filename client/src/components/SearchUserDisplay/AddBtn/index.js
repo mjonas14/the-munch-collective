@@ -1,18 +1,5 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  Box,
-  Container,
-  Avatar,
-  Typography,
-  IconButton,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  CardActionArea,
-  CardActions,
-} from "@mui/material";
+import { Button } from "@mui/material";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_FRIEND } from "../../../utils/mutations";
 import { QUERY_GET_FRIEND_REQUEST } from "../../../utils/queries";
@@ -27,7 +14,7 @@ const AddBtn = (props) => {
   const requestData = data?.getFriendRequest || [];
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <></>;
   }
 
   const handleClick = async (event) => {
@@ -51,7 +38,8 @@ const AddBtn = (props) => {
 
   if (requestData.length === 0) {
     return (
-      <Button className={"add-button"}
+      <Button
+        className={"add-button"}
         sx={{
           color: "blue",
         }}
@@ -60,9 +48,11 @@ const AddBtn = (props) => {
         {friendStatus}
       </Button>
     );
-    } else if (requestData.status === "pending" || friendStatus === "requested") {
+  } else if (requestData.status === "pending" || friendStatus === "requested") {
     return (
-      <Button disabled className={"add-button"}
+      <Button
+        disabled
+        className={"add-button"}
         sx={{
           color: "red",
         }}

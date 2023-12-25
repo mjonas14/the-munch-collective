@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Box,
-  Container,
-  Avatar,
-  Typography,
-  IconButton,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 
 import Auth from "../../utils/auth";
 

@@ -1,22 +1,16 @@
 import React, { useState } from "react";
 import {
-  Grid,
   Box,
   Container,
-  Avatar,
-  Typography,
   IconButton,
   Menu,
   MenuItem,
 } from "@mui/material";
 import TableContainer from "@mui/material/TableContainer";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
-import Auth from "../../../../utils/auth";
 import { useParams } from "react-router-dom";
-import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_GETME } from "../../../../utils/queries";
+import { useMutation } from "@apollo/client";
 import { ADD_FRIEND_TO_POTLUCK } from "../../../../utils/mutations";
 
 // components

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Form,
   FormLabel,
   Backdrop,
   Box,
@@ -9,13 +8,8 @@ import {
   Button,
   Typography,
   TextField,
-  CardActionArea,
-  CardActions,
-  Card,
-  CardContent,
-  Grid,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+
 import { useMutation } from "@apollo/client";
 import { CREATE_POTLUCK } from "../../../utils/mutations";
 

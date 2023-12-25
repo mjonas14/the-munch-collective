@@ -13,14 +13,9 @@ import {
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-import Auth from "../../../../utils/auth";
-import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_GETALLPRIVATERECIPES } from "../../../../utils/queries";
+import { useMutation } from "@apollo/client";
 
 import { ADD_PRIVATE_RECIPE } from "../../../../utils/mutations";
-import CancelIcon from "@mui/icons-material/Cancel";
-
-import AddFirstRecipe from "../../../Signup/AddFirstRecipe";
 
 export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
   const [ingredients, setIngredients] = useState([{ id: 1, value: "" }]);

@@ -97,6 +97,7 @@ const EditInfoModal = ({ show, set, me }) => {
                 label="Tell us about yourself!"
                 type="bio"
                 id="bio"
+                autoFocus
                 defaultValue={me.bio}
               />
               <TextField
@@ -105,7 +106,6 @@ const EditInfoModal = ({ show, set, me }) => {
                 id="cityLive"
                 label="Where do you live?"
                 name="cityLive"
-                autoFocus
                 defaultValue={me.cityLive}
               />
               <TextField

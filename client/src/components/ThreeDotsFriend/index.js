@@ -1,40 +1,35 @@
-import * as React from "react";
-import { useState } from "react";
+import React from "react";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { useMutation } from "@apollo/client";
-import { DECLINE_FRIEND } from "../../utils/mutations";
+import { REMOVE_FRIEND } from "../../utils/mutations";
 
-const ITEM_HEIGHT = 48;
-
-export default function LongMenu(props) {
-  const [renderState, setRenderState] = useState("");
+export default function LongMenu({ friendId }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [removeFriend] = useMutation(REMOVE_FRIEND);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const [removeFriend, { loading, data }] = useMutation(DECLINE_FRIEND);
-
-  const handleRemove = () => {
+  const handleRemove = async () => {
     setAnchorEl(null);
-    setRenderState("a");
-    console.log(renderState, "renderState");
     try {
-      const { data } = removeFriend({
-        variables: { friendId: props._id },
+      const { data } = await removeFriend({
+        variables: { friendId: friendId },
       });
       if (!data) {
         throw new Error("Something went wrong!");
       }
+      console.log(data, "data");
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -62,12 +57,13 @@ export default function LongMenu(props) {
         onClose={handleClose}
         PaperProps={{
           style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
             width: "20ch",
           },
         }}
       >
-        <MenuItem op={handleClose} onClick={handleRemove}>Unfriend</MenuItem>
+        <MenuItem onClick={handleRemove}>
+          Unfriend
+        </MenuItem>
       </Menu>
     </div>
   );

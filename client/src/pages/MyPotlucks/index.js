@@ -16,6 +16,7 @@ import { QUERY_GET_MY_POTLUCKS } from "../../utils/queries";
 // components
 import PotluckBar from "./components/PotluckBar";
 import CreatePotluckModal from "./components/CreatePotluck";
+import Loading from "../../components/Loading";
 
 const MyPotlucks = () => {
   const [showModal, setShowModal] = useState(false);
@@ -26,21 +27,8 @@ const MyPotlucks = () => {
   const potlucks = myPtlkData?.getMyPotlucks.potlucks || [];
 
   if (myPtlkLoading) {
-    <h4>Loading...</h4>;
+    return <Loading />;
   }
-
-  const handleCreate = (title) => {
-    try {
-      const { data } = createPotluck({
-        variables: { title: title },
-      });
-      if (!data) {
-        throw new Error("Something went wrong!");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   return (
     <>
@@ -58,7 +46,9 @@ const MyPotlucks = () => {
             <Typography variant="h4" align="center">
               Your Potlucks
             </Typography>
-            <Button variant="contained" onClick={() => setShowModal(true)}>Create</Button>
+            <Button variant="contained" onClick={() => setShowModal(true)}>
+              Create
+            </Button>
           </Box>
           {potlucks.length === 0 ? (
             <Typography

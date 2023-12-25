@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Card, CardMedia, Container } from "@mui/material";
 
 import image from "../../utils/assets/images/Home_Image.png";

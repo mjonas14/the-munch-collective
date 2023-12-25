@@ -4,7 +4,6 @@ import PublicIcon from "@mui/icons-material/Public";
 import HouseIcon from "@mui/icons-material/House";
 import Person2Icon from "@mui/icons-material/Person2";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
-import KitchenIcon from "@mui/icons-material/Kitchen";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import EditIcon from "@mui/icons-material/Edit";
 

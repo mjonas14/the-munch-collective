@@ -22,8 +22,9 @@ const CurrentFriends = ({ me }) => {
                     alignItems: "center",
                   }}
                 >
-                  <UserDisplay key={friend} userId={friend._id} />
-                  <LongMenu key={index} friendId={friend} />
+                  <UserDisplay key={friend._id} userId={friend._id} />
+                  {/* <LongMenu key={index} friendId={friend._id} /> */}
+                  <div></div>
                 </Container>
               </div>
             ))}

@@ -105,6 +105,7 @@ const typeDefs = gql`
         createPotluck(title: String!): Potluck
         addUserToPotluck(userId: String!, potluckId: String!): Potluck
         addFriend(toUserId: String!): Response
+        removeFriend(friendId: String!): Response
         approveFriend(friendId: String!): Response
         sayNoToFriend(friendId: String!): Response
         addFriendToPotluck(potluckId: String!, friendId: String!): Response

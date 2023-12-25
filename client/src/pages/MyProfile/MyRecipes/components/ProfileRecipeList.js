@@ -1,6 +1,5 @@
 import React from "react";
 import { Grid, Box, Typography, Container, IconButton } from "@mui/material";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 import { useQuery } from "@apollo/client";

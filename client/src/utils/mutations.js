@@ -123,6 +123,15 @@ export const ADD_FRIEND = gql`
   }
 `;
 
+export const REMOVE_FRIEND = gql`
+  mutation removeFriend($friendId: String!) {
+    removeFriend(friendId: $friendId) {
+      message
+      success
+    }
+  }
+`;
+
 export const APPROVE_FRIEND = gql`
   mutation approveFriend($friendId: String!) {
     approveFriend(friendId: $friendId) {

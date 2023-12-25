@@ -9,8 +9,6 @@ import {
   Container,
   Button,
   MenuItem,
-  createTheme,
-  ThemeProvider,
   Avatar,
   ListItemIcon,
   Divider,
@@ -18,7 +16,6 @@ import {
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 

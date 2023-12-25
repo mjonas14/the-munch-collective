@@ -20,6 +20,7 @@ import SearchBar from "./SearchBar";
 export default function UserSearch({ me }) {
   const { loading, data } = useQuery(QUERY_GETALLUSERS);
   const userData = data?.getAllUsers || [];
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filterData = (query, userData) => {
     if (!query) {
@@ -31,7 +32,6 @@ export default function UserSearch({ me }) {
     }
   };
 
-  const [searchQuery, setSearchQuery] = useState("");
   const dataFiltered = filterData(searchQuery, userData);
 
   return (

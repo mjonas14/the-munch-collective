@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function PotluckBar(props) {
+export default function PotluckBar({ img, title, id }) {
   return (
     <div>
       <Card
@@ -29,15 +29,15 @@ export default function PotluckBar(props) {
         <CardContent sx={{ display: "flex", alignItems: "center" }}>
           <Avatar
             alt="Potluck picture"
-            src={props.img}
+            src={img}
             sx={{ width: 45, height: 45 }}
           >
             <Typography sx={{ fontSize: "20px" }}>
-              {props.title.charAt(0)}
+              {title.charAt(0)}
             </Typography>
           </Avatar>
           <Typography variant="h5" sx={{ marginLeft: "30px" }}>
-            {props.title}
+            {title}
           </Typography>
         </CardContent>
         <CardActions>
@@ -45,7 +45,7 @@ export default function PotluckBar(props) {
             size="small"
             color="primary"
             component={Link}
-            to={`/mypotlucks/${props.id}`}
+            to={`/mypotlucks/${id}`}
           >
             View
           </Button>
