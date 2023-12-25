@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Button,
-  TextField,
-  Box,
-  Typography,
-  Container,
-} from "@mui/material";
+import { Button, TextField, Box, Typography, Container } from "@mui/material";
 
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_GETME } from "../../../utils/queries";
@@ -92,80 +86,72 @@ const AddInfo = () => {
             </Typography>
           </Box>
           <Box align="center">
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              align="center"
-              sx={{ mt: 1, width: "800px" }}
-            >
-              <Container sx={{ display: "flex", flexDirection: "row" }}>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  multiline
-                  rows={3}
-                  name="bio"
-                  label="Tell us about you!"
-                  type="bio"
-                  id="bio"
-                  sx={{ margin: "10px" }}
-                />
-              </Container>
-              <Container sx={{ display: "flex", flexDirection: "row" }}>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  label="Where do you live?"
-                  id="cityLive"
-                  name="cityLive"
-                  sx={{ m: "10px" }}
-                />
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  id="cityBorn"
-                  label="Where were you born?"
-                  name="cityBorn"
-                  sx={{ m: "10px" }}
-                />
-              </Container>
-              <Container sx={{ display: "flex", flexDirection: "row" }}>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  name="yob"
-                  label="What year were you born?"
-                  type="yob"
-                  id="yob"
-                  sx={{ margin: "10px" }}
-                />
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  name="favCuisine"
-                  label="Favourite cuisine"
-                  type="favCuisine"
-                  id="favCuisine"
-                  sx={{ margin: "10px" }}
-                />
-              </Container>
-              <Container sx={{ display: "flex", flexDirection: "row" }}>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  height="200px"
-                  name="signatureDish"
-                  label="Signature dish"
-                  type="signatureDish"
-                  id="signatureDish"
-                  sx={{ margin: "10px" }}
-                />
-              </Container>
-              <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
-                Save to Profile
-              </Button>
-            </Box>
+            <Container sx={{ display: "flex", flexDirection: "row" }}>
+              <TextField
+                margin="normal"
+                fullWidth
+                multiline
+                rows={3}
+                name="bio"
+                label="Tell us about you!"
+                type="bio"
+                id="bio"
+                sx={{ margin: "10px" }}
+              />
+            </Container>
+            <Container sx={{ display: "flex", flexDirection: "row" }}>
+              <TextField
+                margin="normal"
+                fullWidth
+                label="Where do you live?"
+                id="cityLive"
+                name="cityLive"
+                sx={{ m: "10px" }}
+              />
+              <TextField
+                margin="normal"
+                fullWidth
+                id="cityBorn"
+                label="Where were you born?"
+                name="cityBorn"
+                sx={{ m: "10px" }}
+              />
+            </Container>
+            <Container sx={{ display: "flex", flexDirection: "row" }}>
+              <TextField
+                margin="normal"
+                fullWidth
+                name="yob"
+                label="What year were you born?"
+                type="yob"
+                id="yob"
+                sx={{ margin: "10px" }}
+              />
+              <TextField
+                margin="normal"
+                fullWidth
+                name="favCuisine"
+                label="Favourite cuisine"
+                type="favCuisine"
+                id="favCuisine"
+                sx={{ margin: "10px" }}
+              />
+            </Container>
+            <Container sx={{ display: "flex", flexDirection: "row" }}>
+              <TextField
+                margin="normal"
+                fullWidth
+                height="200px"
+                name="signatureDish"
+                label="Signature dish"
+                type="signatureDish"
+                id="signatureDish"
+                sx={{ margin: "10px" }}
+              />
+            </Container>
+            <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+              Save to Profile
+            </Button>
           </Box>
         </Box>
       </Box>

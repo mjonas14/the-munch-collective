@@ -102,7 +102,13 @@ export default function PotluckMembers({ me, members }) {
       </Container>
       <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
         {memberList.map((member, index) => (
-          <UserDisplay key={index} userId={member._id} />
+          <>
+            {me._id === member._id ? (
+              <UserDisplay isDisabled={true} key={index} userId={member._id} />
+            ) : (
+              <UserDisplay key={index} userId={member._id} />
+            )}
+          </>
         ))}
       </TableContainer>
     </Box>

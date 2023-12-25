@@ -30,11 +30,11 @@ const ProfileRecipeList = ({ recipeData, handlePageChange }) => {
               alignItems: "center",
             }}
           >
-            <header className="box-header">Your Recipes</header>
+            <header className="box-header-sc">Your Recipes</header>
             <IconButton
               aria-label="edit"
               onClick={() => handlePageChange("AddRecipe")}
-              sx={{mr: "20px"}}
+              sx={{ mr: "20px" }}
             >
               <AddCircleIcon fontSize="large" />
             </IconButton>
@@ -46,34 +46,30 @@ const ProfileRecipeList = ({ recipeData, handlePageChange }) => {
             sx={{ ml: "10px", pr: "20px" }}
           >
             {recipeArray.map((recipe, index) => (
-              <RecipeCardLg
-                key={index}
-                recipe={recipe}
-              />
+              <RecipeCardLg key={index} recipe={recipe} />
             ))}
           </Grid>
         </div>
       ) : (
-        <Container
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <hedaer className="box-header">Your Recipe Book is empty</hedaer>
-          <ArrowRightAltIcon
-            sx={{ margin: "25px", color: "gray" }}
-            fontSize="large"
-          />
-          <IconButton
-            aria-label="edit"
-            onClick={() => handlePageChange("AddRecipe")}
-            sx={{ margin: "15px" }}
+        <div>
+          <Container
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
           >
-            <AddCircleIcon fontSize="large" />
-          </IconButton>
-        </Container>
+            <header className="box-header-sc">Your Recipes</header>
+            <IconButton
+              aria-label="edit"
+              onClick={() => handlePageChange("AddRecipe")}
+              sx={{ margin: "15px" }}
+            >
+              <AddCircleIcon fontSize="large" />
+            </IconButton>
+          </Container>
+          <Typography sx={{ ml: "30px", pb: "30px", fontSize: "20px" }}>Your Recipe Book is empty</Typography>
+        </div>
       )}
     </Box>
   );

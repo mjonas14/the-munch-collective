@@ -52,7 +52,7 @@ export default function UserDisplay(props) {
   }
 
   return (
-    <CardActionArea component={Link} to={`/user/${props.userId}`}>
+    <CardActionArea disabled={props.isDisabled} component={Link} to={`/user/${props.userId}`}>
       <Container
         sx={{
           display: "flex",
