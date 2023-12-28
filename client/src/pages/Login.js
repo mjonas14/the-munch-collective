@@ -14,6 +14,7 @@ import Auth from "../utils/auth";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import LandingPageHeader from "../components/LandingPageHeader";
+import image from "../utils/assets/images/cover.jpg";
 
 export default function Login() {
   const [login, { error, data }] = useMutation(LOGIN_USER);
@@ -44,7 +45,7 @@ export default function Login() {
 
   return (
     <>
-    <LandingPageHeader />
+      <LandingPageHeader />
       <Container component="main" maxWidth="lg">
         <Box
           sx={{
@@ -56,11 +57,10 @@ export default function Login() {
             <Grid
               item
               xs={false}
-              sm={4}
-              md={7}
+              sm={6}
+              md={6}
               sx={{
-                backgroundImage: "url(https://source.unsplash.com/random)",
-                backgroundRepeat: "no-repeat",
+                backgroundImage: `url(${image})`,
                 backgroundColor: (t) =>
                   t.palette.mode === "light"
                     ? t.palette.grey[50]
@@ -72,8 +72,8 @@ export default function Login() {
             <Grid
               item
               xs={12}
-              sm={8}
-              md={5}
+              sm={6}
+              md={6}
               component={Paper}
               elevation={6}
               square

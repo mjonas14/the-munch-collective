@@ -2,19 +2,23 @@ import React from "react";
 import {
   Button,
   CssBaseline,
-  TextField,
   Link,
+  TextField,
   Paper,
   Box,
   Grid,
   Typography,
   Container,
 } from "@mui/material";
-import LandingPageHeader from "../../components/LandingPageHeader";
 
 import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
 import { ADD_USER, LOGIN_USER } from "../../utils/mutations";
+import image from "../../utils/assets/images/cover.jpg";
+import breadImg from "../../utils/assets/images/bread.jpg"
+
+// components
+import LandingPageHeader from "../../components/LandingPageHeader";
 
 export default function Signup() {
   const [addUser] = useMutation(ADD_USER);
@@ -71,6 +75,7 @@ export default function Signup() {
         <Box
           sx={{
             marginTop: 8,
+            marginBottom: 8,
           }}
         >
           <Grid container>
@@ -78,10 +83,10 @@ export default function Signup() {
             <Grid
               item
               xs={false}
-              sm={4}
-              md={7}
+              sm={6}
+              md={6}
               sx={{
-                backgroundImage: "url(https://source.unsplash.com/random)",
+                backgroundImage: `url(${breadImg})`,
                 backgroundRepeat: "no-repeat",
                 backgroundColor: (t) =>
                   t.palette.mode === "light"
@@ -94,8 +99,8 @@ export default function Signup() {
             <Grid
               item
               xs={12}
-              sm={8}
-              md={5}
+              sm={6}
+              md={6}
               component={Paper}
               elevation={6}
               square

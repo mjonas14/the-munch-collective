@@ -10,7 +10,7 @@ export default function UserInfo({ loading, user, isFriend }) {
   return (
     <Box
       className={"list-box-recipes"}
-      sx={{ ml: "20px", display: "flex", flexDirection: "column" }}
+      sx={{ ml: "20px", display: "flex", flexDirection: "column", pb: "25px" }}
     >
       <UserExpertise user={user} />
       <Info user={user} isFriend={isFriend} />

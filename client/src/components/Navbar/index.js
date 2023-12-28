@@ -29,7 +29,6 @@ export default function Navbar() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    console.log("Hit");
     setAnchorEl(null);
   };
 
@@ -71,7 +70,7 @@ export default function Navbar() {
               textDecoration: "none",
             }}
           >
-            The{" "}
+            The
             <span
               style={{
                 fontStyle: "italic",
@@ -268,12 +267,12 @@ export default function Navbar() {
                   <Avatar /> Profile
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleClose}>
+                {/* <MenuItem onClick={handleClose}>
                   <ListItemIcon>
                     <Settings fontSize="small" />
                   </ListItemIcon>
                   Settings
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem component={Link} to="/logout" onClick={handleClose}>
                   <ListItemIcon>
                     <Logout fontSize="small" />

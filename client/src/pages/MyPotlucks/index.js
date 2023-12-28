@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  Box,
-  Typography,
-  Container,
-  IconButton,
-  Button,
-} from "@mui/material";
+import { Grid, Box, Typography, Container, Button } from "@mui/material";
 
 import Auth from "../../utils/auth";
 import { useMutation, useQuery } from "@apollo/client";
@@ -76,7 +69,28 @@ const MyPotlucks = () => {
             </>
           )}
         </Grid>
-        <Grid item xs={4}></Grid>
+        <Grid item xs={4}>
+          <Container>
+            <Container className="box-empty" sx={{minHeight: "400px", pb: "20px"}}>
+              <Typography variant="h5" sx={{ mt: "20px", fontStyle: "bold" }}>
+                Potluck
+              </Typography>
+              <Typography sx={{ fontStyle: "italic" }}>
+                /ˈpɒtlʌk,pɒtˈlʌk/
+              </Typography>
+              <Typography sx={{ mt: "20px" }}>
+                "An informal meal where guests bring different dishes that are
+                then shared with the other guests."
+              </Typography>
+              <Typography sx={{ mt: "20px" }}>
+                In <em>TMC</em>,{" "}
+                <strong>potlucks </strong> 
+                are a great way to create a group with your friends, allowing
+                each member to easily share their recipe(s) within the group!
+              </Typography>
+            </Container>
+          </Container>
+        </Grid>
       </Grid>
       <CreatePotluckModal showModal={showModal} setShowModal={setShowModal} />
     </>

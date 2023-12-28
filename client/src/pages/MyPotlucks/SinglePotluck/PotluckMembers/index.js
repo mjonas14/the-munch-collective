@@ -76,7 +76,7 @@ export default function PotluckMembers({ me, members }) {
           onClose={handleClose}
           PaperProps={{
             style: {
-              maxHeight: 48 * 4.5,
+              maxHeight: 200,
               width: "20ch",
             },
           }}
@@ -94,7 +94,7 @@ export default function PotluckMembers({ me, members }) {
           ))}
         </Menu>
       </Container>
-      <TableContainer sx={{ maxHeight: 395, marginBottom: "10px" }}>
+      <TableContainer sx={{ maxHeight: 420, marginBottom: "10px" }}>
         {memberList.map((member, index) => (
           <>
             {me._id === member._id ? (

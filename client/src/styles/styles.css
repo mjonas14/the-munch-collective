@@ -29,12 +29,20 @@
     flex-direction: column;
     min-height: 150px;
   }
-
+  
   .list-box-recipes {
     background-color: #EBECF0;
     border-radius: 16px;
     display: flex;
     min-height: 200px;
+  }
+  
+  .box-empty {
+    border: solid 2px #c1c2c7;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
   }
 
   .list-box-general {

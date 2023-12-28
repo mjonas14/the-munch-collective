@@ -14,8 +14,13 @@ import { Link } from "react-router-dom";
 import "../../styles/styles.css";
 
 // components
-import image from "../../utils/assets/images/Home_Image.png";
 import ShareRecipeModal from "../ShareRecipeModal";
+import image from "../../utils/assets/images/Home_Image.png";
+import breadImg from "../../utils/assets/images/bread.jpg";
+import breakfastImg from "../../utils/assets/images/breakfast.jpg";
+import dessertImg from "../../utils/assets/images/dessert.jpg";
+import drinkImg from "../../utils/assets/images/drink.jpg";
+import foodImg from "../../utils/assets/images/food.jpg";
 
 const RecipeCardLg = ({ recipe }) => {
   const [showModal, setShowModal] = useState(false);
@@ -23,6 +28,24 @@ const RecipeCardLg = ({ recipe }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setShowModal(true);
+  };
+
+  const autoImgChoose = (type) => {
+    if (type === "Beverage") {
+      return drinkImg;
+    } else if (type === "Breakfast" || type === "Brunch") {
+      return breakfastImg;
+    } else if (type === "Dessert") {
+      return dessertImg;
+    } else if (
+      type === "Dinner" ||
+      type === "Lunch" ||
+      type === "Main Course"
+    ) {
+      return foodImg;
+    } else {
+      return foodImg;
+    }
   };
 
   return (
@@ -36,7 +59,7 @@ const RecipeCardLg = ({ recipe }) => {
           <CardMedia
             component="img"
             height="150px"
-            image={recipe.img || image}
+            image={recipe.img || autoImgChoose(recipe.mealType)}
             alt={recipe.name}
             sx={{ border: "20px solid white", boxSizing: "border-box" }}
           />

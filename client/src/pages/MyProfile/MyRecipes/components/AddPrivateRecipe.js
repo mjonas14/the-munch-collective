@@ -12,6 +12,11 @@ import {
   MenuItem,
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import breadImg from "../../../../utils/assets/images/bread.jpg";
+import breakfastImg from "../../../../utils/assets/images/breakfast.jpg";
+import dessertImg from "../../../../utils/assets/images/dessert.jpg";
+import drinkImg from "../../../../utils/assets/images/drink.jpg";
+import foodImg from "../../../../utils/assets/images/food.jpg";
 
 import { useMutation } from "@apollo/client";
 
@@ -37,11 +42,29 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
     "Snack",
   ];
 
+  const autoImgChoose = (type) => {
+    if (type === "Beverage") {
+      return drinkImg;
+    } else if (type === "Breakfast" || type === "Brunch") {
+      return breakfastImg;
+    } else if (type === "Dessert") {
+      return dessertImg;
+    } else if (
+      type === "Dinner" ||
+      type === "Lunch" ||
+      type === "Main Course"
+    ) {
+      return foodImg;
+    } else {
+      return foodImg;
+    }
+  };
+
   const handleChange = (event) => {
     setMType(event.target.value);
   };
 
-  function convertToBase64(file) {
+  const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
@@ -52,7 +75,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
         reject(error);
       };
     });
-  }
+  };
 
   const handleAddIng = () => {
     const newField = { id: ingredients.length + 1, value: "" };
@@ -96,12 +119,13 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
 
     const formData = new FormData(event.currentTarget);
 
-    var base64 = await convertToBase64(formData.get("img"));
+    var imgUpload = await convertToBase64(formData.get("img"));
 
     try {
       // Using arbitrary number that is within confidence interval for a non-image upload
-      if (base64.length < 100) {
-        base64 = null;
+      if (imgUpload.length < 100) {
+        imgUpload = autoImgChoose(formData.get("mealType"));
+        console.log(imgUpload);
       }
 
       const { data } = await addPrivateRecipe({
@@ -112,7 +136,7 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
             method: method.map((field) => field.value),
             mealType: formData.get("mealType"),
             comment: formData.get("comment") || "",
-            img: base64,
+            img: imgUpload,
             source: formData.get("source"),
             tips: tips.map((field) => field.value),
           },

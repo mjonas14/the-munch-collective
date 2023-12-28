@@ -29,7 +29,7 @@ const ProfileRecipeList = ({ recipeData, handlePageChange }) => {
               alignItems: "center",
             }}
           >
-            <header className="box-header-sc">Your Recipes</header>
+            <header className="box-header">Your Recipes</header>
             <IconButton
               aria-label="edit"
               onClick={() => handlePageChange("AddRecipe")}
