@@ -15,7 +15,7 @@ import Auth from "../../utils/auth";
 import { useMutation } from "@apollo/client";
 import { ADD_USER, LOGIN_USER } from "../../utils/mutations";
 import image from "../../utils/assets/images/cover.jpg";
-import breadImg from "../../utils/assets/images/bread.jpg"
+import breadImg from "../../utils/assets/images/bread.jpg";
 
 // components
 import LandingPageHeader from "../../components/LandingPageHeader";
@@ -45,8 +45,7 @@ export default function Signup() {
       try {
         const { data } = await login({
           variables: {
-            username:
-              formData.get("firstName") + " " + formData.get("lastName"),
+            email: formData.get("email"),
             password: formData.get("password"),
           },
         });

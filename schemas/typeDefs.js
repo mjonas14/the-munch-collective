@@ -100,7 +100,7 @@ const typeDefs = gql`
         addPrivateRecipe(input: publicRecipeInput!): PrivateRecipe
         removePublicRecipe(recipeId: String!): PublicRecipe
         addUser(username: String!, email: String!, password: String!): Auth
-        login(username: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
         addUserDetails(bio: String, cityBorn: String, cityLive: String, favCuisine: String, signatureDish: String, yob: Float, profilePic: String): User
         createPotluck(title: String!): Potluck
         addUserToPotluck(userId: String!, potluckId: String!): Potluck

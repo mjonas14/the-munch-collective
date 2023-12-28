@@ -27,7 +27,7 @@ export default function Login() {
       // Conduct mutation to login user
       const { data } = await login({
         variables: {
-          username: formData.get("username"),
+          email: formData.get("email"),
           password: formData.get("password"),
         },
       });
@@ -100,10 +100,10 @@ export default function Login() {
                     margin="normal"
                     required
                     fullWidth
-                    id="username"
-                    label="Username"
-                    name="username"
-                    autoComplete="username"
+                    id="email"
+                    label="Email"
+                    name="email"
+                    autoComplete="email"
                     autoFocus
                   />
                   <TextField
