@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# The Munch Collective
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+The Munch Collective is a social platform for recipe sharing, catered to dinner parties and potlucks enabling users to easily share recipes with friends, 
+either through visits to their profile, or through specifically shared recipes in a group. 
 
-## Available Scripts
+## Table of Contents
+1. [Navigation](#navigation)  
+  a. [Search](#search)  
+  b. [MyPotlucks](#mypotlucks)  
+  c. [Profile](#profile)  
+3. [Questions](#questions)
 
-In the project directory, you can run:
+## Navigation
+Upon signing up the user is prompted to enter more infomration about themselves for their profile, followed by entering their first recipe. The user has the ability 
+to skip the process in case they choose to. When signed in, the navbar will display three options: Search, MyPotlucks and Profile.
 
-### `npm start`
+### Search
+In the Search page, the user has the ability to search for any user of on the platform and request them as a friend. The end user will have to accept their friend request 
+for the user to appear as a friend. They will also be able to see their current friends, as well as their incoming friend requests. For each friend request, the user 
+has the option to accept of deny the friend request. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### MyPotlucks
+Potlucks are groups of friends within which users can share one or many recipes with the other group members. The goal with this is the ability to share recipes 
+with friends after a dinner party, potluck or event, so that all the attendees have access to the shared recipes. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In the MyPotlucks window, the user will see the potlucks that they are a member of. On the right-hand side of the page is the definition of a potluck, along 
+with a sentence explaining what a potluck can do for the user. When clicking on a potluck, the user will be taked to the potluck page where they will be able 
+to see the shared recipes, the members, add or remove recipes that they have shared, and add new members to the potluck. 
 
-### `npm test`
+### Profile
+In the profile page the user will be able to see and edit their personal information, their profile picture, as well as view and add any more recipes they have. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Questions
+If you have any questions or suggestions, please dont hesitate to reach out at my email: marcus.jonas14@gmail.com. I am usually pretty quick to respond, but if I haven't in 3-5 days, please send another. 
+I look forward to hearing from you.
