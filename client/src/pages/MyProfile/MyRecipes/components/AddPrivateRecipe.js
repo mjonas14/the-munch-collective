@@ -216,8 +216,8 @@ export default function AddPrivateRecipe({ currentPage, handlePageChange }) {
             </FormControl>
           </Box>
         </Box>
-        <Box sx={{ marginTop: "20px" }}>
-          <FormLabel>Ingredients:</FormLabel>
+        <FormLabel>Ingredients:</FormLabel>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
           {ingredients.map((field) => (
             <Box
               sx={{

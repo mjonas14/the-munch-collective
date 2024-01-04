@@ -72,7 +72,7 @@ const typeDefs = gql`
         img: String
         source: String
         tips: [String]
-        mealType: String!
+        mealType: String
     }
 
     type Auth {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Backdrop,
   Box,
@@ -6,7 +6,6 @@ import {
   Fade,
   Button,
   Typography,
-  Textfield,
 } from "@mui/material";
 
 import { useMutation } from "@apollo/client";
@@ -25,7 +24,7 @@ const style = {
 };
 
 const EditProfileModal = (props) => {
-  const [addUserDetails, { loading1, data1 }] = useMutation(ADD_USER_DETAILS);
+  const [addUserDetails] = useMutation(ADD_USER_DETAILS);
 
   const handleClose = () => {
     props.set(false);

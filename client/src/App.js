@@ -31,8 +31,8 @@ import AddInfo from "./pages/Signup/AddInfo";
 import AddFirstRecipe from "./pages/Signup/AddFirstRecipe";
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
-  // uri: "http://localhost:5174/graphql",
+  // uri: "/graphql",
+  uri: "http://localhost:5174/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header

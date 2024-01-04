@@ -43,7 +43,6 @@ const privateRecipeSchema = new Schema({
   ],
   mealType: {
     type: String,
-    required: true,
   },
   createdAt: {
     type: Date,

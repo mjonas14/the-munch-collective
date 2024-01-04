@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Box,
-  Container,
-  Avatar,
-  Typography,
-  IconButton,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import image from "../../../../utils/assets/images/Potluck_Img.jpeg";
 
 export default function TopBar({ title, img }) {

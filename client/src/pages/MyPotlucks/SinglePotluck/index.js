@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  Grid,
-  CircularProgress,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
@@ -58,7 +51,7 @@ export default function SinglePotluck() {
             <PotluckRecipes me={me} potluck={potluck} />
           </Grid>
           <Grid item xs={3}>
-            <PotluckMembers  me={me} members={potluck.members} />
+            <PotluckMembers me={me} members={potluck.members} />
             <></>
           </Grid>
         </Grid>

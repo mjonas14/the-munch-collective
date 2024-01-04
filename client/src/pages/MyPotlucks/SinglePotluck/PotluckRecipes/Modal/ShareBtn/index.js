@@ -39,34 +39,6 @@ const ShareBtn = ({ setRecipes, recipes, potluck, recipe, recId }) => {
     }
   };
 
-  const handleChange = async (status, recId) => {
-    if (status) {
-      try {
-        const { data } = await addRecipeToPotluck({
-          variables: {
-            potluckId: potluck._id,
-            recId: recId,
-          },
-        });
-        setBtnState(!btnState);
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      try {
-        const { data } = removeRecipeFromPotluck({
-          variables: {
-            potluckId: potluck._id,
-            recId: recId,
-          },
-        });
-        setBtnState(!btnState);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
-
   return (
     <>
       {recipes.some((recipe) => recipe._id === recId) ? (

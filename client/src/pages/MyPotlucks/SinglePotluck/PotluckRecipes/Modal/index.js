@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Backdrop,
   Box,
@@ -14,10 +14,6 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import {
-  ADD_RECIPE_TO_POTLUCK,
-  REMOVE_RECIPE_FROM_POTLUCK,
-} from "../../../../../utils/mutations";
 
 // components
 import ShareBtn from "./ShareBtn";
@@ -30,8 +26,6 @@ const AddRecipesModal = ({
   showModal,
   setShowModal,
 }) => {
-  const [addRecipeToPotluck] = useMutation(ADD_RECIPE_TO_POTLUCK);
-  const [removeRecipeFromPotluck] = useMutation(REMOVE_RECIPE_FROM_POTLUCK);
   const style = {
     position: "absolute",
     top: "50%",

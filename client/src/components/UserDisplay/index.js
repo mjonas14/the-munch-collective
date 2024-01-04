@@ -1,12 +1,8 @@
 import React from "react";
 import {
-  Grid,
-  Box,
   Container,
   Avatar,
   Typography,
-  IconButton,
-  Card,
   CardActionArea,
   CircularProgress,
 } from "@mui/material";

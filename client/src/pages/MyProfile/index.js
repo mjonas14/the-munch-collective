@@ -1,13 +1,15 @@
 import React from "react";
-import { Typography, Grid, Item, Box, Container, Avatar } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 
 import Auth from "../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_GETME } from "../../utils/queries";
 
+// components
 import MyInfo from "./MyInfo";
 import MyRecipes from "./MyRecipes";
 import ErrorPage from "../../components/Error";
+import Loading from "../../components/Loading";
 
 export default function MyProfile() {
   const { loading, data } = useQuery(QUERY_GETME);
@@ -16,7 +18,7 @@ export default function MyProfile() {
   return (
     <div>
       {loading ? (
-        <h1>Loading...</h1>
+        <Loading />
       ) : (
         <div>
           {Auth.loggedIn() ? (

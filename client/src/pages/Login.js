@@ -17,7 +17,7 @@ import LandingPageHeader from "../components/LandingPageHeader";
 import image from "../utils/assets/images/cover.jpg";
 
 export default function Login() {
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [login] = useMutation(LOGIN_USER);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -130,9 +130,9 @@ export default function Login() {
                   </Button>
                   <Grid container>
                     <Grid item xs>
-                      <Link href="#" variant="body2">
+                      {/* <Link href="#" variant="body2">
                         Forgot password?
-                      </Link>
+                      </Link> */}
                     </Grid>
                     <Grid item>
                       <Link href="/signup" variant="body2">

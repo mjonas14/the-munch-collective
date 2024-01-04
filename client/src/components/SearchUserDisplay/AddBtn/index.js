@@ -6,7 +6,6 @@ import { QUERY_GET_FRIEND_REQUEST } from "../../../utils/queries";
 
 const AddBtn = (props) => {
   const [friendStatus, setFriendStatus] = useState("Add Friend");
-  const [btnColor, setBtnColor] = useState("blue");
   const [addFriend] = useMutation(ADD_FRIEND);
   const { loading, data } = useQuery(QUERY_GET_FRIEND_REQUEST, {
     variables: { toUserId: props.userData._id },
@@ -30,7 +29,6 @@ const AddBtn = (props) => {
         throw new Error("Something went wrong!");
       }
       setFriendStatus("requested");
-      setBtnColor("red");
     } catch (err) {
       console.log(err);
     }
